@@ -1268,6 +1268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: moab
       objectReference: {fileID: 0}
+    - target: {fileID: 7150078360103677127, guid: a07ac4604593ec3498aaeebc08afa5d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a07ac4604593ec3498aaeebc08afa5d7, type: 3}
 --- !u!1001 &7265817477761230640
@@ -1280,6 +1284,10 @@ PrefabInstance:
     - target: {fileID: 1971089759986992418, guid: 915ce777c6a7dfd499e4ef93639ab160, type: 3}
       propertyPath: m_Name
       value: bloon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415531086255790742, guid: 915ce777c6a7dfd499e4ef93639ab160, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5755262652951756678, guid: 915ce777c6a7dfd499e4ef93639ab160, type: 3}
       propertyPath: m_RootOrder
