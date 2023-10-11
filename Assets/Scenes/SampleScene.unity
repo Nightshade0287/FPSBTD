@@ -220,6 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85282c969460a6d408350db9e81c0a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  X: 0
+  Y: 0
   sensX: 400
   sensY: 400
   aimSensX: 0
@@ -227,6 +229,8 @@ MonoBehaviour:
   orientation: {fileID: 0}
   camHolder: {fileID: 0}
   aimKey: 324
+  xRotation: 0
+  yRotation: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2813e07ae2feb40802c15a212df1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 5
 --- !u!43 &1753622449
 Mesh:
   m_ObjectHideFlags: 0

@@ -72,6 +72,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "south",
+            "id": "39f5d430-3c61-4e11-bcb1-aab76a445e25",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "3726ceab-5b62-4707-b9c8-b93503af00b7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4f24226d-7688-426d-b575-d92bc96d2497",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
