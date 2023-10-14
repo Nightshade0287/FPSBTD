@@ -94,6 +94,34 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""south"",
+            ""id"": ""39f5d430-3c61-4e11-bcb1-aab76a445e25"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""3726ceab-5b62-4707-b9c8-b93503af00b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4f24226d-7688-426d-b575-d92bc96d2497"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -101,6 +129,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         // Default
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
         m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
+        // south
+        m_south = asset.FindActionMap("south", throwIfNotFound: true);
+        m_south_Newaction = m_south.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,8 +235,58 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         }
     }
     public DefaultActions @Default => new DefaultActions(this);
+
+    // south
+    private readonly InputActionMap m_south;
+    private List<ISouthActions> m_SouthActionsCallbackInterfaces = new List<ISouthActions>();
+    private readonly InputAction m_south_Newaction;
+    public struct SouthActions
+    {
+        private @Inputs m_Wrapper;
+        public SouthActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_south_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_south; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SouthActions set) { return set.Get(); }
+        public void AddCallbacks(ISouthActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SouthActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SouthActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+        }
+
+        private void UnregisterCallbacks(ISouthActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+        }
+
+        public void RemoveCallbacks(ISouthActions instance)
+        {
+            if (m_Wrapper.m_SouthActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ISouthActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SouthActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SouthActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public SouthActions @south => new SouthActions(this);
     public interface IDefaultActions
     {
         void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface ISouthActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }
