@@ -217,20 +217,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 538631330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85282c969460a6d408350db9e81c0a79, type: 3}
+  m_Script: {fileID: 11500000, guid: 77484bb7680b0c94097a0f538637cc5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  X: 0
-  Y: 0
-  sensX: 400
-  sensY: 400
-  aimSensX: 0
-  aimSensY: 0
-  orientation: {fileID: 0}
-  camHolder: {fileID: 0}
-  aimKey: 324
-  xRotation: 0
-  yRotation: 0
+  sensX: 600
+  sensY: 600
+  orientation: {fileID: 1396646079}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

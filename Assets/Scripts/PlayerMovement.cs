@@ -8,7 +8,14 @@ public class PlayerMovement : MonoBehaviour
     private Inputs input;
     private Vector2 moveVector;
     private Rigidbody rb;
+    private Vector3 moveDirection;
+
+    [Header("Variables")]
     public float moveSpeed = 10f;
+    public Vector3 test;
+
+    [Header("References")]
+    public Transform orientation;
 
     private void Awake()
     {
@@ -33,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(moveVector.x, 0, moveVector.y) * moveSpeed;
+        rb.velocity =  new Vector3(moveVector.x, 0, moveVector.y) * moveSpeed;
+        test = rb.velocity;
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
