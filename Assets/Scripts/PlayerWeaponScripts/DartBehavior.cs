@@ -8,7 +8,7 @@ public class DartBehavior : MonoBehaviour
     public int damage;
     public int sharpness;
     public float maxDistance;
-    public int BloonsLayerIndex;
+    public int BloonsLayer;
 
     private Health bl;
     private Rigidbody rb;
@@ -22,6 +22,7 @@ public class DartBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cd = GetComponent<BoxCollider>();
         startPoint = transform.position;
+        Physics.IgnoreLayerCollision(8, 8, true);
     }
 
     private void Update()
@@ -38,11 +39,10 @@ public class DartBehavior : MonoBehaviour
 
     void OnTriggerExit(Collider collider) //if hits bloon subtracks bloon health else destroys game object
     {
-        if (collider.gameObject.layer == BloonsLayerIndex)
+        if (collider.gameObject.layer == BloonsLayer)
         {
             bl = collider.gameObject.GetComponent<Health>();
-            Debug.Log("Triggered");
-            bl.Popped2(damage);
+            bl.TakeDamage(damage);
             bloonsHit += 1;
         }
         else

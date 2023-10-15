@@ -8,23 +8,17 @@ public class Shooting : MonoBehaviour
     public float bulletSpeed;
     public float ShootDelay;
     public float spreadAngle = 1f;
-    public float reloadTime = 1f;
-    public int magazineSize;
     public int bulletsPerShot = 1;
     public bool FullAuto;
 
     [Header("References")]
     public Transform bulletSpawnPoint;
+    public Transform cam;
     public GameObject bulletPrefab;
+    public LayerMask Player;
 
     private bool canShoot = true;
-    private bool isReloading = false;
-    private int bulletsInMagazine;
-
-    private void Start()
-    {
-        bulletsInMagazine = magazineSize;
-    }
+    private Vector3 shootVector;
 
     private void Update()
     {
@@ -32,20 +26,17 @@ public class Shooting : MonoBehaviour
         {
             Shoot();
         }
+
         else if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
-
-        if (!isReloading)
-        {
-            StartCoroutine(Reload());
-        }
+        CalculateShootVector();
     }
 
     private void Shoot()
     {
-        if (!canShoot || isReloading || bulletsInMagazine <= 0)
+        if (!canShoot)
         {
             return;
         }
@@ -56,7 +47,7 @@ public class Shooting : MonoBehaviour
             Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
             // Calculate bullet direction with spread
-            Vector3 bulletDirection = bulletSpawnPoint.forward;
+            Vector3 bulletDirection = shootVector.normalized;
 
             // Calculate spread offset
             float spreadX = Random.Range(-spreadAngle, spreadAngle);
@@ -67,7 +58,6 @@ public class Shooting : MonoBehaviour
 
             bulletRigidbody.velocity = bulletDirection.normalized * bulletSpeed;
         }
-        bulletsInMagazine--;
 
         // Set a cooldown before the next shot
         canShoot = false;
@@ -80,20 +70,19 @@ public class Shooting : MonoBehaviour
         canShoot = true;
     }
 
-    private IEnumerator Reload()
+    private void CalculateShootVector()
     {
-        if (bulletsInMagazine == magazineSize)
+        RaycastHit hit;
+        if (Physics.Raycast(cam.position, cam.forward, out hit, 50))
         {
-            yield break;
+            shootVector = hit.point - bulletSpawnPoint.position;
         }
-
-        isReloading = true;
-
-        yield return new WaitForSeconds(reloadTime);
-        bulletsInMagazine = magazineSize;
-        isReloading = false;
+        else 
+        {
+            shootVector = cam.forward;
+        }
+        Debug.DrawRay(bulletSpawnPoint.position, shootVector * 100, Color.red);
     }
-
 }
 
 

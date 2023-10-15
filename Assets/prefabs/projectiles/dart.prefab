@@ -65,12 +65,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   sharpness: 3
-  maxDistance: 10
-  decayTime: 3
-  BloonsLayerIndex: 7
-  Hitlayers:
-    serializedVersion: 2
-    m_Bits: 832
+  maxDistance: 20
+  BloonsLayer: 7
 --- !u!65 &8044916287724800135
 BoxCollider:
   m_ObjectHideFlags: 0

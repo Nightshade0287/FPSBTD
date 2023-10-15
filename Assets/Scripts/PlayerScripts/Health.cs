@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public int health = 1;
     public GameObject[] ChildBloons;
 
-    public void Popped2(int damage)
+    public void TakeDamage(int damage)
     {
-        if (damage > 0)
+        health -= damage;
+        if (health <= 0)
         {
-            for(int x = 0; x < ChildBloons.Length; x++)
-            {
-                GameObject bloon = Instantiate(ChildBloons[x], transform.position, transform.rotation);
-                bloon.GetComponent<Health>().Popped2(damage -1);
-            }
-            Destroy(gameObject);
+            Popped(-health);
         }
+    }
+
+    public void Popped(int damage)
+    {
+        for(int x = 0; x < ChildBloons.Length; x++)
+        {
+            GameObject bloon = Instantiate(ChildBloons[x], transform.position, transform.rotation);
+            bloon.GetComponent<Health>().TakeDamage(damage);
+        }
+        Destroy(gameObject);
     }
 }
