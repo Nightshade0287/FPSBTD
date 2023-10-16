@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 3953485377064841327}
   - component: {fileID: 7426892828371605061}
   - component: {fileID: 1731629101503909759}
+  - component: {fileID: 8733283190186271679}
   m_Layer: 7
   m_Name: yellow bloon
   m_TagString: Untagged
@@ -145,7 +146,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1731629101503909759
 MonoBehaviour:
@@ -159,8 +160,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b08200daa3ed1489cb162c9a9a27d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
   ChildBloons:
-  - {fileID: 1442408771101411259, guid: 51a97620467a78c44b1904f25ed9e357, type: 3}
+  - {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
+--- !u!114 &8733283190186271679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465021263072242717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a0d83d1fa504c49934638a15cf14dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier: 3.2
+  Path: {fileID: 0}
+  currentWaypoint: 1
 --- !u!1 &3623537887981040553
 GameObject:
   m_ObjectHideFlags: 0

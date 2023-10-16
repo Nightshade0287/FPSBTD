@@ -18,9 +18,10 @@ public class Health : MonoBehaviour
 
     public void Popped(int damage)
     {
-        for(int x = 0; x < ChildBloons.Length; x++)
+        foreach(GameObject child in ChildBloons)
         {
-            GameObject bloon = Instantiate(ChildBloons[x], transform.position, transform.rotation);
+            GameObject bloon = Instantiate(child, transform.position, transform.rotation);
+            GetComponent<Pathing>().UpdateChild(bloon);
             bloon.GetComponent<Health>().TakeDamage(damage);
         }
         Destroy(gameObject);

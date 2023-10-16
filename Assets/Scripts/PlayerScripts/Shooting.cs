@@ -31,7 +31,6 @@ public class Shooting : MonoBehaviour
         {
             Shoot();
         }
-        CalculateShootVector();
     }
 
     private void Shoot()
@@ -43,11 +42,12 @@ public class Shooting : MonoBehaviour
 
         for (int i = 0; i < bulletsPerShot; i++)
         {
+            CalculateShootVector();
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
             // Calculate bullet direction with spread
-            Vector3 bulletDirection = shootVector.normalized;
+            Vector3 bulletDirection = bulletSpawnPoint.forward;
 
             // Calculate spread offset
             float spreadX = Random.Range(-spreadAngle, spreadAngle);
@@ -56,7 +56,7 @@ public class Shooting : MonoBehaviour
             Vector3 spreadOffset = bulletSpawnPoint.right * spreadX + bulletSpawnPoint.up * spreadY;
             bulletDirection += spreadOffset;
 
-            bulletRigidbody.velocity = bulletDirection.normalized * bulletSpeed;
+            bulletRigidbody.velocity = bulletDirection * bulletSpeed;
         }
 
         // Set a cooldown before the next shot

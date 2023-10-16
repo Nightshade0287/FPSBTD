@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 9183135344492292698}
   - component: {fileID: -1904955122173807209}
   - component: {fileID: 3028190608606553346}
+  - component: {fileID: -1394554993031266888}
   m_Layer: 7
   m_Name: ceramic bloon
   m_TagString: Untagged
@@ -145,7 +146,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &3028190608606553346
 MonoBehaviour:
@@ -161,8 +162,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   ChildBloons:
-  - {fileID: 3972527278295149294, guid: 5cc7e76daeb0e034db24fcb1972967e3, type: 3}
-  - {fileID: 3972527278295149294, guid: 5cc7e76daeb0e034db24fcb1972967e3, type: 3}
+  - {fileID: 3972527278295149294, guid: 59a968bf407928949b9b5752cc6756be, type: 3}
+  - {fileID: 3972527278295149294, guid: 59a968bf407928949b9b5752cc6756be, type: 3}
+--- !u!114 &-1394554993031266888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971089759986992418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a0d83d1fa504c49934638a15cf14dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier: 2.5
+  Path: {fileID: 0}
+  currentWaypoint: 1
 --- !u!1 &4415531086255790742
 GameObject:
   m_ObjectHideFlags: 0

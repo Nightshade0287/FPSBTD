@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -8670750913141043964}
   - component: {fileID: 5734292670677622451}
   - component: {fileID: -3723060924059743650}
+  - component: {fileID: 2455910986259359266}
   m_Layer: 7
   m_Name: blue bloon
   m_TagString: Untagged
@@ -60,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b08200daa3ed1489cb162c9a9a27d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
   ChildBloons:
   - {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
 --- !u!54 &-3723060924059743650
@@ -76,8 +78,22 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &2455910986259359266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450939556479008835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a0d83d1fa504c49934638a15cf14dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier: 1.4
+  Path: {fileID: 0}
 --- !u!1 &1666051465833085597
 GameObject:
   m_ObjectHideFlags: 0

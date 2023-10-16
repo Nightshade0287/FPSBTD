@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 8271054945115319290}
   - component: {fileID: 7124760387268912507}
   - component: {fileID: -7833547599884369542}
+  - component: {fileID: -1849539122352307602}
   m_Layer: 7
   m_Name: green bloon
   m_TagString: Untagged
@@ -143,8 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b08200daa3ed1489cb162c9a9a27d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
   ChildBloons:
-  - {fileID: 450939556479008835, guid: 142777b8ce9e0d14a8dfa0f6b232bda7, type: 3}
+  - {fileID: 450939556479008835, guid: d211805cc120f954586c7cefc34526a9, type: 3}
 --- !u!54 &-7833547599884369542
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -159,8 +161,23 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-1849539122352307602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442408771101411259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a0d83d1fa504c49934638a15cf14dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier: 1.8
+  Path: {fileID: 0}
+  currentWaypoint: 1
 --- !u!1 &3610161440737957903
 GameObject:
   m_ObjectHideFlags: 0
