@@ -9,6 +9,7 @@ public class DartBehavior : MonoBehaviour
     public int sharpness;
     public float maxDistance;
     public int BloonsLayer;
+    public int GroundLayer;
 
     private Health bl;
     private Rigidbody rb;
@@ -22,7 +23,7 @@ public class DartBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cd = GetComponent<BoxCollider>();
         startPoint = transform.position;
-        Physics.IgnoreLayerCollision(8, 10, true);
+        Physics.IgnoreLayerCollision(7, 10, true);
     }
 
     private void Update()
@@ -45,11 +46,13 @@ public class DartBehavior : MonoBehaviour
             bl.TakeDamage(damage);
             bloonsHit += 1;
         }
-        else
+        else if (collider.gameObject.layer == GroundLayer)
         {
             Destroy(gameObject);
         }
     }
+
+    
 
     private void CheckBloonsHit()
     {

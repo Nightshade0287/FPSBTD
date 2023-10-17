@@ -63,10 +63,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dca78cd937144c4a96906e60b6c3e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
   sharpness: 3
   maxDistance: 20
   BloonsLayer: 7
+  GroundLayer: 6
 --- !u!65 &8044916287724800135
 BoxCollider:
   m_ObjectHideFlags: 0
