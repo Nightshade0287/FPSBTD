@@ -20,7 +20,8 @@ public class Pathing : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         GetWaypoints();
-        //Physics.IgnoreLayerCollision(7, 7, true);
+        waypoint = Waypoints[currentWaypoint];
+        Physics.IgnoreLayerCollision(7, 7, true);
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class Pathing : MonoBehaviour
     {
         if (currentWaypoint < Waypoints.Count)
         {
-            waypoint = Waypoints[currentWaypoint];
+            Debug.Log(currentWaypoint);
             rb.velocity = (waypoint - transform.position).normalized * baseSpeed * speedMultiplier;
         }
 
@@ -44,6 +45,7 @@ public class Pathing : MonoBehaviour
                 Destroy(gameObject);
             else
                 currentWaypoint++;
+                waypoint = Waypoints[currentWaypoint];
         }      
     }
 

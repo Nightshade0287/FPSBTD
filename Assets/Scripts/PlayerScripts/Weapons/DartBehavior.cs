@@ -23,7 +23,6 @@ public class DartBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cd = GetComponent<BoxCollider>();
         startPoint = transform.position;
-        Physics.IgnoreLayerCollision(7, 10, true);
     }
 
     private void Update()

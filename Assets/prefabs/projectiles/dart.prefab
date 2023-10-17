@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  sharpness: 3
+  sharpness: 5
   maxDistance: 20
   BloonsLayer: 7
   GroundLayer: 6
