@@ -21,7 +21,7 @@ public class Pathing : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         GetWaypoints();
         waypoint = Waypoints[currentWaypoint];
-        Physics.IgnoreLayerCollision(7, 7, true);
+        //Physics.IgnoreLayerCollision(7, 7, true);
     }
 
     // Update is called once per frame

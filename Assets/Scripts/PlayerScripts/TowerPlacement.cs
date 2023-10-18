@@ -12,6 +12,7 @@ public class TowerPlacement : MonoBehaviour
     public LayerMask Ground;
     public Transform cam;
     public GameObject towerPrefab;
+    public Transform BloonHolder;
 
     private Vector3 placePos;
     private bool Placing = false;
@@ -42,6 +43,9 @@ public class TowerPlacement : MonoBehaviour
         if (Input.GetMouseButton(0) && Placing)
         {
             Placing = false;
+            newTower.GetComponent<CapsuleCollider>().enabled = true;
+            newTower.GetComponent<DartMonkey>().BloonHolder = BloonHolder;
+            newTower.GetComponent<DartMonkey>().enabled = true;
         }
     }
 
