@@ -16,7 +16,7 @@ public class DartMonkey : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform shootPoint;
 
-    private Vector3 closestBloon;
+    private Vector3 TargetBloon;
     private bool canShoot = true;
 
     // Start is called before the first frame update
@@ -29,16 +29,18 @@ public class DartMonkey : MonoBehaviour
     void Update()
     {
         GetClosestBloon();
-        if (Vector3.Distance(gameObject.transform.position, closestBloon) <= range)
+        if (Vector3.Distance(gameObject.transform.position, TargetBloon) <= range)
         {
             Shoot();
             Debug.Log("Bloon in range");
         }
+        transform.LookAt(new Vector3(TargetBloon.x, transform.position.y, TargetBloon.z));
         //Debug.Log(closestBloon);
     }
 
     public void GetClosestBloon()
     {
+        Vector3 closestBloon = Vector3.zero;
         foreach(Transform bloon in BloonHolder)
         {
             //Debug.Log(bloon.position);
@@ -48,6 +50,7 @@ public class DartMonkey : MonoBehaviour
             else if (distance == 0)
                 closestBloon = bloon.position;
         }
+        TargetBloon = closestBloon;
     }
 
     private void Shoot()
@@ -63,8 +66,7 @@ public class DartMonkey : MonoBehaviour
             Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
 
             // Calculate bullet direction with spread
-            Vector3 shootDirection = (closestBloon - shootPoint.position).normalized;
-            transform.forward = new Vector3(shootDirection.x, transform.position.y, shootDirection.z);
+            Vector3 shootDirection = (TargetBloon - shootPoint.position).normalized;
 
             // Calculate spread offset
             float spreadX = Random.Range(-spread, spread);

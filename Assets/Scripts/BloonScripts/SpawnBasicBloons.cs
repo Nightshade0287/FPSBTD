@@ -33,7 +33,7 @@ public class SpawnBasicBloons : MonoBehaviour
             Vector3 RandomSpawn = spawnPoint.position + new Vector3((Random.Range(-spawnRaduis, spawnRaduis)), 0f, (Random.Range(-spawnRaduis, spawnRaduis))); // Randomize Spawnpoint
             GameObject randomBloon = Bloons[Random.Range(0,Bloons.Length - 1)]; // Get Random Bloon type
             GameObject bloon = Instantiate(randomBloon, RandomSpawn, spawnPoint.rotation);
-            bloon.transform.parent = BloonHolder;
+            bloon.transform.parent = transform.GetChild(0);
 
             bloon.GetComponent<Pathing>().Path = path;
         }
