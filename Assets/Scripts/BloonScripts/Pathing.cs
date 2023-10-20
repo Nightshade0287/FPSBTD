@@ -61,5 +61,6 @@ public class Pathing : MonoBehaviour
     {
         bloon.GetComponent<Pathing>().Path = Path;
         bloon.GetComponent<Pathing>().currentWaypoint = currentWaypoint;
+        bloon.transform.SetParent(transform.parent);
     }
 }
