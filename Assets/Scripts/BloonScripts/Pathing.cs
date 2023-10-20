@@ -29,7 +29,6 @@ public class Pathing : MonoBehaviour
     {
         if (currentWaypoint < Waypoints.Count)
         {
-            Debug.Log(currentWaypoint);
             rb.velocity = (waypoint - transform.position).normalized * baseSpeed * speedMultiplier;
         }
 

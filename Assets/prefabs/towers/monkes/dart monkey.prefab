@@ -639,7 +639,7 @@ MonoBehaviour:
   spread: 0
   bulletsPerShot: 1
   BloonHolder: {fileID: 0}
-  projectilePrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
+  bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
   shootPoint: {fileID: 1976410352711116944}
 --- !u!54 &821430402736578475
 Rigidbody:

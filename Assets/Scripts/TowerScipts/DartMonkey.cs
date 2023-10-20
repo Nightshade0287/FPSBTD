@@ -13,7 +13,7 @@ public class DartMonkey : MonoBehaviour
 
     [Header("References")]
     public Transform BloonHolder;
-    public GameObject projectilePrefab;
+    public GameObject bulletPrefab;
     public Transform shootPoint;
 
     private Vector3 TargetBloon;
@@ -22,7 +22,6 @@ public class DartMonkey : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -32,25 +31,31 @@ public class DartMonkey : MonoBehaviour
         if (Vector3.Distance(gameObject.transform.position, TargetBloon) <= range)
         {
             Shoot();
-            Debug.Log("Bloon in range");
         }
-        transform.LookAt(new Vector3(TargetBloon.x, transform.position.y, TargetBloon.z));
-        //Debug.Log(closestBloon);
     }
 
     public void GetClosestBloon()
     {
-        Vector3 closestBloon = Vector3.zero;
-        foreach(Transform bloon in BloonHolder)
+        Transform closestBloon = null;
+        float closestDistance = Mathf.Infinity;
+
+        // Iterate through the children of the parentObject.
+        foreach (Transform bloon in BloonHolder)
         {
-            //Debug.Log(bloon.position);
             float distance = Vector3.Distance(transform.position, bloon.position);
-            if (distance <= Vector3.Distance(transform.position, closestBloon))
-                closestBloon = bloon.position;
-            else if (distance == 0)
-                closestBloon = bloon.position;
+
+            if (distance < closestDistance)
+            {
+                closestBloon = bloon;
+                closestDistance = distance;
+            } 
         }
-        TargetBloon = closestBloon;
+        // if (closestBloon == null)
+        //         canShoot = false;
+        // else
+        //     canShoot = true;
+        if (closestBloon != null)
+            TargetBloon = closestBloon.position;
     }
 
     private void Shoot()
@@ -62,8 +67,10 @@ public class DartMonkey : MonoBehaviour
 
         for (int i = 0; i < bulletsPerShot; i++)
         {
-            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
-            Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
+            transform.LookAt(new Vector3(TargetBloon.x, transform.position.y, TargetBloon.z));
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            bullet.GetComponent<DartBehavior>().range = range;
+            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
             // Calculate bullet direction with spread
             Vector3 shootDirection = (TargetBloon - shootPoint.position).normalized;
@@ -75,7 +82,7 @@ public class DartMonkey : MonoBehaviour
             Vector3 spreadOffset = shootPoint.right * spreadX + shootPoint.up * spreadY;
             shootDirection += spreadOffset;
 
-            projectileRigidbody.velocity = shootDirection * shootSpeed;
+            bulletRigidbody.velocity = shootDirection * shootSpeed;
         }
 
         // Set a cooldown before the next shot

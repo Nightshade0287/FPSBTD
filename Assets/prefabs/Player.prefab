@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8414861216806584813
 RectTransform:
   m_ObjectHideFlags: 0
@@ -103,7 +103,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.462, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2367661282036563166}
   m_Father: {fileID: 2367661281816199362}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,9 +117,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2367661281651664455}
-  - component: {fileID: 2367661281651664454}
   m_Layer: 8
-  m_Name: Darts
+  m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,29 +139,6 @@ Transform:
   m_Father: {fileID: 2367661282036563166}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2367661281651664454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2367661281651664452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8fb51eba43042e4f9869468492f46b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 25
-  ShootDelay: 0
-  spreadAngle: 0
-  bulletsPerShot: 1
-  FullAuto: 0
-  bulletSpawnPoint: {fileID: 2367661281651664455}
-  cam: {fileID: 2367661282036563166}
-  bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
-  Player:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!1 &2367661281816199363
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +151,8 @@ GameObject:
   - component: {fileID: 2367661281816199356}
   - component: {fileID: 2367661281816199359}
   - component: {fileID: 1210727352919200159}
+  - component: {fileID: 1961729749}
+  - component: {fileID: 1961729754}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -195,7 +174,6 @@ Transform:
   m_Children:
   - {fileID: 2367661282740334694}
   - {fileID: 6265579876493372958}
-  - {fileID: 2367661282036563166}
   - {fileID: 8447768091235898504}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -214,7 +192,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!114 &2367661281816199359
 MonoBehaviour:
@@ -266,6 +244,47 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1961729749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367661281816199363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fb51eba43042e4f9869468492f46b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 40
+  ShootDelay: 0.25
+  spreadAngle: 13
+  bulletsPerShot: 1
+  range: 20
+  FullAuto: 0
+  shootPoint: {fileID: 2367661281651664455}
+  cam: {fileID: 2367661282036563166}
+  bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
+--- !u!114 &1961729754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367661281816199363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3688149f59e23c54dbc65784286d40eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeKey: 101
+  MaxPlaceDistance: 100
+  Ground:
+    serializedVersion: 2
+    m_Bits: 64
+  cam: {fileID: 2367661282036563166}
+  towerPrefab: {fileID: 7077659787000649759, guid: 8ef09c50ee4e3e146a50c03b65965722, type: 3}
+  BloonHolder: {fileID: 0}
 --- !u!1 &2367661282036563167
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,13 +313,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2367661282036563167}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.46199995, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2367661281651664455}
-  m_Father: {fileID: 2367661281816199362}
-  m_RootOrder: 2
+  m_Father: {fileID: 6265579876493372958}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2367661282036563160
 Camera:
@@ -613,7 +632,7 @@ RectTransform:
   m_Children:
   - {fileID: 8414861216806584813}
   m_Father: {fileID: 2367661281816199362}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

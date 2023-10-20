@@ -27,10 +27,10 @@ public class TowerPlacement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(placeKey))
+        if (Input.GetKeyDown(placeKey) && !Placing)
         {
-            Placing = true;
             newTower = Instantiate(towerPrefab, placePos, gameObject.transform.rotation);
+            Placing = true;
         }
 
         if (Placing)

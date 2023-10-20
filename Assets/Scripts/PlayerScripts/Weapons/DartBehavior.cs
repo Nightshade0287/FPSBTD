@@ -7,7 +7,6 @@ public class DartBehavior : MonoBehaviour
     [Header("Variables")]
     public int damage;
     public int sharpness;
-    public float maxDistance;
     public int BloonsLayer;
     public int GroundLayer;
 
@@ -17,6 +16,7 @@ public class DartBehavior : MonoBehaviour
     
     private int bloonsHit = 0;
     private Vector3 startPoint;
+    public float range;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class DartBehavior : MonoBehaviour
 
     private void CheckDistance() // Checks if current position is further than maxDistance if so destroys game object
     {
-        if ((transform.position - startPoint).magnitude >= maxDistance)
+        if ((transform.position - startPoint).magnitude >= range)
             Destroy(gameObject);
     }
 

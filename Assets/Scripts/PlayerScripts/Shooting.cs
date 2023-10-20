@@ -9,16 +9,21 @@ public class Shooting : MonoBehaviour
     public float ShootDelay;
     public float spreadAngle = 1f;
     public int bulletsPerShot = 1;
+    public float range = 20f;
     public bool FullAuto;
 
     [Header("References")]
-    public Transform bulletSpawnPoint;
+    public Transform shootPoint;
     public Transform cam;
     public GameObject bulletPrefab;
-    public LayerMask Player;
 
     private bool canShoot = true;
     private Vector3 shootVector;
+
+    private void Start()
+    {
+        spreadAngle /= 1000f;
+    }
 
     private void Update()
     {
@@ -43,17 +48,18 @@ public class Shooting : MonoBehaviour
         for (int i = 0; i < bulletsPerShot; i++)
         {
             CalculateShootVector();
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            bullet.GetComponent<DartBehavior>().range = range;
             Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
             // Calculate bullet direction with spread
-            Vector3 bulletDirection = bulletSpawnPoint.forward;
+            Vector3 bulletDirection = shootPoint.forward;
 
             // Calculate spread offset
             float spreadX = Random.Range(-spreadAngle, spreadAngle);
             float spreadY = Random.Range(-spreadAngle, spreadAngle);
 
-            Vector3 spreadOffset = bulletSpawnPoint.right * spreadX + bulletSpawnPoint.up * spreadY;
+            Vector3 spreadOffset = shootPoint.right * spreadX + shootPoint.up * spreadY;
             bulletDirection += spreadOffset;
 
             bulletRigidbody.velocity = bulletDirection * bulletSpeed;
@@ -75,13 +81,13 @@ public class Shooting : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.position, cam.forward, out hit, 50))
         {
-            shootVector = hit.point - bulletSpawnPoint.position;
+            shootVector = hit.point - shootPoint.position;
         }
         else 
         {
             shootVector = cam.forward;
         }
-        Debug.DrawRay(bulletSpawnPoint.position, shootVector * 100, Color.red);
+        Debug.DrawRay(shootPoint.position, shootVector * 100, Color.red);
     }
 }
 
