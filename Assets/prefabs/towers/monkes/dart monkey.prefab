@@ -633,9 +633,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0bec038ad848b4381a8cde9ac2e256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 20
-  shootSpeed: 40
-  ShootDelay: 0.5
+  range: 7
+  DartVelocity: 40
+  ShootDelay: 0.95
   spread: 0
   bulletsPerShot: 1
   BloonHolder: {fileID: 0}

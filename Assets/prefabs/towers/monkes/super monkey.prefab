@@ -282,19 +282,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6854333308694126326}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af0bec038ad848b4381a8cde9ac2e256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 50
-  shootSpeed: 20
+  range: 30
+  DartVelocity: 20
   ShootDelay: 0.045
-  spread: 0.015
+  spread: 0
   bulletsPerShot: 1
   BloonHolder: {fileID: 0}
   bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
   shootPoint: {fileID: 8679140442937133066}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!136 &8486200219423444100
 CapsuleCollider:
   m_ObjectHideFlags: 0

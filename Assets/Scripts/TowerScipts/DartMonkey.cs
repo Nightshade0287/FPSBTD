@@ -10,14 +10,13 @@ public class DartMonkey : MonoBehaviour
     public float ShootDelay;
     public float spread;
     public int bulletsPerShot;
-    public float leadTime; // Additional time to lead the target
 
     [Header("References")]
     public Transform BloonHolder;
     public GameObject bulletPrefab;
     public Transform shootPoint;
 
-    private Transform targetBloon;
+    private Vector3 TargetBloon;
     private bool canShoot = true;
 
     // Start is called before the first frame update
@@ -29,17 +28,17 @@ public class DartMonkey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FindTargetBloon();
-        if (targetBloon != null)
+        GetClosestBloon();
+        if (Vector3.Distance(gameObject.transform.position, TargetBloon) <= range)
         {
             Shoot();
         }
     }
 
-    // Find the target bloon
-    public void FindTargetBloon()
+    // Find the closest bloon
+    public void GetClosestBloon()
     {
-        targetBloon = null;
+        Transform closestBloon = null;
         float closestDistance = Mathf.Infinity;
 
         foreach (Transform bloon in BloonHolder)
@@ -48,9 +47,14 @@ public class DartMonkey : MonoBehaviour
 
             if (distance < closestDistance)
             {
-                targetBloon = bloon;
+                closestBloon = bloon;
                 closestDistance = distance;
             }
+        }
+
+        if (closestBloon != null)
+        {
+            TargetBloon = closestBloon.position;
         }
     }
 
@@ -64,23 +68,15 @@ public class DartMonkey : MonoBehaviour
 
         for (int i = 0; i < bulletsPerShot; i++)
         {
-            if (targetBloon == null)
-            {
-                continue;
-            }
-
-            // Calculate where the bloon will be with a slight delay
-            Vector3 predictedPosition = CalculateInterceptPosition(targetBloon, DartVelocity, -leadTime);
-
-            // Rotate to face the predicted position
-            transform.LookAt(new Vector3(predictedPosition.x, transform.position.y, predictedPosition.z));
+            // Rotate to face the target bloon
+            transform.LookAt(new Vector3(TargetBloon.x, transform.position.y, TargetBloon.z));
 
             // Instantiate a dart
             GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
             bullet.GetComponent<DartBehavior>().range = range;
 
             // Calculate bullet direction with spread
-            Vector3 shootDirection = (predictedPosition - shootPoint.position).normalized;
+            Vector3 shootDirection = (TargetBloon - shootPoint.position).normalized;
 
             // Calculate spread offset
             float spreadX = Random.Range(-spread, spread);
@@ -105,19 +101,4 @@ public class DartMonkey : MonoBehaviour
         yield return new WaitForSeconds(ShootDelay);
         canShoot = true;
     }
-
-    // Calculate where to shoot to intercept the target with a time delay
-    private Vector3 CalculateInterceptPosition(Transform target, float bulletSpeed, float timeDelay)
-    {
-        Vector3 targetPosition = target.position;
-        Vector3 targetVelocity = target.GetComponent<Rigidbody>().velocity;
-
-        float timeToIntercept = (Vector3.Distance(shootPoint.position, targetPosition) - timeDelay) / bulletSpeed;
-
-        // Predict where the target will be in the future
-        Vector3 predictedPosition = targetPosition + targetVelocity * timeToIntercept;
-
-        return predictedPosition;
-    }
 }
-

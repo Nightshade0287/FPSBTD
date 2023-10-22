@@ -17,6 +17,7 @@ public class DartBehavior : MonoBehaviour
     private int bloonsHit = 0;
     private Vector3 startPoint;
     public float range;
+    public Vector3 velocity;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class DartBehavior : MonoBehaviour
     {
         CheckDistance();
         CheckBloonsHit();
+        rb.velocity = velocity;
     }
 
     private void CheckDistance() // Checks if current position is further than maxDistance if so destroys game object
@@ -37,22 +39,29 @@ public class DartBehavior : MonoBehaviour
             Destroy(gameObject);
     }
 
-    void OnTriggerExit(Collider collider) //if hits bloon subtracks bloon health else destroys game object
+    void OnCollisionEnter(Collision collision) //if hits bloon subtracks bloon health else destroys game object
     {
-        if (collider.gameObject.layer == BloonsLayer)
+        Debug.Log("hit");
+        if (collision.gameObject.layer == BloonsLayer)
         {
-            bl = collider.gameObject.GetComponent<Health>();
+            bl = collision.gameObject.GetComponent<Health>();
             bl.TakeDamage(damage);
             bloonsHit += 1;
         }
-        else if (collider.gameObject.layer == GroundLayer)
+        else if (collision.gameObject.layer == GroundLayer)
         {
-            Destroy(gameObject);
+            rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+            StartCoroutine(Decay());
         }
     }
 
+    private IEnumerator Decay()
+    {
+        Debug.Log("Decay");
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
+    }
     
-
     private void CheckBloonsHit()
     {
         if (bloonsHit >= sharpness)

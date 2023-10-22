@@ -62,7 +62,7 @@ public class Shooting : MonoBehaviour
             Vector3 spreadOffset = shootPoint.right * spreadX + shootPoint.up * spreadY;
             bulletDirection += spreadOffset;
 
-            bulletRigidbody.velocity = bulletDirection * bulletSpeed;
+            bullet.GetComponent<DartBehavior>().velocity = bulletDirection * bulletSpeed;
         }
 
         // Set a cooldown before the next shot

@@ -6061,6 +6061,18 @@ PrefabInstance:
       propertyPath: Paths.Array.data[5]
       value: 
       objectReference: {fileID: 1764677200}
+    - target: {fileID: 5558818533225088974, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+      propertyPath: bloonSpawnOptions.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558818533225088974, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+      propertyPath: bloonSpawnOptions.Array.data[12].bloonPrefab
+      value: 
+      objectReference: {fileID: 270858087927334935, guid: d3dcdd225802cf74b84ed9d897879267, type: 3}
+    - target: {fileID: 5558818533225088974, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+      propertyPath: bloonSpawnOptions.Array.data[12].spawnWeight
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5558818533225088975, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: m_Name
       value: BloonManager
@@ -11169,6 +11181,10 @@ PrefabInstance:
       propertyPath: BloonHolder
       value: 
       objectReference: {fileID: 63849993}
+    - target: {fileID: 1961729754, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: towerPrefab
+      value: 
+      objectReference: {fileID: 6854333308694126326, guid: a92306bcbbc7f664196fd2ec93ffe106, type: 3}
     - target: {fileID: 2367661281816199362, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_RootOrder
       value: 0

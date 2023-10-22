@@ -30,6 +30,7 @@ public class TowerPlacement : MonoBehaviour
         if (Input.GetKeyDown(placeKey) && !Placing)
         {
             newTower = Instantiate(towerPrefab, placePos, gameObject.transform.rotation);
+            newTower.GetComponent<DartMonkey>().BloonHolder = BloonHolder;
             Placing = true;
         }
 
@@ -43,8 +44,7 @@ public class TowerPlacement : MonoBehaviour
         if (Input.GetMouseButton(0) && Placing)
         {
             Placing = false;
-            newTower.GetComponent<CapsuleCollider>().enabled = true;
-            newTower.GetComponent<DartMonkey>().BloonHolder = BloonHolder;
+            newTower.GetComponent<CapsuleCollider>().enabled = true;  
             newTower.GetComponent<DartMonkey>().enabled = true;
         }
     }
