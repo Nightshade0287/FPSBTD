@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8579670648063201542}
   - component: {fileID: 7395526631308524177}
   - component: {fileID: 1175773927}
+  - component: {fileID: 322282461393084079}
   m_Layer: 7
   m_Name: M.O.A.B.
   m_TagString: Untagged
@@ -62,10 +63,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 200
   ChildBloons:
-  - {fileID: 1971089759986992418, guid: 915ce777c6a7dfd499e4ef93639ab160, type: 3}
-  - {fileID: 1971089759986992418, guid: 915ce777c6a7dfd499e4ef93639ab160, type: 3}
-  - {fileID: 1971089759986992418, guid: 915ce777c6a7dfd499e4ef93639ab160, type: 3}
-  - {fileID: 1971089759986992418, guid: 915ce777c6a7dfd499e4ef93639ab160, type: 3}
+  - {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
+  - {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
+  - {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
+  - {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
 --- !u!54 &1175773927
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82,6 +83,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &322282461393084079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270858087927334935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a0d83d1fa504c49934638a15cf14dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier: 1
+  Path: {fileID: 0}
+  currentWaypoint: 1
 --- !u!1 &6853050508536134367
 GameObject:
   m_ObjectHideFlags: 0
