@@ -11,12 +11,13 @@ public class TowerPlacement : MonoBehaviour
     [Header("References")]
     public LayerMask Ground;
     public Transform cam;
-    public GameObject towerPrefab;
+    public GameObject[] towerPrefabs;
     public Transform BloonHolder;
 
     protected Vector3 placePos;
     protected bool Placing = false;
     protected GameObject newTower;
+    private int selectedTowerIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -29,15 +30,15 @@ public class TowerPlacement : MonoBehaviour
     {
         if (Input.GetKeyDown(placeKey) && !Placing)
         {
-            newTower = Instantiate(towerPrefab, placePos, gameObject.transform.rotation);
-            newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
-            //Debug.Log(newTower.GetComponent<BaseTower>());
+            selectedTowerIndex = 0;
+            newTower = Instantiate(towerPrefabs[selectedTowerIndex], placePos, gameObject.transform.rotation);
             Placing = true;
         }
 
         if (Placing)
         {
             CalculatePlacePos();
+            StartCoroutine(SelectTower());
             newTower.transform.position = placePos;
             newTower.transform.rotation = gameObject.transform.rotation;
         }
@@ -46,9 +47,46 @@ public class TowerPlacement : MonoBehaviour
         {
             Placing = false;
             newTower.GetComponent<CapsuleCollider>().enabled = true;  
+            newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
             newTower.GetComponent<BaseTower>().enabled = true;
         }
     }
+
+    IEnumerator SelectTower()
+    {
+        // Handle tower selection with scroll input
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll > 0f)
+        {
+            ChangeSelectedTower(1); // Scroll up
+        }
+        else if (scroll < 0f)
+        {
+            ChangeSelectedTower(-1); // Scroll down
+        }
+
+        yield return null;
+    }
+
+    private void ChangeSelectedTower(int direction)
+    {
+        selectedTowerIndex += direction;
+
+        // Wrap around to the beginning if at the end of the array
+        if (selectedTowerIndex < 0)
+        {
+            selectedTowerIndex = towerPrefabs.Length - 1;
+        }
+        // Wrap around to the end if at the beginning of the array
+        else if (selectedTowerIndex >= towerPrefabs.Length)
+        {
+            selectedTowerIndex = 0;
+        }
+
+        Destroy(newTower);
+        newTower = Instantiate(towerPrefabs[selectedTowerIndex], placePos, gameObject.transform.rotation);
+    }
+
 
     public void CalculatePlacePos()
     {
