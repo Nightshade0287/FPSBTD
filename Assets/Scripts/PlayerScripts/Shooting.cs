@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     [Header("Variables")]
-    public float bulletSpeed;
+    public float DartVelocity;
     public float ShootDelay;
     public float spreadAngle = 1f;
     public int bulletsPerShot = 1;
@@ -49,7 +49,6 @@ public class Shooting : MonoBehaviour
         {
             CalculateShootVector();
             GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
-            bullet.GetComponent<DartBehavior>().range = range;
             Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
             // Calculate bullet direction with spread
@@ -62,7 +61,7 @@ public class Shooting : MonoBehaviour
             Vector3 spreadOffset = shootPoint.right * spreadX + shootPoint.up * spreadY;
             bulletDirection += spreadOffset;
 
-            bullet.GetComponent<DartBehavior>().velocity = bulletDirection * bulletSpeed;
+            bullet.GetComponent<DartBehavior>().velocity = bulletDirection * DartVelocity;
         }
 
         // Set a cooldown before the next shot

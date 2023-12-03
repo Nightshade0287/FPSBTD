@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DartMonkey : BaseTower
+public class WizardMonkey : BaseTower
 {
-
 }

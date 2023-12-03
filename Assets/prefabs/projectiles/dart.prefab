@@ -67,7 +67,7 @@ MonoBehaviour:
   sharpness: 3
   BloonsLayer: 7
   GroundLayer: 6
-  range: 0
+  range: 100
   velocity: {x: 0, y: 0, z: 0}
 --- !u!65 &8044916287724800135
 BoxCollider:

@@ -9,6 +9,7 @@ public class DartBehavior : MonoBehaviour
     public int sharpness;
     public int BloonsLayer;
     public int GroundLayer;
+    public float range;
 
     private Health bl;
     private Rigidbody rb;
@@ -16,7 +17,6 @@ public class DartBehavior : MonoBehaviour
     
     private int bloonsHit = 0;
     private Vector3 startPoint;
-    public float range;
     public Vector3 velocity;
 
     private void Awake()

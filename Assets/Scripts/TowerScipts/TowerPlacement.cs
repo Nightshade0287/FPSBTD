@@ -14,9 +14,9 @@ public class TowerPlacement : MonoBehaviour
     public GameObject towerPrefab;
     public Transform BloonHolder;
 
-    private Vector3 placePos;
-    private bool Placing = false;
-    private GameObject newTower;
+    protected Vector3 placePos;
+    protected bool Placing = false;
+    protected GameObject newTower;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,8 @@ public class TowerPlacement : MonoBehaviour
         if (Input.GetKeyDown(placeKey) && !Placing)
         {
             newTower = Instantiate(towerPrefab, placePos, gameObject.transform.rotation);
-            newTower.GetComponent<DartMonkey>().BloonHolder = BloonHolder;
+            newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
+            //Debug.Log(newTower.GetComponent<BaseTower>());
             Placing = true;
         }
 
@@ -45,7 +46,7 @@ public class TowerPlacement : MonoBehaviour
         {
             Placing = false;
             newTower.GetComponent<CapsuleCollider>().enabled = true;  
-            newTower.GetComponent<DartMonkey>().enabled = true;
+            newTower.GetComponent<BaseTower>().enabled = true;
         }
     }
 
