@@ -249,7 +249,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6854333308694126327}
-  - component: {fileID: 4977781556300964042}
   - component: {fileID: 8486200219423444100}
   - component: {fileID: 3669158845356012746}
   m_Layer: 0
@@ -276,26 +275,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.847}
---- !u!114 &4977781556300964042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6854333308694126326}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af0bec038ad848b4381a8cde9ac2e256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 30
-  DartVelocity: 40
-  ShootDelay: 0.045
-  spread: 0
-  bulletsPerShot: 1
-  BloonHolder: {fileID: 0}
-  bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
-  shootPoint: {fileID: 8679140442937133066}
 --- !u!136 &8486200219423444100
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -317,7 +296,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6854333308694126326}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 444fd9a9ed40f274d9831e5476124040, type: 3}
   m_Name: 

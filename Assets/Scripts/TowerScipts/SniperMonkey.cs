@@ -5,11 +5,16 @@ using UnityEngine;
 public class SniperMonkey : BaseTower
 {
     public int damage;
+    public LayerMask bloonLayer;
+    private Vector3 bloonDir;
+
 
     protected override void Update()
     {
         GetClosestBloon();
         Shoot();
+        bloonDir = new Vector3(TargetBloon.position.x, shootPoint.position.y, TargetBloon.position.z);
+        transform.LookAt(bloonDir);
     }
 
     protected override void Shoot()
@@ -18,13 +23,10 @@ public class SniperMonkey : BaseTower
         {
             return;
         }
+        bloonDir = new Vector3(TargetBloon.position.x, shootPoint.position.y, TargetBloon.position.z);
 
-        for (int i = 0; i < bulletsPerShot; i++)
-        {    
-            transform.LookAt(new Vector3(TargetBloon.position.x, transform.position.y, TargetBloon.position.z));
-
-            // Calculate bullet direction with spread
-            Vector3 bulletDirection = (TargetBloon.position - shootPoint.position).normalized;
+        if (Physics.Raycast(shootPoint.position, bloonDir, bloonLayer))
+        {
             TargetBloon.GetComponent<Health>().TakeDamage(damage);
         }
 

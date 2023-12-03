@@ -559,6 +559,10 @@ MonoBehaviour:
   BloonHolder: {fileID: 5558818533225088973, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
   bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
   shootPoint: {fileID: 5449388357966388882}
+  damage: 1
+  bloonLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &6023221377416393860
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,20 +40,23 @@ public class BaseTower : MonoBehaviour
         Transform closestBloon = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach (Transform bloon in BloonHolder)
+        if (BloonHolder.childCount != 0)
         {
-            float distance = Vector3.Distance(transform.position, bloon.position);
-
-            if (distance < closestDistance)
+            foreach (Transform bloon in BloonHolder)
             {
-                closestBloon = bloon;
-                closestDistance = distance;
-            }
-        }
+                float distance = Vector3.Distance(transform.position, bloon.position);
 
-        if (closestBloon != null)
-        {
-            TargetBloon = closestBloon;
+                if (distance < closestDistance)
+                {
+                    closestBloon = bloon;
+                    closestDistance = distance;
+                }
+            }
+
+            if (closestBloon != null)
+            {
+                TargetBloon = closestBloon;
+            }
         }
     }
 
