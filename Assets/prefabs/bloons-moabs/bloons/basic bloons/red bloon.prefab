@@ -278,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   ChildBloons: []
+  dartID: 
 --- !u!114 &905109371172986240
 MonoBehaviour:
   m_ObjectHideFlags: 0

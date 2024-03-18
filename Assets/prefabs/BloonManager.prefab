@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5558818533225088973}
   - component: {fileID: 5558818533225088974}
+  - component: {fileID: 405165086}
   m_Layer: 0
   m_Name: BloonManager
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5558818533225088975}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0397c67cf02b2c45a717879ac29cbe9, type: 3}
   m_Name: 
@@ -71,6 +72,31 @@ MonoBehaviour:
   - bloonPrefab: {fileID: 3972527278295149294, guid: 59a968bf407928949b9b5752cc6756be, type: 3}
     spawnWeight: 2
   - bloonPrefab: {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
+    spawnWeight: 1
+  Paths:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  BloonHolder: {fileID: 4628070684723809431}
+--- !u!114 &405165086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558818533225088975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0397c67cf02b2c45a717879ac29cbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDelay: 0.1
+  spawnRadius: 1
+  bloonSpawnOptions:
+  - bloonPrefab: {fileID: 4676495063642357999, guid: 932d8c6c92096854c8ba1df83e7afafa, type: 3}
     spawnWeight: 1
   Paths:
   - {fileID: 0}

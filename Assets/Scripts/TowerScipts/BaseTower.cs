@@ -5,6 +5,8 @@ using UnityEngine;
 public class BaseTower : MonoBehaviour
 {
     [Header("Variables")]
+    public int damage;
+    public int sharpness;
     public float range;
     public float DartVelocity;
     public float ShootDelay;
@@ -72,7 +74,10 @@ public class BaseTower : MonoBehaviour
         {    
             transform.LookAt(new Vector3(TargetBloon.position.x, transform.position.y, TargetBloon.position.z));
             GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
-            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+            DartBehavior bulletScript = bullet.GetComponent<DartBehavior>();
+            bulletScript.damage = damage;
+            bulletScript.sharpness = sharpness;
+            bulletScript.range = range;
 
             // Calculate bullet direction with spread
             Vector3 bulletDirection = (TargetBloon.position - shootPoint.position).normalized;
@@ -84,7 +89,7 @@ public class BaseTower : MonoBehaviour
             Vector3 spreadOffset = shootPoint.right * spreadX + shootPoint.up * spreadY;
             bulletDirection += spreadOffset;
 
-            bullet.GetComponent<DartBehavior>().velocity = bulletDirection * DartVelocity;
+            bulletScript.velocity = bulletDirection * DartVelocity;
         }
 
         // Set a cooldown before the next shot

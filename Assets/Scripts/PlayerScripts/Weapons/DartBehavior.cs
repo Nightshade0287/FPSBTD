@@ -7,8 +7,6 @@ public class DartBehavior : MonoBehaviour
     [Header("Variables")]
     public int damage;
     public int sharpness;
-    public int BloonsLayer;
-    public int GroundLayer;
     public float range;
 
     private Health bl;
@@ -21,9 +19,11 @@ public class DartBehavior : MonoBehaviour
 
     private void Awake()
     {
+        transform.SetParent(GameObject.Find("Darts").transform);
         rb = GetComponent<Rigidbody>();
         cd = GetComponent<BoxCollider>();
         startPoint = transform.position;
+        gameObject.name = GetInstanceID().ToString();
     }
 
     private void Update()
@@ -38,23 +38,22 @@ public class DartBehavior : MonoBehaviour
         if ((transform.position - startPoint).magnitude >= range)
             Destroy(gameObject);
     }
-
-    void OnCollisionEnter(Collision collision) //if hits bloon subtracks bloon health else destroys game object
+    void OnCollisionEnter(Collision collision)
     {
         Debug.Log("hit");
-        if (collision.gameObject.layer == BloonsLayer)
+        if (collision.gameObject.layer ==  LayerMask.NameToLayer("Bloons"))
         {
             bl = collision.gameObject.GetComponent<Health>();
+            bl.dartID = gameObject.name;
             bl.TakeDamage(damage);
             bloonsHit += 1;
         }
-        else if (collision.gameObject.layer == GroundLayer)
+        else if (collision.gameObject.layer ==  LayerMask.NameToLayer("Ground"))
         {
             rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
             StartCoroutine(Decay());
         }
     }
-
     private IEnumerator Decay()
     {
         Debug.Log("Decay");

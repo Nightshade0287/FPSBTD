@@ -163,6 +163,7 @@ MonoBehaviour:
   health: 1
   ChildBloons:
   - {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
+  dartID: 
 --- !u!114 &8733283190186271679
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -147,6 +147,7 @@ MonoBehaviour:
   health: 1
   ChildBloons:
   - {fileID: 450939556479008835, guid: d211805cc120f954586c7cefc34526a9, type: 3}
+  dartID: 
 --- !u!54 &-7833547599884369542
 Rigidbody:
   m_ObjectHideFlags: 0
