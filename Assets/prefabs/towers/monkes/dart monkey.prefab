@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498628203439074169}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1660066082222313330}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7077659787633284893}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1976410352711116944}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: shootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3628636469432042474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2748, y: 0.484, z: 0.083}
+  m_LocalPosition: {x: 0.48, y: 0.657, z: 0.083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 7077659785950700624}
   - component: {fileID: 7077659785950700639}
   - component: {fileID: 7077659785950700638}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: eye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 7077659786177031417}
   - component: {fileID: 7077659786177031300}
   - component: {fileID: 7077659786177031303}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 7077659786607031263}
   - component: {fileID: 7077659786607031258}
   - component: {fileID: 7077659786607031261}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: foot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 7077659786817815128}
   - component: {fileID: 7077659786817815143}
   - component: {fileID: 7077659786817815142}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 7077659786925492780}
   - component: {fileID: 7077659786925492779}
   - component: {fileID: 7077659786925492778}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 7077659786948376545}
   - component: {fileID: 7077659786948376556}
   - component: {fileID: 7077659786948376559}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,10 +580,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7077659787000649756}
-  - component: {fileID: 5566635223983187574}
-  - component: {fileID: 821430402736578475}
+  - component: {fileID: 38209254970409306}
+  - component: {fileID: 3662915285410759348}
   - component: {fileID: 4331090369100273671}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: dart monkey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ Transform:
   m_GameObject: {fileID: 7077659787000649759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 498628203439074169}
@@ -607,8 +607,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &5566635223983187574
-CapsuleCollider:
+--- !u!65 &38209254970409306
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -616,27 +616,23 @@ CapsuleCollider:
   m_GameObject: {fileID: 7077659787000649759}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.25
-  m_Height: 0.65
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.1, z: 0}
---- !u!54 &821430402736578475
-Rigidbody:
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.85, y: 1, z: 0.85}
+  m_Center: {x: 0, y: 0.5, z: 0.05}
+--- !u!114 &3662915285410759348
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7077659787000649759}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 94
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ea46d4a7f04454f8cdbe509e19c797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerName: Dart Monkey
 --- !u!114 &4331090369100273671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,7 +666,7 @@ GameObject:
   - component: {fileID: 7077659787462433446}
   - component: {fileID: 7077659787462433445}
   - component: {fileID: 7077659787462433444}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ear (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +749,7 @@ GameObject:
   - component: {fileID: 7077659787633284893}
   - component: {fileID: 7077659787633284888}
   - component: {fileID: 7077659787633284891}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,7 +832,7 @@ GameObject:
   - component: {fileID: 7077659787635218560}
   - component: {fileID: 7077659787635218575}
   - component: {fileID: 7077659787635218574}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -919,7 +915,7 @@ GameObject:
   - component: {fileID: 7077659787714702676}
   - component: {fileID: 7077659787714702675}
   - component: {fileID: 7077659787714702674}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1002,7 +998,7 @@ GameObject:
   - component: {fileID: 7077659787893859116}
   - component: {fileID: 7077659787893859115}
   - component: {fileID: 7077659787893859114}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: hand (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

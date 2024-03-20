@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Diagnostics;
+using UnityEngine.InputSystem;
 
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
+
+    private PlayerInput playerInput;
     private Vector3 playerVelocity;
     private bool isGrounded;
     private bool sprinting = false;
@@ -17,9 +21,12 @@ public class PlayerMotor : MonoBehaviour
     public float sprintSpeed = 8f;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
+
+    private Vector3 moveDirection;
     // Start is called before the first frame update
     void Start()
     {
+        playerInput = new PlayerInput();
         controller = GetComponent<CharacterController>();
         speed = walkSpeed;
     }
@@ -28,29 +35,6 @@ public class PlayerMotor : MonoBehaviour
     void Update()
     {
         isGrounded = controller.isGrounded;
-        if (lerpCrouch)
-        {
-            crouchTimer += Time.deltaTime;
-            float p = crouchTimer / 1;
-            p *= p;
-            if (crouching)
-                controller.height = Mathf.Lerp(controller.height, 1, p);
-            else
-                controller.height = Mathf.Lerp(controller.height, 2, p);    
-
-            if (p > 1)
-            {
-                lerpCrouch = false;
-                crouchTimer = 0f;
-            }
-        }
-    }
-
-    public void ProcessMove(Vector2 input)
-    {
-        Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = input.x;
-        moveDirection.z = input.y;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
         playerVelocity.y += gravity * Time.deltaTime;
         if(isGrounded && playerVelocity.y < 0)
@@ -58,27 +42,26 @@ public class PlayerMotor : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    public void Jump()
+    public void Movement(InputAction.CallbackContext ctx)
     {
-        if(isGrounded)
+        Vector2 input = ctx.ReadValue<Vector2>();
+        moveDirection = new Vector3(input.x, 0, input.y);
+    }
+
+    public void Jump(InputAction.CallbackContext ctx)
+    {
+        if(isGrounded && ctx.performed)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
     }
 
-    public void Crouch()
-    {
-        crouching = !crouching;
-        crouchTimer = 0;
-        lerpCrouch = true;
-    }
 
-    public void Sprint()
+    public void Sprint(InputAction.CallbackContext ctx)
     {
-        sprinting = !sprinting;
-        if(sprinting)
+        if(ctx.performed)
             speed = sprintSpeed;
-        else
+        else if (ctx.canceled)
             speed = walkSpeed;
     }
 }

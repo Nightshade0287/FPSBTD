@@ -2,7 +2,7 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "OnFoot",
+            "name": "BaseGameplay",
             "id": "53b882cd-a040-4ac5-a053-4f82b0ec27f3",
             "actions": [
                 {
@@ -33,15 +33,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "d14761df-7a92-4d04-89e9-66ac064038fe",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Sprint",
                     "type": "Button",
                     "id": "c913ffc2-5cca-4992-b7bd-4b6ac71fb1e9",
@@ -60,13 +51,49 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Drop/Throw",
+                    "name": "Shoot",
                     "type": "Button",
-                    "id": "5388902e-3604-47eb-86df-019e1342fd56",
+                    "id": "52a8f602-86ca-4c42-806a-71af8418956c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "16567a14-e5b2-4c25-963c-722fe8c932e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlaceMode",
+                    "type": "Button",
+                    "id": "5b403e0e-7b33-45a2-b51a-9d0c5720dac0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Place",
+                    "type": "Button",
+                    "id": "f1d8416c-4bf2-49b4-b547-35a8992056f7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CycleTower",
+                    "type": "Value",
+                    "id": "cc41b1a7-d2ab-4767-96fd-b14eadb3336f",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -218,31 +245,9 @@
                     "id": "812f10b5-8ee1-4a83-ace6-05b3c3db77db",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=8,y=8)",
                     "groups": "",
                     "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "082a97f4-d6e6-4b56-81b5-17c5e41b6883",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "db098037-28fb-4b95-9bf6-b693d0d388ca",
-                    "path": "<Gamepad>/rightStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -292,73 +297,7 @@
                 },
                 {
                     "name": "",
-                    "id": "3ee13db9-2349-448e-8b0e-92de04b173d8",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Drop/Throw",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "26f1be9c-c958-47bc-bce7-48a0db491458",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Drop/Throw",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Shooting",
-            "id": "e154322c-ef5d-4bb3-bffc-3b755e668356",
-            "actions": [
-                {
-                    "name": "Shoot",
-                    "type": "Button",
-                    "id": "8f235768-f176-4d58-a576-30fc2b9884aa",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Aim",
-                    "type": "Button",
-                    "id": "a1ece138-1487-4d43-a96b-dfbfbe411cbe",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Reload",
-                    "type": "Button",
-                    "id": "f051e371-a576-4868-b268-346dd9bae6da",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ChangeFireMode",
-                    "type": "Button",
-                    "id": "2aa1b93d-585b-4dad-ae73-ac4c94ad382f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "580865e3-31be-4783-86b2-6fee24cb92dd",
+                    "id": "844e8957-6c33-42cc-a9a0-cf40cefc4da8",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -369,7 +308,7 @@
                 },
                 {
                     "name": "",
-                    "id": "194cd2ad-b851-4d02-93fb-eb64a3ddbc80",
+                    "id": "004643e4-66dc-4d90-9bbd-ce4692a999ca",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
@@ -380,7 +319,7 @@
                 },
                 {
                     "name": "",
-                    "id": "498e347f-6651-428b-baf7-fd05e320df7d",
+                    "id": "d3a200d3-d483-428b-8153-e2ecd6865570",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
@@ -391,7 +330,7 @@
                 },
                 {
                     "name": "",
-                    "id": "7a35e4a8-d488-4dc0-9ffb-7d896fa25a7c",
+                    "id": "6fc2921b-bc63-4f35-bc52-ed9df7ea8481",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
@@ -402,47 +341,91 @@
                 },
                 {
                     "name": "",
-                    "id": "4b6c2138-e7e0-4cbc-aa90-f657ab681b57",
-                    "path": "<Keyboard>/r",
+                    "id": "f9101cba-32cf-44da-a454-48f122ed1fe6",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reload",
+                    "action": "PlaceMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a1b35fcf-6002-4b20-b4fd-4150c2aa4469",
-                    "path": "<Gamepad>/buttonWest",
+                    "id": "cfd448df-a1d6-4214-ba55-f2f27be9d1e4",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Reload",
+                    "action": "PlaceMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a71200f0-d073-4ea1-abcb-943aa7e71913",
-                    "path": "<Keyboard>/b",
+                    "id": "f25e251d-92e7-4f0b-908b-0cc4049a90ce",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChangeFireMode",
+                    "action": "Place",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "c93a0662-6306-45fd-849d-a3efe92ef64c",
+                    "id": "b9d9454d-0ab8-4f5f-9a0b-ef8271d7d8c8",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Place",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cfe75689-30dd-4b73-84f1-4569132bf3c2",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleTower",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Left/Right D-Pad",
+                    "id": "4bbb0ff5-61d6-4cc6-ba88-b0941c0f6058",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleTower",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "549c425a-651d-4e49-baf6-fe2409613b7a",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleTower",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "ddd8a73f-0810-455c-a5a0-4e27496eafbe",
                     "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChangeFireMode",
+                    "action": "CycleTower",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         },

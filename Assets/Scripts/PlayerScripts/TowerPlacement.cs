@@ -1,74 +1,83 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class TowerPlacement : MonoBehaviour
 {
     [Header("Variables")]
-    public KeyCode placeKey = KeyCode.E;
     public int MaxPlaceDistance;
-
     [Header("References")]
-    public LayerMask Ground;
     public Transform cam;
     public GameObject[] towerPrefabs;
     public Transform BloonHolder;
-
+    public Material placeMaterial;
+    public Material unPlaceMaterial;
     protected Vector3 placePos;
-    protected bool Placing = false;
+    private bool Placing = false;
+    private bool canPlace = true;
     protected GameObject newTower;
     private int selectedTowerIndex = 0;
-
+    private Material[] originalMaterials;
     // Start is called before the first frame update
     void Start()
     {
-        
+    }
+
+    public void PlaceMode(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed)
+        {
+            if (!Placing)
+            {
+                selectedTowerIndex = 0;
+                ChangeSelectedTower(0);
+                Placing = true;
+                return;
+            }
+            if (Placing && canPlace)
+            {
+                Placing = false;
+                newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
+                newTower.GetComponent<BaseTower>().enabled = true;
+                ResetMaterials();
+                newTower.gameObject.layer = LayerMask.NameToLayer("Tower");
+                gameObject.GetComponent<PlayerUI>().UpdateText(string.Empty);
+                newTower = null;
+                return;
+            }
+        }
+    }
+
+    public void PlaceTower()
+    {
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(placeKey) && !Placing)
-        {
-            selectedTowerIndex = 0;
-            newTower = Instantiate(towerPrefabs[selectedTowerIndex], placePos, gameObject.transform.rotation);
-            Placing = true;
-        }
-
         if (Placing)
         {
             CalculatePlacePos();
-            StartCoroutine(SelectTower());
             newTower.transform.position = placePos;
             newTower.transform.rotation = gameObject.transform.rotation;
         }
-
-        if (Input.GetMouseButton(0) && Placing)
-        {
-            Placing = false;
-            newTower.GetComponent<CapsuleCollider>().enabled = true;  
-            newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
-            newTower.GetComponent<BaseTower>().enabled = true;
-        }
     }
-
-    IEnumerator SelectTower()
+    public void GetScroll(InputAction.CallbackContext ctx)
     {
-        // Handle tower selection with scroll input
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll > 0f)
+        float scroll = ctx.ReadValue<float>();
+        if(ctx.performed && Placing)
         {
-            ChangeSelectedTower(1); // Scroll up
+            if(scroll > 0)
+                ChangeSelectedTower(1);
+            else if(scroll < 0)
+                ChangeSelectedTower(-1);
         }
-        else if (scroll < 0f)
-        {
-            ChangeSelectedTower(-1); // Scroll down
-        }
-
-        yield return null;
     }
-
-    private void ChangeSelectedTower(int direction)
+    public void ChangeSelectedTower(int direction)
     {
         selectedTowerIndex += direction;
 
@@ -85,15 +94,67 @@ public class TowerPlacement : MonoBehaviour
 
         Destroy(newTower);
         newTower = Instantiate(towerPrefabs[selectedTowerIndex], placePos, gameObject.transform.rotation);
+        gameObject.GetComponent<PlayerUI>().UpdateText(newTower.GetComponent<TowerInfo>().towerName);
+        newTower.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        StoreMaterials();
     }
 
 
     public void CalculatePlacePos()
     {
         RaycastHit hit;
-        if (Physics.Raycast(cam.position, cam.forward, out hit, MaxPlaceDistance, Ground))
+        Ray ray = new Ray(cam.position, cam.forward);
+        if (Physics.Raycast(cam.position, cam.forward, out hit, MaxPlaceDistance))
         {
-            placePos = hit.point; //new Vector3 (hit.point.x ,hit.point.y + (newTower.GetComponent<CapsuleCollider>().height / 2), hit.point.y);
+            placePos = hit.point;
+            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                canPlace = true;
+                ChangeToMaterial(placeMaterial);
+            }
+            else
+            {
+                canPlace = false;
+                ChangeToMaterial(unPlaceMaterial);
+            }
+        }
+    }
+    void StoreMaterials()
+    {
+        // Get all Renderer components attached to this GameObject and its children
+        Renderer[] renderers = newTower.transform.Find("Model").GetComponentsInChildren<Renderer>();
+
+        // Initialize the array to store original materials
+        originalMaterials = new Material[renderers.Length];
+
+        // Store original materials for each renderer
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            originalMaterials[i] = renderers[i].material;
+        }
+    }
+
+    void ChangeToMaterial(Material material)
+    {
+        // Get all Renderer components attached to this GameObject and its children
+        Renderer[] renderers = newTower.transform.Find("Model").GetComponentsInChildren<Renderer>();
+
+        // Change materials for each renderer
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material = material;
+        }
+    }
+
+    public void ResetMaterials()
+    {
+        // Get all Renderer components attached to this GameObject and its children
+        Renderer[] renderers = newTower.transform.Find("Model").GetComponentsInChildren<Renderer>();
+
+        // Restore original materials for each renderer
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].material = originalMaterials[i];
         }
     }
 }

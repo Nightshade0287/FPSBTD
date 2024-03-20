@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GunController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GunController : MonoBehaviour
     public Vector3 hipPosition;
     public Vector3 aimPosition;
     public float adsSpeed = 10f;
+    public float aimMultiplier;
 
     [Header("Specs")]
     public int damage;
@@ -16,11 +18,9 @@ public class GunController : MonoBehaviour
     public float bulletSpeed = 100f;
     public float spread;
     public int roundsPerMinute = 600;
-    public float reloadTime = 1f;
-
-    public bool UnlimitedMag = false;
-    public int magazineSize = 10;
     public int bulletsPerShot = 1;
+    public bool fullAuto = false;
+    public bool bulletDrop = false;
     [Header("Recoil and Sway")]
     [Range(0f, 1f)]
     public float sway = 0.5f;
@@ -33,49 +33,51 @@ public class GunController : MonoBehaviour
     [Header("References")]
     public Transform bulletSpawnPoint;
     public GameObject bulletPrefab;
-    public AudioClip shootSound;
-    public AudioClip reloadSound;
-
-    public List<FireMode> availableFireModes = new List<FireMode> { FireMode.FullAuto, FireMode.SemiAuto, FireMode.Safe };
     private bool canShoot = true;
     public bool shooting = false;
-    public bool isReloading = false;
-
     public bool aiming = false;
     private Quaternion lastRotation;
     private Transform playerCam;
-    [SerializeField]
-    private int bulletsInMagazine;
-    private int currentFireModeIndex = 0;
-    private AudioSource audioSource;
+    private WaitForSeconds fireWait;
 
     private void Start()
     {
-        bulletsInMagazine = magazineSize;
-        audioSource = GetComponent<AudioSource>();
         playerCam = GameObject.FindGameObjectWithTag("Player").transform.Find("PlayerCam").transform;
+        fireWait = new WaitForSeconds(60f / roundsPerMinute);
     }
     private void Update()
     {
         DetermineAim();
         DetermineSway();
     }
-    
-    [SerializeField]
-    public FireMode currentFireMode
+
+    public void StartShoot(InputAction.CallbackContext ctx)
     {
-        get { return availableFireModes[currentFireModeIndex]; }
+        if(ctx.performed)
+        {
+            Shoot();
+            shooting = true;
+        }
+        else if(ctx.canceled)
+        {
+            shooting = false;
+        }
     }
 
-    public void Shoot()
+    public void Aiming(InputAction.CallbackContext ctx)
     {
-        bool MagEmpty()
+        if(ctx.performed)
         {
-            if(!UnlimitedMag && bulletsInMagazine <= 0)
-                return true;
-            return false;
+            aiming= true;
         }
-        if (!canShoot || isReloading || MagEmpty() || currentFireMode == FireMode.Safe)
+        else if(ctx.canceled)
+        {
+            aiming = false;
+        }
+    }
+    void Shoot()
+    {
+        if (!canShoot)
         {
             return;
         }
@@ -87,6 +89,7 @@ public class GunController : MonoBehaviour
             bulletScript.damage = damage;
             bulletScript.sharpness = sharpness;
             bulletScript.range = range;
+            if(bulletDrop) bulletScript.gravity = 9.8f;
 
             Vector3 bulletDirection = ShootDirection();
             // Calculate spread offset
@@ -96,13 +99,9 @@ public class GunController : MonoBehaviour
             Vector3 spreadOffset = bulletSpawnPoint.right * spreadX + bulletSpawnPoint.up * spreadY;
             bulletDirection += (spreadOffset / 100);
 
-            bulletScript.velocity = bulletDirection.normalized * bulletSpeed;
+            bulletScript.direction = bulletDirection.normalized;
+            bulletScript.bulletSpeed = bulletSpeed;
         }
-
-        bulletsInMagazine--;
-
-        // Play shoot sound
-        audioSource.PlayOneShot(shootSound);
 
         // Set a cooldown before the next shot
         canShoot = false;
@@ -114,39 +113,23 @@ public class GunController : MonoBehaviour
     {
         yield return new WaitForSeconds(60f / roundsPerMinute);
         canShoot = true;
-        if (shooting && currentFireMode == FireMode.FullAuto) 
+        if(shooting && fullAuto)
             Shoot();
     }
-
-    public IEnumerator Reload()
-    {
-        if (bulletsInMagazine == magazineSize)
-        {
-            yield break;
-        }
-
-        isReloading = true;
-
-        // Play reload sound
-        audioSource.PlayOneShot(reloadSound);
-
-        yield return new WaitForSeconds(reloadTime);
-        bulletsInMagazine = magazineSize;
-        isReloading = false;
-        if (shooting && currentFireMode == FireMode.FullAuto) 
-            Shoot();
-    }
-
-    public void CycleFireMode()
-    {
-        currentFireModeIndex = (currentFireModeIndex + 1) % availableFireModes.Count;
-    }
-
     public void DetermineAim()
     {
-        Vector3 target = hipPosition;
-        if(aiming) target = aimPosition;
-
+        Vector3 target;
+        PlayerLook look = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLook>();
+        if(aiming) 
+        {
+            target = aimPosition;
+            look.aimMultiplier = aimMultiplier;
+        }
+        else
+        {
+            target = hipPosition;
+            look.aimMultiplier = 1;
+        }
         Vector3 desiredPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * adsSpeed);
         transform.localPosition = desiredPosition;
     }
@@ -187,10 +170,7 @@ public class GunController : MonoBehaviour
         }
         else
         {
-            int currentStep = magazineSize + 1 - bulletsInMagazine;
-            currentStep = Mathf.Clamp(currentStep, 0, RecoilPattern.Length - 1);
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLook>().TakeRecoil(RecoilPattern[currentStep]);
-
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLook>().TakeRecoil(RecoilPattern[0]);
         }
     }
 
@@ -207,11 +187,4 @@ public class GunController : MonoBehaviour
             return hitInfo.point - transform.position;
         }
     }
-}
-
-public enum FireMode
-{
-    FullAuto,
-    SemiAuto,
-    Safe
 }

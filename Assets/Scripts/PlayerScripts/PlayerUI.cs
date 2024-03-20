@@ -10,12 +10,13 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateText(string.Empty);
     }
 
     // Update is called once per frame
     public void UpdateText(string promptMessage)
     {
+        Debug.Log("Text Updated");
         promptText.text = promptMessage;
     }
 }

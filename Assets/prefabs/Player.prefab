@@ -140,7 +140,6 @@ GameObject:
   - component: {fileID: 1972780284782796936}
   - component: {fileID: 7137423981806429006}
   - component: {fileID: 2943838641337983766}
-  - component: {fileID: 2866911270771220600}
   - component: {fileID: 282794240218370260}
   m_Layer: 0
   m_Name: Player
@@ -307,18 +306,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptText: {fileID: 0}
---- !u!114 &2866911270771220600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579844137029761750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05642372bd23fd74ebec286446a0472a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &282794240218370260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,11 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3688149f59e23c54dbc65784286d40eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeKey: 102
   MaxPlaceDistance: 10
-  Ground:
-    serializedVersion: 2
-    m_Bits: 64
   cam: {fileID: 4570388753866527007}
   towerPrefabs:
   - {fileID: 7077659787000649759, guid: 8ef09c50ee4e3e146a50c03b65965722, type: 3}

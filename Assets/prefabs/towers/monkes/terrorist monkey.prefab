@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1850151001885153660
+--- !u!1 &3463644152001025958
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3502412457873568262}
-  m_Layer: 0
+  - component: {fileID: 8321589538704702093}
+  m_Layer: 13
   m_Name: shootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3502412457873568262
+--- !u!4 &8321589538704702093
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850151001885153660}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2748, y: 0.484, z: 0.083}
+  m_GameObject: {fileID: 3463644152001025958}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.48, y: 0.657, z: 0.083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3251023448013468143}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 4395287158047233508}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5318303931578060171}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 5318303931480604720}
   - component: {fileID: 5318303931480604723}
   - component: {fileID: 5318303931480604722}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ear (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 5318303931567473174}
   - component: {fileID: 5318303931567473177}
   - component: {fileID: 5318303931567473176}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 5318303931578060171}
   - component: {fileID: 5318303931578060174}
   - component: {fileID: 5318303931578060173}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 5318303931631794114}
   - component: {fileID: 5318303931631794117}
   - component: {fileID: 5318303931631794116}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 5318303931855419834}
   - component: {fileID: 5318303931855419837}
   - component: {fileID: 5318303931855419836}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: hand (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 5318303931987340663}
   - component: {fileID: 5318303931987340666}
   - component: {fileID: 5318303931987340665}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 5318303932017414330}
   - component: {fileID: 5318303932017414333}
   - component: {fileID: 5318303932017414332}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,10 +663,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5318303932069003914}
-  - component: {fileID: 7401144897656667360}
   - component: {fileID: 5107840322455727903}
   - component: {fileID: 2346588389016667453}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: terrorist monkey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,30 +679,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5318303932069003913}
-  m_LocalRotation: {x: -0, y: -0.72132677, z: -0, w: 0.692595}
-  m_LocalPosition: {x: 47.315, y: 8, z: 0.675}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3251023448013468143}
-  - {fileID: 3502412457873568262}
+  - {fileID: 8321589538704702093}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -92.328, z: 0}
---- !u!136 &7401144897656667360
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5318303932069003913}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.25
-  m_Height: 0.65
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: -0.02}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5107840322455727903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,6 +701,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0bec038ad848b4381a8cde9ac2e256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  sharpness: 0
   range: 7
   DartVelocity: 40
   ShootDelay: 0.95
@@ -723,7 +710,7 @@ MonoBehaviour:
   bulletsPerShot: 1
   BloonHolder: {fileID: 0}
   bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
-  shootPoint: {fileID: 3502412457873568262}
+  shootPoint: {fileID: 0}
 --- !u!54 &2346588389016667453
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -751,7 +738,7 @@ GameObject:
   - component: {fileID: 5318303932738677065}
   - component: {fileID: 5318303932738677068}
   - component: {fileID: 5318303932738677067}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: foot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,7 +821,7 @@ GameObject:
   - component: {fileID: 5318303932930529486}
   - component: {fileID: 5318303932930529521}
   - component: {fileID: 5318303932930529520}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +904,7 @@ GameObject:
   - component: {fileID: 5318303933118840518}
   - component: {fileID: 5318303933118840521}
   - component: {fileID: 5318303933118840520}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: eye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,7 +987,7 @@ GameObject:
   - component: {fileID: 5318303933428594287}
   - component: {fileID: 5318303933428594194}
   - component: {fileID: 5318303933428594193}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}

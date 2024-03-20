@@ -8,17 +8,19 @@ public class DartBehavior : MonoBehaviour
     public int damage;
     public int sharpness;
     public float range;
-
+    public float gravity = 0;
     private Health bl;
-    private Rigidbody rb;
+    public Rigidbody rb;
     private BoxCollider cd;
     
     private int bloonsHit = 0;
     private Vector3 startPoint;
-    public Vector3 velocity;
-
+    public Vector3 direction;
+    public float bulletSpeed;
+    private float timeSinceShot;
     private void Awake()
     {
+        timeSinceShot = 0f;
         transform.SetParent(GameObject.Find("Darts").transform);
         rb = GetComponent<Rigidbody>();
         cd = GetComponent<BoxCollider>();
@@ -28,9 +30,10 @@ public class DartBehavior : MonoBehaviour
 
     private void Update()
     {
+        timeSinceShot += Time.deltaTime;
         CheckDistance();
         CheckBloonsHit();
-        rb.velocity = velocity;
+        rb.velocity = (CalculatePosition(startPoint, direction, bulletSpeed, -gravity, timeSinceShot + 0.1f) - transform.position).normalized * bulletSpeed;
     }
 
     private void CheckDistance() // Checks if current position is further than maxDistance if so destroys game object
@@ -40,15 +43,14 @@ public class DartBehavior : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("hit");
-        if (collision.gameObject.layer ==  LayerMask.NameToLayer("Bloons"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Bloons"))
         {
             bl = collision.gameObject.GetComponent<Health>();
             bl.dartID = gameObject.name;
             bl.TakeDamage(damage);
             bloonsHit += 1;
         }
-        else if (collision.gameObject.layer ==  LayerMask.NameToLayer("Ground"))
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
             StartCoroutine(Decay());
@@ -56,16 +58,21 @@ public class DartBehavior : MonoBehaviour
     }
     private IEnumerator Decay()
     {
-        Debug.Log("Decay");
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
-    
     private void CheckBloonsHit()
     {
         if (bloonsHit >= sharpness)
         {
             Destroy(gameObject);
         }
+    }
+
+    Vector3 CalculatePosition(Vector3 initialPosition, Vector3 initialDireciton, float speed, float gravity, float time)
+    {
+        Vector3 newPosition = initialPosition + bulletSpeed * time * initialDireciton;
+        newPosition.y += 0.5f * gravity * time * time;
+        return newPosition;
     }
 }

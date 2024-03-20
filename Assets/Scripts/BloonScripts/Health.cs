@@ -27,25 +27,30 @@ public class Health : MonoBehaviour
         {
             dart = GameObject.Find(dartID).transform;
             dartCd = dart.GetComponent<SphereCollider>();
-            Debug.Log("passed");
             float distanceToDart = Vector3.Distance(transform.position, dart.position);
-            if(distanceToDart <= cd.radius + dartCd.radius + 0.5f)
+            if(distanceToDart <= cd.radius + dartCd.radius + 0.25f)
             {
-                dartTooClose = true;
-                Physics.IgnoreCollision(cd, dartCd);
+                dartCd.isTrigger = true;
             }
             else
             {
-                dartTooClose = false;
-                Physics.IgnoreCollision(cd, dartCd, false);
-                dartID = "";
+                dartCd.isTrigger = false;
+                //dartID = "";
             }
+        }
+    }
+
+    IEnumerator HitDelay(float hitDelay)
+    {
+        yield return new WaitForSeconds(hitDelay);
+        if(GameObject.Find(dartID)!= null)
+        {
+            dartID = "";
         }
     }
     
     public void TakeDamage(int damage)
     {
-        if(dartTooClose) return;
         health -= damage;
         if (health <= 0)
         {

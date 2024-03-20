@@ -30,7 +30,7 @@ public class BaseTower : MonoBehaviour
     protected virtual void Update()
     {
         GetClosestBloon();
-        if (Vector3.Distance(gameObject.transform.position, TargetBloon.position) <= range)
+        if (TargetBloon != null && Vector3.Distance(gameObject.transform.position, TargetBloon.position) <= range)
         {
             Shoot();
         }
@@ -50,8 +50,21 @@ public class BaseTower : MonoBehaviour
 
                 if (distance < closestDistance)
                 {
-                    closestBloon = bloon;
-                    closestDistance = distance;
+                    Quaternion rotation = Quaternion.LookRotation((new Vector3(bloon.position.x, transform.position.y, bloon.position.z) - transform.position).normalized);
+                    Vector3 rotatedShootPos = rotation * shootPoint.localPosition;
+                    Vector3 newShootPos = transform.position + rotatedShootPos;
+
+                    Ray ray = new Ray(newShootPos, (bloon.position - newShootPos));
+                    Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(newShootPos, bloon.position));
+                    RaycastHit hit; 
+                    if(Physics.Raycast(ray, out hit, range))
+                    {
+                        if(hit.transform == bloon.transform)
+                        {
+                            closestBloon = bloon;
+                            closestDistance = distance;
+                        }
+                    }
                 }
             }
 
@@ -89,7 +102,8 @@ public class BaseTower : MonoBehaviour
             Vector3 spreadOffset = shootPoint.right * spreadX + shootPoint.up * spreadY;
             bulletDirection += spreadOffset;
 
-            bulletScript.velocity = bulletDirection * DartVelocity;
+            bulletScript.direction = bulletDirection.normalized;
+            bulletScript.bulletSpeed = DartVelocity;
         }
 
         // Set a cooldown before the next shot
