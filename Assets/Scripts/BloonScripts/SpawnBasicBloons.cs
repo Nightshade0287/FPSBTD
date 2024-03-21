@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using Vector3 = UnityEngine.Vector3;
 
 [System.Serializable]
 public class BloonSpawnOption
@@ -17,7 +21,7 @@ public class SpawnBasicBloons : MonoBehaviour
     public BloonSpawnOption[] bloonSpawnOptions;
 
     [Header("References")]
-    public Transform[] Paths;
+    public Path[] paths;
     public Transform BloonHolder;
 
     private float totalSpawnWeight;
@@ -48,19 +52,20 @@ public class SpawnBasicBloons : MonoBehaviour
 
     private void SpawnBloonOnRandomPath()
     {
-        Transform randomPath = Paths[Random.Range(0, Paths.Length)];
-        Transform spawnPoint = randomPath.GetChild(0).transform;
-        Vector3 randomSpawn = GetRandomSpawnPoint(spawnPoint);
+        Path randomPath = paths[Random.Range(0, paths.Length)];
         GameObject randomBloon = GetRandomWeightedBloon();
-        GameObject bloon = Instantiate(randomBloon, randomSpawn, spawnPoint.rotation);
+        Vector3 spawnPoint = randomPath.transform.GetChild(0).transform.position;
+        spawnPoint.y =  + randomBloon.GetComponent<NavMeshAgent>().baseOffset;
+        Vector3 randomSpawn = GetRandomSpawnPoint(spawnPoint);
+        GameObject bloon = Instantiate(randomBloon, randomSpawn, transform.rotation);
         SetupBloonPath(bloon, randomPath);
     }
 
-    private Vector3 GetRandomSpawnPoint(Transform spawnPoint)
+    private Vector3 GetRandomSpawnPoint(Vector3 spawnPoint)
     {
         float randomX = Random.Range(-spawnRadius, spawnRadius);
         float randomZ = Random.Range(-spawnRadius, spawnRadius);
-        return spawnPoint.position + new Vector3(randomX, 0f, randomZ);
+        return spawnPoint + new Vector3(randomX, 0f, randomZ);
     }
 
     private GameObject GetRandomWeightedBloon()
@@ -80,10 +85,10 @@ public class SpawnBasicBloons : MonoBehaviour
         return bloonSpawnOptions[0].bloonPrefab; // Default to the first Bloon if something goes wrong.
     }
 
-    private void SetupBloonPath(GameObject bloon, Transform path)
+    private void SetupBloonPath(GameObject bloon, Path path)
     {
         bloon.transform.parent = BloonHolder;
-        bloon.GetComponent<Pathing>().Path = path;
+        bloon.GetComponent<BloonMovement>().path = path;
     }
 }
 

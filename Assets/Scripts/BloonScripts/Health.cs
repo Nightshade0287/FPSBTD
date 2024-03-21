@@ -63,7 +63,7 @@ public class Health : MonoBehaviour
         foreach(GameObject child in ChildBloons)
         {
             GameObject bloon = Instantiate(child, transform.position, transform.rotation);
-            GetComponent<Pathing>().UpdateChild(bloon);
+            GetComponent<BloonMovement>().UpdateChild(bloon);
             bloon.GetComponent<Health>().dartID = dartID;
             bloon.GetComponent<Health>().TakeDamage(damage);
         }

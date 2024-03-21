@@ -24,7 +24,6 @@ public class GunController : MonoBehaviour
     [Header("Recoil and Sway")]
     [Range(0f, 1f)]
     public float sway = 0.5f;
-    public float sensMultiplier = 1f;
     public float recoilForce = 1f;
     public bool randomizeRecoil;
     public Vector2 randomRecoilContraints;
