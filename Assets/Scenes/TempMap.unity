@@ -10508,6 +10508,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 282794240218370260, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: BloonHolder
       value: 
