@@ -38,7 +38,12 @@ public class TowerPlacement : MonoBehaviour
                 Placing = true;
                 return;
             }
-            if (Placing && canPlace)
+        }
+    }
+
+    public void PlaceTower()
+    {
+        if (Placing && canPlace)
             {
                 Placing = false;
                 newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
@@ -49,11 +54,6 @@ public class TowerPlacement : MonoBehaviour
                 newTower = null;
                 return;
             }
-        }
-    }
-
-    public void PlaceTower()
-    {
     }
 
     // Update is called once per frame

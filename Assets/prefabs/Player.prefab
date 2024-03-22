@@ -455,10 +455,6 @@ MonoBehaviour:
     m_ActionId: 16567a14-e5b2-4c25-963c-722fe8c932e6
     m_ActionName: BaseGameplay/Aim[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 646df114-3d12-492e-95aa-3a8ed80dfaf9
-    m_ActionName: BaseGameplay/Reload[/Keyboard/r]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 282794240218370260}
         m_TargetAssemblyTypeName: TowerPlacement, Assembly-CSharp
