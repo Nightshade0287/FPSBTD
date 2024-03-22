@@ -38,22 +38,32 @@ public class TowerPlacement : MonoBehaviour
                 Placing = true;
                 return;
             }
+            if (Placing)
+            {
+                selectedTowerIndex = 0;
+                Destroy(newTower);
+                Placing = false;
+                gameObject.GetComponent<PlayerUI>().UpdateText(string.Empty);
+            }
         }
     }
 
-    public void PlaceTower()
+    public void PlaceTower(InputAction.CallbackContext ctx)
     {
-        if (Placing && canPlace)
-            {
-                Placing = false;
-                newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
-                newTower.GetComponent<BaseTower>().enabled = true;
-                ResetMaterials();
-                newTower.gameObject.layer = LayerMask.NameToLayer("Tower");
-                gameObject.GetComponent<PlayerUI>().UpdateText(string.Empty);
-                newTower = null;
-                return;
-            }
+        if(ctx.performed)
+        {
+            if (Placing && canPlace)
+                {
+                    Placing = false;
+                    newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
+                    newTower.GetComponent<BaseTower>().enabled = true;
+                    ResetMaterials();
+                    newTower.gameObject.layer = LayerMask.NameToLayer("Tower");
+                    gameObject.GetComponent<PlayerUI>().UpdateText(string.Empty);
+                    newTower = null;
+                    return;
+                }
+        }
     }
 
     // Update is called once per frame
