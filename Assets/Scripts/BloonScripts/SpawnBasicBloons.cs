@@ -4,6 +4,7 @@ using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 [System.Serializable]
@@ -45,8 +46,8 @@ public class SpawnBasicBloons : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnDelay);
             SpawnBloonOnRandomPath();
+            yield return new WaitForSeconds(spawnDelay);
         }
     }
 
@@ -57,7 +58,8 @@ public class SpawnBasicBloons : MonoBehaviour
         Vector3 spawnPoint = randomPath.transform.GetChild(0).transform.position;
         spawnPoint.y =  + randomBloon.GetComponent<NavMeshAgent>().baseOffset;
         Vector3 randomSpawn = GetRandomSpawnPoint(spawnPoint);
-        GameObject bloon = Instantiate(randomBloon, randomSpawn, transform.rotation);
+        Quaternion spawnRotation = Quaternion.LookRotation(-(spawnPoint - randomPath.transform.GetChild(1).transform.position).normalized);
+        GameObject bloon = Instantiate(randomBloon, randomSpawn, spawnRotation);
         SetupBloonPath(bloon, randomPath);
     }
 

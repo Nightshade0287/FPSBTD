@@ -18,7 +18,7 @@ public class BaseTower : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform shootPoint;
 
-    protected Transform TargetBloon;
+    protected Transform targetBloon;
     protected bool canShoot = true;
 
     protected void Start()
@@ -30,13 +30,27 @@ public class BaseTower : MonoBehaviour
     protected virtual void Update()
     {
         GetClosestBloon();
-        if (TargetBloon != null && Vector3.Distance(gameObject.transform.position, TargetBloon.position) <= range)
+        if (targetBloon != null && Vector3.Distance(gameObject.transform.position, targetBloon.position) <= range)
         {
             Shoot();
         }
     }
 
-    // Find the closest bloon
+    protected bool CanSeeBloon(Transform bloon)
+    {
+        Quaternion rotation = Quaternion.LookRotation((new Vector3(bloon.position.x, transform.position.y, bloon.position.z) - transform.position).normalized);
+        Vector3 rotatedShootPos = rotation * shootPoint.localPosition;
+        Vector3 newShootPos = transform.position + rotatedShootPos;
+
+        Ray ray = new Ray(newShootPos, (bloon.position - newShootPos));
+        Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(newShootPos, bloon.position));
+        RaycastHit hit; 
+        if(!Physics.Raycast(ray, out hit, range, bloon.gameObject.layer))
+        {
+            return true;
+        }
+        return false;
+    }
     protected void GetClosestBloon()
     {
         Transform closestBloon = null;
@@ -50,27 +64,45 @@ public class BaseTower : MonoBehaviour
 
                 if (distance < closestDistance)
                 {
-                    Quaternion rotation = Quaternion.LookRotation((new Vector3(bloon.position.x, transform.position.y, bloon.position.z) - transform.position).normalized);
-                    Vector3 rotatedShootPos = rotation * shootPoint.localPosition;
-                    Vector3 newShootPos = transform.position + rotatedShootPos;
-
-                    Ray ray = new Ray(newShootPos, (bloon.position - newShootPos));
-                    Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(newShootPos, bloon.position));
-                    RaycastHit hit; 
-                    if(Physics.Raycast(ray, out hit, range))
+                    if(CanSeeBloon(bloon))
                     {
-                        if(hit.transform == bloon.transform)
-                        {
-                            closestBloon = bloon;
-                            closestDistance = distance;
-                        }
+                        closestBloon = bloon;
+                        closestDistance = distance;
                     }
                 }
             }
 
             if (closestBloon != null)
             {
-                TargetBloon = closestBloon;
+                targetBloon = closestBloon;
+            }
+        }
+    }
+
+    protected void GetStrongestBloon()
+    {
+        Transform strongestBloon = null;
+        float strongest = 0;
+
+        if (BloonHolder.childCount != 0)
+        {
+            foreach (Transform bloon in BloonHolder)
+            {
+                float health = bloon.GetComponent<Health>().health;
+
+                if (health > strongest)
+                {
+                    if(CanSeeBloon(bloon))
+                    {
+                        strongestBloon = bloon;
+                        strongest = health;
+                    }
+                }
+            }
+
+            if (strongestBloon != null)
+            {
+                targetBloon = strongestBloon;
             }
         }
     }
@@ -85,7 +117,8 @@ public class BaseTower : MonoBehaviour
 
         for (int i = 0; i < bulletsPerShot; i++)
         {    
-            transform.LookAt(new Vector3(TargetBloon.position.x, transform.position.y, TargetBloon.position.z));
+            Transform target = targetBloon.Find("Model").GetChild(0);
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
             GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
             DartBehavior bulletScript = bullet.GetComponent<DartBehavior>();
             bulletScript.damage = damage;
@@ -93,7 +126,7 @@ public class BaseTower : MonoBehaviour
             bulletScript.range = range;
 
             // Calculate bullet direction with spread
-            Vector3 bulletDirection = (TargetBloon.position - shootPoint.position).normalized;
+            Vector3 bulletDirection = (target.position - shootPoint.position).normalized;
 
             // Calculate spread offset
             float spreadX = Random.Range(-spread, spread);

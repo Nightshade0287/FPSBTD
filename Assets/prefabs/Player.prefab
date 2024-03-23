@@ -734,15 +734,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3118202537072822629, guid: b2b38cc8445c10642b5a9c10096476a0, type: 3}
       propertyPath: spread
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3118202537072822629, guid: b2b38cc8445c10642b5a9c10096476a0, type: 3}
       propertyPath: fullAuto
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3118202537072822629, guid: b2b38cc8445c10642b5a9c10096476a0, type: 3}
       propertyPath: bulletDrop
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3118202537072822629, guid: b2b38cc8445c10642b5a9c10096476a0, type: 3}
       propertyPath: bulletSpeed
@@ -750,7 +750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3118202537072822629, guid: b2b38cc8445c10642b5a9c10096476a0, type: 3}
       propertyPath: aimMultiplier
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2b38cc8445c10642b5a9c10096476a0, type: 3}

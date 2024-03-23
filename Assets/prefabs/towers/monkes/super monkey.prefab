@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 6854333308694126327}
   - component: {fileID: 4960190583267284061}
   - component: {fileID: 241669337562394673}
-  - component: {fileID: 3669158845356012746}
+  - component: {fileID: 1996891704134919710}
   m_Layer: 13
   m_Name: super monkey
   m_TagString: Untagged
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerName: Super Monkey
---- !u!114 &3669158845356012746
+--- !u!114 &1996891704134919710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6854333308694126326}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 444fd9a9ed40f274d9831e5476124040, type: 3}
+  m_Script: {fileID: 11500000, guid: af0bec038ad848b4381a8cde9ac2e256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1

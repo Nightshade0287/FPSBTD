@@ -33,14 +33,12 @@ public class TowerPlacement : MonoBehaviour
         {
             if (!Placing)
             {
-                selectedTowerIndex = 0;
                 ChangeSelectedTower(0);
                 Placing = true;
                 return;
             }
             if (Placing)
             {
-                selectedTowerIndex = 0;
                 Destroy(newTower);
                 Placing = false;
                 gameObject.GetComponent<PlayerUI>().UpdateText(string.Empty);

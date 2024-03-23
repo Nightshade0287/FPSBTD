@@ -7,48 +7,25 @@ public class Health : MonoBehaviour
 {
     public int health = 1;
     public GameObject[] ChildBloons;
-    public string dartID;
-
-    private SphereCollider cd;
-    private Transform dart;
-
-    private SphereCollider dartCd;
-
-    private bool dartTooClose = false;
-
+    public GameObject dart;
     void Start()
     {
-        cd = GetComponent<SphereCollider>();
+
     }
 
     void Update()
     {   
-        if(GameObject.Find(dartID)!= null)
-        {
-            dart = GameObject.Find(dartID).transform;
-            dartCd = dart.GetComponent<SphereCollider>();
-            float distanceToDart = Vector3.Distance(transform.position, dart.position);
-            if(distanceToDart <= cd.radius + dartCd.radius + 0.25f)
-            {
-                dartCd.isTrigger = true;
-            }
-            else
-            {
-                dartCd.isTrigger = false;
-                //dartID = "";
-            }
-        }
+        // if(GameObject.Find(dartID)!= null)
+        // {
+        //     dart = GameObject.Find(dartID).transform;
+        //     dartCd = dart.GetComponent<SphereCollider>();
+        //     float distanceToDart = Vector3.Distance(cd.center + transform.position, dart.position);
+        //     if(distanceToDart >= cd.radius + dartCd.radius + 0.25f)
+        //     {
+        //         dartCd.isTrigger = false;
+        //     }
+        // }
     }
-
-    IEnumerator HitDelay(float hitDelay)
-    {
-        yield return new WaitForSeconds(hitDelay);
-        if(GameObject.Find(dartID)!= null)
-        {
-            dartID = "";
-        }
-    }
-    
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -63,9 +40,11 @@ public class Health : MonoBehaviour
         foreach(GameObject child in ChildBloons)
         {
             GameObject bloon = Instantiate(child, transform.position, transform.rotation);
+            Health bloonHealth = bloon.GetComponent<Health>();
             GetComponent<BloonMovement>().UpdateChild(bloon);
-            bloon.GetComponent<Health>().dartID = dartID;
-            bloon.GetComponent<Health>().TakeDamage(damage);
+            bloonHealth.dart = dart;
+            dart.GetComponent<DartBehavior>().bloonHitList.Add(bloon);
+            bloonHealth.TakeDamage(damage);
         }
         Destroy(gameObject);
     }
