@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public string playScene;
     public void PlayGame()
     {
-        SceneManager.LoadScene("PreAlphaMap1");
+        SceneManager.LoadScene(playScene);
     }
 
     public void QuitGame()

@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2290533520602909390}
+  - component: {fileID: 4114325357555342320}
+  - component: {fileID: 8344032897043124553}
   - component: {fileID: 7395526631308524177}
   - component: {fileID: 322282461393084079}
   - component: {fileID: 8327279115190307184}
@@ -35,6 +37,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &4114325357555342320
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270858087927334935}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 10
+  m_AngularDrag: 10
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!136 &8344032897043124553
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270858087927334935}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.2
+  m_Height: 6.8
+  m_Direction: 2
+  m_Center: {x: 0, y: 6, z: 0}
 --- !u!114 &7395526631308524177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +166,6 @@ GameObject:
   - component: {fileID: 4784421714848740235}
   - component: {fileID: 3549217572479791311}
   - component: {fileID: 3584945626184401301}
-  - component: {fileID: 28284783580932141}
   m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
@@ -207,17 +238,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &28284783580932141
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666365710720549213}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
