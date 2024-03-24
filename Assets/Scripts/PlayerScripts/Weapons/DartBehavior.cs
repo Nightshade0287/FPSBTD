@@ -4,6 +4,7 @@ using System.Numerics;
 using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 public class DartBehavior : MonoBehaviour
@@ -37,7 +38,8 @@ public class DartBehavior : MonoBehaviour
         CheckDistance();
         lastPostition = transform.position;
         transform.position = CalculatePosition(startPoint, direction, bulletSpeed, -gravity, timeSinceShot);
-        CheckForBloon();
+        CheckForBloons();
+        transform.rotation = Quaternion.LookRotation(transform.position - lastPostition, Vector3.up);
     }
     private void CheckDistance() // Checks if current position is further than maxDistance if so destroys game object
     {
@@ -63,36 +65,52 @@ public class DartBehavior : MonoBehaviour
         newPosition.y += 0.5f * gravity * time * time;
         return newPosition;
     }
-    private void CheckForBloon()
+    private void CheckForBloons()
     {
         Vector3 direction = (transform.position - lastPostition).normalized;
         float maxDistance = Vector3.Distance(transform.position, lastPostition);
         Ray ray = new Ray(lastPostition, direction);
         Debug.DrawRay(lastPostition, direction * maxDistance);
-        RaycastHit[] hits = Physics.SphereCastAll(ray, HitRaduis,  maxDistance, hitLayers, QueryTriggerInteraction.UseGlobal);
-        foreach(RaycastHit hit in hits)
+        RaycastHit[] hits = Physics.SphereCastAll(ray, HitRaduis, maxDistance, hitLayers, QueryTriggerInteraction.UseGlobal);
+        
+        // Create a list to hold the bloons ordered by distance
+        List<GameObject> bloonOrder = new List<GameObject>();
+
+        foreach (RaycastHit hit in hits)
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bloons"))
             {
-                GameObject bloonParent = hit.collider.transform.parent.parent.gameObject;
-                if(!bloonHitList.Contains(bloonParent))
-                {
-                    if(bloonsHit < sharpness)
-                    {
-                        Health bloonHealth = bloonParent.GetComponent<Health>();
-                        bloonHealth.dart = gameObject;
-                        bloonHealth.TakeDamage(damage);
-                        bloonHitList.Add(hit.collider.gameObject);
-                        bloonsHit += 1;
-                    }
-                    else Destroy(gameObject);
-                }
+                bloonOrder.Add(hit.collider.gameObject);
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
                 Destroy(gameObject);
             }
-            
+        }
+
+        // Sort the list by distance from last position
+        bloonOrder.Sort((bloon1, bloon2) =>
+        {
+            float distanceToBloon1 = Vector3.Distance(bloon1.transform.position, lastPostition);
+            float distanceToBloon2 = Vector3.Distance(bloon2.transform.position, lastPostition);
+            return distanceToBloon1.CompareTo(distanceToBloon2);
+        });
+
+        foreach (GameObject bloon in bloonOrder)
+        {
+            if(!bloonHitList.Contains(bloon))
+            {
+                if(bloonsHit < sharpness)
+                {
+                    Health bloonHealth = bloon.GetComponent<Health>();
+                    bloonHealth.dart = gameObject;
+                    bloonHealth.TakeDamage(damage);
+                    bloonHitList.Add(bloon);
+                    bloonsHit += 1;
+                    if(bloonsHit >= sharpness) Destroy(gameObject);
+                }
+            }
         }
     }
+
 }

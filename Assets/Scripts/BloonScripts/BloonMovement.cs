@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,15 +13,18 @@ public class BloonMovement : MonoBehaviour
     private NavMeshAgent agent;
     public int currentWaypoint = 0;
     private float baseSpeed = 2f;
+    private Rigidbody rb;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = baseSpeed * speedMultiplier;
+        rb = GetComponent<Rigidbody>();
     }
 
     public void Update()
     {
         PathMovement();
+         rb.velocity = Vector3.ClampMagnitude(Vector3.zero, agent.speed);
     }
     public void UpdateChild(GameObject bloon)
     {
@@ -28,7 +32,6 @@ public class BloonMovement : MonoBehaviour
         bloon.GetComponent<BloonMovement>().currentWaypoint = currentWaypoint;
         bloon.GetComponent<NavMeshAgent>().velocity = GetComponent<NavMeshAgent>().velocity;
         bloon.transform.SetParent(transform.parent);
-        Debug.Log(currentWaypoint);
     }
 
     public void PathMovement()

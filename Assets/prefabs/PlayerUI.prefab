@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 4823333866588339637}
   - component: {fileID: 4823333866588339594}
   - component: {fileID: 4823333866588339595}
+  - component: {fileID: 734834187}
   m_Layer: 5
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -316,6 +317,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!208 &734834187
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823333866588339592}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4823333867574521956
 GameObject:
   m_ObjectHideFlags: 0

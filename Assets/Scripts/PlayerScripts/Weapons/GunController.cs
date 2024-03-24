@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class GunController : MonoBehaviour
 {
     [Header("Aiming")]
+    public bool canADS = false;
     public Vector3 hipPosition;
     public Vector3 aimPosition;
     public float adsSpeed = 10f;
@@ -17,7 +18,7 @@ public class GunController : MonoBehaviour
     public float range;
     public float bulletSpeed = 100f;
     public float spread;
-    public int roundsPerMinute = 600;
+    public float ShootDelay = 1;
     public int bulletsPerShot = 1;
     public bool fullAuto = false;
     public bool bulletDrop = false;
@@ -42,12 +43,13 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         playerCam = GameObject.FindGameObjectWithTag("Player").transform.Find("PlayerCam").transform;
-        fireWait = new WaitForSeconds(60f / roundsPerMinute);
     }
     private void Update()
     {
         DetermineAim();
         DetermineSway();
+        if(canShoot) transform.Find("Model").gameObject.SetActive(true);
+        else transform.Find("Model").gameObject.SetActive(false);
     }
 
     public void StartShoot(InputAction.CallbackContext ctx)
@@ -110,7 +112,7 @@ public class GunController : MonoBehaviour
 
     public IEnumerator ResetShootCooldown()
     {
-        yield return new WaitForSeconds(60f / roundsPerMinute);
+        yield return new WaitForSeconds(ShootDelay);
         canShoot = true;
         if(shooting && fullAuto)
             Shoot();
@@ -119,7 +121,7 @@ public class GunController : MonoBehaviour
     {
         Vector3 target;
         PlayerLook look = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLook>();
-        if(aiming) 
+        if(aiming && canADS) 
         {
             target = aimPosition;
             look.aimMultiplier = aimMultiplier;

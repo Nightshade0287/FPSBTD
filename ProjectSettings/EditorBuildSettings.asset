@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: 84c4e9a5da4b56e4dba99c22e4fe2faf
   - enabled: 1
-    path: Assets/Scenes/PreAlphaMap1.unity
-    guid: 235b0be014224fb40ae23da26f6d7d2d
+    path: Assets/Scenes/TempMap.unity
+    guid: c90e96c28f9929c4f96a88eee06beb88
   m_configObjects: {}
