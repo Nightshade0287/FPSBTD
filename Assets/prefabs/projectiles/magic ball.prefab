@@ -164,9 +164,14 @@ MonoBehaviour:
   sharpness: 3
   range: 100
   gravity: 0
-  rb: {fileID: 0}
+  HitRaduis: 0.5
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 192
   direction: {x: 0, y: 0, z: 0}
   bulletSpeed: 0
+  bloonsHit: 0
+  bloonHitList: []
 --- !u!1 &9217383777065834182
 GameObject:
   m_ObjectHideFlags: 0
