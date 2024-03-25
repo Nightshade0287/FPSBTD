@@ -315,10 +315,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  sharpness: 1
+  pierce: 1
   range: 50
   DartVelocity: 150
-  ShootDelay: 0.045
+  shootDelay: 0
   spread: 15
   bulletsPerShot: 1
   BloonHolder: {fileID: 0}

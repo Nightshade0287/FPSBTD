@@ -6,10 +6,10 @@ public class BaseTower : MonoBehaviour
 {
     [Header("Variables")]
     public int damage;
-    public int sharpness;
+    public int pierce;
     public float range;
     public float DartVelocity;
-    public float ShootDelay;
+    public float shootDelay;
     public float spread;
     public int bulletsPerShot;
 
@@ -122,7 +122,7 @@ public class BaseTower : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
             DartBehavior bulletScript = bullet.GetComponent<DartBehavior>();
             bulletScript.damage = damage;
-            bulletScript.sharpness = sharpness;
+            bulletScript.pierce = pierce;
             bulletScript.range = range;
 
             // Calculate bullet direction with spread
@@ -147,7 +147,7 @@ public class BaseTower : MonoBehaviour
     // Reset the shooting cooldown
     protected IEnumerator ResetShootCooldown()
     {
-        yield return new WaitForSeconds(ShootDelay);
+        yield return new WaitForSeconds(shootDelay);
         canShoot = true;
     }
 }
