@@ -14,15 +14,11 @@ public class GunController : MonoBehaviour
 
     [Header("Specs")]
     public int damage;
-    public int pierce;
+    public int sharpness;
     public float range;
     public float bulletSpeed = 100f;
     public float spread;
-<<<<<<< HEAD
-    public float shootDelay = 1;
-=======
     public float ShootDelay = 1;
->>>>>>> ff787e897e7611d86b88648c918ddb7b00d1a85d
     public int bulletsPerShot = 1;
     public bool fullAuto = false;
     public bool bulletDrop = false;
@@ -92,7 +88,7 @@ public class GunController : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             DartBehavior bulletScript = bullet.GetComponent<DartBehavior>();
             bulletScript.damage = damage;
-            bulletScript.pierce = pierce;
+            bulletScript.sharpness = sharpness;
             bulletScript.range = range;
             if(bulletDrop) bulletScript.gravity = 9.8f;
 
@@ -116,11 +112,7 @@ public class GunController : MonoBehaviour
 
     public IEnumerator ResetShootCooldown()
     {
-<<<<<<< HEAD
-        yield return new WaitForSeconds(shootDelay);
-=======
         yield return new WaitForSeconds(ShootDelay);
->>>>>>> ff787e897e7611d86b88648c918ddb7b00d1a85d
         canShoot = true;
         if(shooting && fullAuto)
             Shoot();

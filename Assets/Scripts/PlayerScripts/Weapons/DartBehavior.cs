@@ -11,7 +11,7 @@ public class DartBehavior : MonoBehaviour
 {
     [Header("Variables")]
     public int damage;
-    public int pierce;
+    public int sharpness;
     public float range;
     public float gravity = 0;
     public float HitRaduis;
@@ -54,7 +54,7 @@ public class DartBehavior : MonoBehaviour
     private void BloonsHit(int hit)
     {
         bloonsHit += hit;
-        if (bloonsHit >= pierce)
+        if (bloonsHit >= sharpness)
         {
             Destroy(gameObject);
         }
@@ -100,22 +100,14 @@ public class DartBehavior : MonoBehaviour
         {
             if(!bloonHitList.Contains(bloon))
             {
-<<<<<<< HEAD
-                if(bloonsHit < pierce)
-=======
                 if(bloonsHit < sharpness)
->>>>>>> ff787e897e7611d86b88648c918ddb7b00d1a85d
                 {
                     Health bloonHealth = bloon.GetComponent<Health>();
                     bloonHealth.dart = gameObject;
                     bloonHealth.TakeDamage(damage);
                     bloonHitList.Add(bloon);
                     bloonsHit += 1;
-<<<<<<< HEAD
-                    if(bloonsHit >= pierce) Destroy(gameObject);
-=======
                     if(bloonsHit >= sharpness) Destroy(gameObject);
->>>>>>> ff787e897e7611d86b88648c918ddb7b00d1a85d
                 }
             }
         }
