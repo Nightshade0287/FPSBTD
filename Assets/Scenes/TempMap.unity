@@ -4252,6 +4252,10 @@ PrefabInstance:
       propertyPath: paths.Array.data[0]
       value: 
       objectReference: {fileID: 1011836670}
+    - target: {fileID: 5558818533225088974, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+      propertyPath: bloonSpawnOptions.Array.data[1].bloonPrefab
+      value: 
+      objectReference: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
     - target: {fileID: 5558818533225088975, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: m_Name
       value: BloonManager
