@@ -15,16 +15,6 @@ public class Health : MonoBehaviour
 
     void Update()
     {   
-        // if(GameObject.Find(dartID)!= null)
-        // {
-        //     dart = GameObject.Find(dartID).transform;
-        //     dartCd = dart.GetComponent<SphereCollider>();
-        //     float distanceToDart = Vector3.Distance(cd.center + transform.position, dart.position);
-        //     if(distanceToDart >= cd.radius + dartCd.radius + 0.25f)
-        //     {
-        //         dartCd.isTrigger = false;
-        //     }
-        // }
     }
     public void TakeDamage(int damage)
     {

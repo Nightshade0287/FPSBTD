@@ -4201,6 +4201,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 405165086, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405165086, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: paths.Array.data[0]
       value: 
       objectReference: {fileID: 1011836670}
@@ -4246,6 +4250,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5558818533225088973, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558818533225088974, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5558818533225088974, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
@@ -9420,6 +9428,173 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 4, y: 2.5, z: 0.5}
   m_TimeToStationary: 0.5
+--- !u!1 &1864940253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558818533225088975, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+  m_PrefabInstance: {fileID: 890153593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1864940254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864940253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b38c68d1990e241b4f014ce2d97926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRadius: 0
+  rounds:
+  - bloons:
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 20
+      timeStamps: {x: 0, y: 17.51}
+  - bloons:
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 35
+      timeStamps: {x: 0, y: 19}
+  - bloons:
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 10
+      timeStamps: {x: 0, y: 5.1}
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 5
+      timeStamps: {x: 5.7, y: 7.95}
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 5
+      timeStamps: {x: 9.71, y: 16.71}
+  - bloons:
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 25
+      timeStamps: {x: 0, y: 12}
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 18
+      timeStamps: {x: 7.9, y: 10.4}
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 10
+      timeStamps: {x: 14.51, y: 17.31}
+  - bloons:
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 12
+      timeStamps: {x: 0, y: 5.14}
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 5
+      timeStamps: {x: 5.7, y: 7.98}
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 5
+      timeStamps: {x: 8.6, y: 16.5}
+  - bloons:
+    - prefab: {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
+      amount: 4
+      timeStamps: {x: 0, y: 1.71}
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 15
+      timeStamps: {x: 5.33, y: 10.33}
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 15
+      timeStamps: {x: 10.8, y: 18.7}
+  - bloons:
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 10
+      timeStamps: {x: 0, y: 5.71}
+    - prefab: {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
+      amount: 5
+      timeStamps: {x: 5.7, y: 10.65}
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 20
+      timeStamps: {x: 11.81, y: 22.65}
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 20
+      timeStamps: {x: 22.81, y: 26.8}
+  - bloons:
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 20
+      timeStamps: {x: 0, y: 10.84}
+    - prefab: {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
+      amount: 2
+      timeStamps: {x: 11.42, y: 11.99}
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 10
+      timeStamps: {x: 14.03, y: 16}
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 12
+      timeStamps: {x: 18.27, y: 28.87}
+  - bloons:
+    - prefab: {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
+      amount: 30
+      timeStamps: {x: 0, y: 18.95}
+  - bloons:
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 60
+      timeStamps: {x: 0, y: 35}
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 20
+      timeStamps: {x: 35, y: 44}
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 22
+      timeStamps: {x: 44, y: 47.99}
+  - bloons:
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 18
+      timeStamps: {x: 0, y: 9.71}
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 5
+      timeStamps: {x: 2.85, y: 3.97}
+    - prefab: {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
+      amount: 5
+      timeStamps: {x: 5.71, y: 6.83}
+    - prefab: {fileID: 1465021263072242717, guid: b5f3646bfc5bb1543b102f8e8a58f0ce, type: 3}
+      amount: 4
+      timeStamps: {x: 8.56, y: 9.51}
+    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
+      amount: 31
+      timeStamps: {x: 9.5, y: 26.63}
+    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
+      amount: 10
+      timeStamps: {x: 15.96, y: 17.34}
+    - prefab: {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
+      amount: 5
+      timeStamps: {x: 19.84, y: 21.22}
+    - prefab: {fileID: 1465021263072242717, guid: b5f3646bfc5bb1543b102f8e8a58f0ce, type: 3}
+      amount: 5
+      timeStamps: {x: 23.71, y: 25.26}
+  timeBetweenRounds: 5
+  roundIndex: 0
+  bloonsLeftInRound: 0
+  roundOver: 0
+  paths:
+  - {fileID: 1011836670}
+  BloonHolder: {fileID: 1724287931}
+--- !u!114 &1864940258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864940253}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b38c68d1990e241b4f014ce2d97926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRadius: 0
+  rounds:
+  - bloons:
+    - prefab: {fileID: 270858087927334935, guid: d3dcdd225802cf74b84ed9d897879267, type: 3}
+      amount: 100
+      timeStamps: {x: 0, y: 5}
+    - prefab: {fileID: 3972527278295149294, guid: 59a968bf407928949b9b5752cc6756be, type: 3}
+      amount: 100
+      timeStamps: {x: 2, y: 10}
+  timeBetweenRounds: 5
+  roundIndex: 0
+  bloonsLeftInRound: 0
+  roundOver: 0
+  paths:
+  - {fileID: 1011836670}
+  BloonHolder: {fileID: 1724287931}
 --- !u!1 &1878890326
 GameObject:
   m_ObjectHideFlags: 0
@@ -10396,6 +10571,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_ActionId
+      value: 3a8de396-d5ce-4a5c-937f-6ce78f28d76f
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_ActionName
+      value: BaseGameplay/StartRound[/Keyboard/r]
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1864940254}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartNextRound
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BloonWaves, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: fullAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: ShootDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: bulletDrop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 282794240218370260, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: BloonHolder
       value: 
@@ -10414,7 +10641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4876769386957408535, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.37
       objectReference: {fileID: 0}
     - target: {fileID: 4876769386957408535, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10422,7 +10649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4876769386957408535, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.82
       objectReference: {fileID: 0}
     - target: {fileID: 4876769386957408535, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_LocalRotation.w

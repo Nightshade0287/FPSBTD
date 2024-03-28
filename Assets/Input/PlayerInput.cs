@@ -116,6 +116,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""StartRound"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a8de396-d5ce-4a5c-937f-6ce78f28d76f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -448,6 +457,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""CycleTower"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a601de64-b538-4b3b-a6b2-22da34c94107"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartRound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75a96ca8-b43f-4425-b0e7-7a0902b57348"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartRound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -982,6 +1013,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_BaseGameplay_PlaceMode = m_BaseGameplay.FindAction("PlaceMode", throwIfNotFound: true);
         m_BaseGameplay_Place = m_BaseGameplay.FindAction("Place", throwIfNotFound: true);
         m_BaseGameplay_CycleTower = m_BaseGameplay.FindAction("CycleTower", throwIfNotFound: true);
+        m_BaseGameplay_StartRound = m_BaseGameplay.FindAction("StartRound", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1065,6 +1097,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_BaseGameplay_PlaceMode;
     private readonly InputAction m_BaseGameplay_Place;
     private readonly InputAction m_BaseGameplay_CycleTower;
+    private readonly InputAction m_BaseGameplay_StartRound;
     public struct BaseGameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -1079,6 +1112,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @PlaceMode => m_Wrapper.m_BaseGameplay_PlaceMode;
         public InputAction @Place => m_Wrapper.m_BaseGameplay_Place;
         public InputAction @CycleTower => m_Wrapper.m_BaseGameplay_CycleTower;
+        public InputAction @StartRound => m_Wrapper.m_BaseGameplay_StartRound;
         public InputActionMap Get() { return m_Wrapper.m_BaseGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1118,6 +1152,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CycleTower.started += instance.OnCycleTower;
             @CycleTower.performed += instance.OnCycleTower;
             @CycleTower.canceled += instance.OnCycleTower;
+            @StartRound.started += instance.OnStartRound;
+            @StartRound.performed += instance.OnStartRound;
+            @StartRound.canceled += instance.OnStartRound;
         }
 
         private void UnregisterCallbacks(IBaseGameplayActions instance)
@@ -1152,6 +1189,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CycleTower.started -= instance.OnCycleTower;
             @CycleTower.performed -= instance.OnCycleTower;
             @CycleTower.canceled -= instance.OnCycleTower;
+            @StartRound.started -= instance.OnStartRound;
+            @StartRound.performed -= instance.OnStartRound;
+            @StartRound.canceled -= instance.OnStartRound;
         }
 
         public void RemoveCallbacks(IBaseGameplayActions instance)
@@ -1299,6 +1339,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnPlaceMode(InputAction.CallbackContext context);
         void OnPlace(InputAction.CallbackContext context);
         void OnCycleTower(InputAction.CallbackContext context);
+        void OnStartRound(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
