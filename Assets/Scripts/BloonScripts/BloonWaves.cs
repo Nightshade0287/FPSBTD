@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class Bloon
@@ -31,6 +32,7 @@ public class BloonWaves : MonoBehaviour
     [Header("References")]
     public Path[] paths;
     public Transform BloonHolder;
+    private bool speedUp;
     // Start is called before the first frame update
     void Update()
     {
@@ -42,11 +44,25 @@ public class BloonWaves : MonoBehaviour
             }
         }
     }
+
+    public void SpeedUpTime(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed)
+        {
+            speedUp = !speedUp;
+            if(speedUp)
+                Time.timeScale = 2f;
+            else
+                Time.timeScale = 1f;
+        }
+    }
     public void StartNextRound()
     {
         if(roundOver)
         {
             roundOver = false;
+            if(roundIndex == rounds.Length)
+                roundIndex = 0;
             foreach(Bloon bloon in rounds[roundIndex].bloons)
             {
                 StartCoroutine(StartBloonSpawn(bloon));

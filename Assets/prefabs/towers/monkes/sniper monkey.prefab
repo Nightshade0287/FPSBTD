@@ -571,6 +571,9 @@ MonoBehaviour:
   ShootDelay: 1.59
   spread: 0
   bulletsPerShot: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 192
   BloonHolder: {fileID: 0}
   bulletPrefab: {fileID: 4110695513497631665, guid: 27b6bceea4e02b648ba76b79d2328905, type: 3}
   shootPoint: {fileID: 5449388357966388882}

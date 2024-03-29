@@ -14,10 +14,10 @@ public class BaseTower : MonoBehaviour
     public int bulletsPerShot;
 
     [Header("References")]
+    public LayerMask mask;
     public Transform BloonHolder;
     public GameObject bulletPrefab;
     public Transform shootPoint;
-
     protected Transform targetBloon;
     protected bool canShoot = true;
 
@@ -43,11 +43,12 @@ public class BaseTower : MonoBehaviour
         Vector3 newShootPos = transform.position + rotatedShootPos;
 
         Ray ray = new Ray(newShootPos, (bloon.position - newShootPos));
-        Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(newShootPos, bloon.position));
         RaycastHit hit; 
-        if(!Physics.Raycast(ray, out hit, range, bloon.gameObject.layer))
+        Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(newShootPos, bloon.position));
+        if(Physics.Raycast(ray, out hit, range, mask))
         {
-            return true;
+            if(hit.collider.gameObject.layer == bloon.gameObject.layer)
+                return true;
         }
         return false;
     }

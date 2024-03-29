@@ -125,6 +125,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpeedUpTime"",
+                    ""type"": ""Button"",
+                    ""id"": ""42819894-155a-452a-897a-d31130e5858c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -477,6 +486,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""StartRound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a74c872-7eaf-44e7-96bf-64ffe13e87e1"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpeedUpTime"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb2301ac-807c-443d-a4b3-529b00c5a703"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpeedUpTime"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1014,6 +1045,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_BaseGameplay_Place = m_BaseGameplay.FindAction("Place", throwIfNotFound: true);
         m_BaseGameplay_CycleTower = m_BaseGameplay.FindAction("CycleTower", throwIfNotFound: true);
         m_BaseGameplay_StartRound = m_BaseGameplay.FindAction("StartRound", throwIfNotFound: true);
+        m_BaseGameplay_SpeedUpTime = m_BaseGameplay.FindAction("SpeedUpTime", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1098,6 +1130,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_BaseGameplay_Place;
     private readonly InputAction m_BaseGameplay_CycleTower;
     private readonly InputAction m_BaseGameplay_StartRound;
+    private readonly InputAction m_BaseGameplay_SpeedUpTime;
     public struct BaseGameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -1113,6 +1146,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Place => m_Wrapper.m_BaseGameplay_Place;
         public InputAction @CycleTower => m_Wrapper.m_BaseGameplay_CycleTower;
         public InputAction @StartRound => m_Wrapper.m_BaseGameplay_StartRound;
+        public InputAction @SpeedUpTime => m_Wrapper.m_BaseGameplay_SpeedUpTime;
         public InputActionMap Get() { return m_Wrapper.m_BaseGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1155,6 +1189,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @StartRound.started += instance.OnStartRound;
             @StartRound.performed += instance.OnStartRound;
             @StartRound.canceled += instance.OnStartRound;
+            @SpeedUpTime.started += instance.OnSpeedUpTime;
+            @SpeedUpTime.performed += instance.OnSpeedUpTime;
+            @SpeedUpTime.canceled += instance.OnSpeedUpTime;
         }
 
         private void UnregisterCallbacks(IBaseGameplayActions instance)
@@ -1192,6 +1229,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @StartRound.started -= instance.OnStartRound;
             @StartRound.performed -= instance.OnStartRound;
             @StartRound.canceled -= instance.OnStartRound;
+            @SpeedUpTime.started -= instance.OnSpeedUpTime;
+            @SpeedUpTime.performed -= instance.OnSpeedUpTime;
+            @SpeedUpTime.canceled -= instance.OnSpeedUpTime;
         }
 
         public void RemoveCallbacks(IBaseGameplayActions instance)
@@ -1340,6 +1380,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnPlace(InputAction.CallbackContext context);
         void OnCycleTower(InputAction.CallbackContext context);
         void OnStartRound(InputAction.CallbackContext context);
+        void OnSpeedUpTime(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

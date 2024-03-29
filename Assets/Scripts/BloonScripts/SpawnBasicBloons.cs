@@ -56,7 +56,7 @@ public class SpawnBasicBloons : MonoBehaviour
         Path randomPath = paths[Random.Range(0, paths.Length)];
         GameObject randomBloon = GetRandomWeightedBloon();
         Vector3 spawnPoint = randomPath.transform.GetChild(0).transform.position;
-        spawnPoint.y =  + randomBloon.GetComponent<NavMeshAgent>().baseOffset;
+        spawnPoint.y += randomBloon.GetComponent<NavMeshAgent>().baseOffset;
         Vector3 randomSpawn = GetRandomSpawnPoint(spawnPoint);
         Quaternion spawnRotation = Quaternion.LookRotation(-(spawnPoint - randomPath.transform.GetChild(1).transform.position).normalized);
         GameObject bloon = Instantiate(randomBloon, randomSpawn, spawnRotation);
