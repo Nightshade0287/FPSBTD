@@ -4205,9 +4205,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 405165086, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+      propertyPath: spawnDelay
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 405165086, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: paths.Array.data[0]
       value: 
       objectReference: {fileID: 1011836670}
+    - target: {fileID: 405165086, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+      propertyPath: bloonSpawnOptions.Array.data[0].bloonPrefab
+      value: 
+      objectReference: {fileID: 8116791947226134723, guid: e5743dd99d0bbab438edbce8567d59fd, type: 3}
     - target: {fileID: 5558818533225088973, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4255,6 +4263,10 @@ PrefabInstance:
     - target: {fileID: 5558818533225088974, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558818533225088974, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
+      propertyPath: spawnDelay
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5558818533225088974, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: paths.Array.data[0]
@@ -9560,36 +9572,22 @@ MonoBehaviour:
     - prefab: {fileID: 1465021263072242717, guid: b5f3646bfc5bb1543b102f8e8a58f0ce, type: 3}
       amount: 5
       timeStamps: {x: 23.71, y: 25.26}
-  timeBetweenRounds: 5
-  roundIndex: 0
-  bloonsLeftInRound: 0
-  roundOver: 0
-  paths:
-  - {fileID: 1011836670}
-  BloonHolder: {fileID: 1724287931}
---- !u!114 &1864940258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864940253}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05b38c68d1990e241b4f014ce2d97926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnRadius: 0
-  rounds:
   - bloons:
-    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
-      amount: 10
-      timeStamps: {x: 0, y: 2}
-  - bloons:
+    - prefab: {fileID: 3972527278295149294, guid: 59a968bf407928949b9b5752cc6756be, type: 3}
+      amount: 150
+      timeStamps: {x: 0, y: 90}
+    - prefab: {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
+      amount: 75
+      timeStamps: {x: 10, y: 11.17}
+    - prefab: {fileID: 270858087927334935, guid: d3dcdd225802cf74b84ed9d897879267, type: 3}
+      amount: 1
+      timeStamps: {x: 44.94, y: 44.95}
     - prefab: {fileID: 3121626060633571475, guid: 1b6f854e2c60f374b8faafa003ebd06c, type: 3}
-      amount: 10
-      timeStamps: {x: 0, y: 2}
-  timeBetweenRounds: 5
+      amount: 80
+      timeStamps: {x: 64.4, y: 79.4}
+    - prefab: {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
+      amount: 72
+      timeStamps: {x: 77.92, y: 26.63}
   roundIndex: 0
   bloonsLeftInRound: 0
   roundOver: 0
@@ -10653,8 +10651,12 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: fullAuto
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: ShootDelay
@@ -10668,6 +10670,14 @@ PrefabInstance:
       propertyPath: BloonHolder
       value: 
       objectReference: {fileID: 1724287931}
+    - target: {fileID: 282794240218370260, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: towerPrefabs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 282794240218370260, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: towerPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 6854333308694126326, guid: 56b9311450d38a94cb056c3802d02381, type: 3}
     - target: {fileID: 1579844137029761750, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_Name
       value: Player
@@ -10719,6 +10729,10 @@ PrefabInstance:
     - target: {fileID: 4876769386957408535, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7137423981806429006, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: mask.m_Bits
+      value: 10240
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e108c1b148d888649903497a7bcf9f23, type: 3}

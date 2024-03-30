@@ -38,13 +38,14 @@ public class BaseTower : MonoBehaviour
 
     protected bool CanSeeBloon(Transform bloon)
     {
-        Quaternion rotation = Quaternion.LookRotation((new Vector3(bloon.position.x, transform.position.y, bloon.position.z) - transform.position).normalized);
+        Transform bloonModel = bloon.Find("Model");
+        Quaternion rotation = Quaternion.LookRotation((new Vector3(bloonModel.position.x, transform.position.y, bloonModel.position.z) - transform.position).normalized);
         Vector3 rotatedShootPos = rotation * shootPoint.localPosition;
         Vector3 newShootPos = transform.position + rotatedShootPos;
 
-        Ray ray = new Ray(newShootPos, (bloon.position - newShootPos));
+        Ray ray = new Ray(newShootPos, bloonModel.position - newShootPos);
         RaycastHit hit; 
-        Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(newShootPos, bloon.position));
+        //Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(newShootPos, bloonModel.position));
         if(Physics.Raycast(ray, out hit, range, mask))
         {
             if(hit.collider.gameObject.layer == bloon.gameObject.layer)

@@ -25,7 +25,6 @@ public class BloonWaves : MonoBehaviour
 {
     public float spawnRadius;
     public Round[] rounds;
-    public float timeBetweenRounds;
     public int roundIndex = 0;
     public int bloonsLeftInRound = 0;
     public bool roundOver = true;

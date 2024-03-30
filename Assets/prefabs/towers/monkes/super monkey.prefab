@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   sharpness: 1
-  range: 50
+  range: 10
   DartVelocity: 150
   ShootDelay: 0.045
   spread: 15

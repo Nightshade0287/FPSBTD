@@ -749,6 +749,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 30821545-2675-45d2-ab6d-9861af713ee5
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3a8de396-d5ce-4a5c-937f-6ce78f28d76f
+    m_ActionName: BaseGameplay/StartRound[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 42819894-155a-452a-897a-d31130e5858c
+    m_ActionName: BaseGameplay/SpeedUpTime[/Keyboard/u]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: BaseGameplay
