@@ -86,7 +86,9 @@ MonoBehaviour:
   - {fileID: 1063397189045211344, guid: b46bd76076f893d49bf8b63e612daa98, type: 3}
   - {fileID: 1063397189045211344, guid: b46bd76076f893d49bf8b63e612daa98, type: 3}
   - {fileID: 1063397189045211344, guid: b46bd76076f893d49bf8b63e612daa98, type: 3}
+  rbe: 0
   dart: {fileID: 0}
+  playerUI: {fileID: 0}
 --- !u!114 &-5601128034066531340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 0.18
+  rbe: 55760
   path: {fileID: 0}
   currentWaypoint: 1
 --- !u!195 &5253644452823361446

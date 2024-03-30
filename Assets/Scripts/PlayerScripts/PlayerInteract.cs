@@ -36,8 +36,8 @@ public class PlayerInteract : MonoBehaviour
                     playerUI.UpdateText("Hands Full");
             }
         }
-        else
-            playerUI.UpdateText(string.Empty);
+        // else
+        //     playerUI.UpdateText(string.Empty);
     }
     public void Interact()
     {

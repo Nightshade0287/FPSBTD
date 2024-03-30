@@ -166,7 +166,9 @@ MonoBehaviour:
   ChildBloons:
   - {fileID: 723660167546011393, guid: 23b98bccc8d89ea45a3ad27457eb9d7d, type: 3}
   - {fileID: 723660167546011393, guid: 23b98bccc8d89ea45a3ad27457eb9d7d, type: 3}
+  rbe: 0
   dart: {fileID: 0}
+  playerUI: {fileID: 0}
 --- !u!114 &6144230052708161596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 1.8
+  rbe: 11
   path: {fileID: 0}
   currentWaypoint: 0
 --- !u!195 &-36601574084466943

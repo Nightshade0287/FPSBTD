@@ -10,15 +10,18 @@ public class BloonMovement : MonoBehaviour
 {
     [Header("Variables")]
     public float speedMultiplier;
+    public int rbe; //Red Bloon Equivilent
     [Header("References")]
     public Path path;
     private NavMeshAgent agent;
     public int currentWaypoint = 0;
     private float baseSpeed = 2f;
+    private PlayerUI playerUI;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = baseSpeed * speedMultiplier;
+        playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
     }
 
     public void Update()
@@ -48,7 +51,10 @@ public class BloonMovement : MonoBehaviour
                 agent.SetDestination(path.waypoints[currentWaypoint].position);
             }
             else
+            {
+                playerUI.UpdateHealth(rbe);
                 Destroy(gameObject);
+            }
         }
     }
 }

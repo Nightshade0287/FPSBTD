@@ -7,10 +7,12 @@ public class Health : MonoBehaviour
 {
     public int health = 1;
     public GameObject[] ChildBloons;
+    public int rbe; //Red Bloon Equivilent
     public GameObject dart;
+    public PlayerUI playerUI;
     void Start()
     {
-
+        playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
     }
 
     void Update()
@@ -36,6 +38,7 @@ public class Health : MonoBehaviour
             dart.GetComponent<DartBehavior>().bloonHitList.Add(bloon);
             bloonHealth.TakeDamage(damage);
         }
+        playerUI.UpdateMoney(1);
         Destroy(gameObject);
     }
 }

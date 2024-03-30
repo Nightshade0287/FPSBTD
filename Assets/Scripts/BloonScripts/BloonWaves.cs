@@ -32,7 +32,13 @@ public class BloonWaves : MonoBehaviour
     public Path[] paths;
     public Transform BloonHolder;
     private bool speedUp;
-    // Start is called before the first frame update
+    private PlayerUI playerUI;
+    private int rewardAmount = 100;
+    
+    void Start()
+    {
+        playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
+    }
     void Update()
     {
         if(!roundOver)
@@ -40,6 +46,7 @@ public class BloonWaves : MonoBehaviour
             if(BloonHolder.childCount == 0 && bloonsLeftInRound == 0)
             {
                 roundOver = true;
+                playerUI.UpdateMoney(rewardAmount + roundIndex);
             }
         }
     }
@@ -62,6 +69,7 @@ public class BloonWaves : MonoBehaviour
             roundOver = false;
             if(roundIndex == rounds.Length)
                 roundIndex = 0;
+            playerUI.UpdateRound(roundIndex + 1);
             foreach(Bloon bloon in rounds[roundIndex].bloons)
             {
                 StartCoroutine(StartBloonSpawn(bloon));
@@ -75,7 +83,7 @@ public class BloonWaves : MonoBehaviour
         if(roundOver)
         {
             roundOver = false;
-            foreach(Bloon bloon in rounds[roundNumber].bloons)
+            foreach(Bloon bloon in rounds[roundNumber - 1].bloons)
             {
                 StartCoroutine(StartBloonSpawn(bloon));
                 bloonsLeftInRound += bloon.amount;

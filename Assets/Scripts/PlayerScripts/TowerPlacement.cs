@@ -22,9 +22,12 @@ public class TowerPlacement : MonoBehaviour
     protected GameObject newTower;
     private int selectedTowerIndex = 0;
     private Material[] originalMaterials;
+    private PlayerUI playerUI;
+    private TowerInfo towerInfo;
     // Start is called before the first frame update
     void Start()
     {
+        playerUI = GetComponent<PlayerUI>();
     }
 
     public void PlaceMode(InputAction.CallbackContext ctx)
@@ -41,7 +44,7 @@ public class TowerPlacement : MonoBehaviour
             {
                 Destroy(newTower);
                 Placing = false;
-                gameObject.GetComponent<PlayerUI>().UpdateText(string.Empty);
+                playerUI.UpdateText(string.Empty);
             }
         }
     }
@@ -52,14 +55,18 @@ public class TowerPlacement : MonoBehaviour
         {
             if (Placing && canPlace)
                 {
-                    Placing = false;
-                    newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
-                    newTower.GetComponent<BaseTower>().enabled = true;
-                    ResetMaterials();
-                    newTower.gameObject.layer = LayerMask.NameToLayer("Tower");
-                    gameObject.GetComponent<PlayerUI>().UpdateText(string.Empty);
-                    newTower = null;
-                    return;
+                    if(playerUI.cash - towerInfo.cost > 0)
+                    {
+                        playerUI.UpdateMoney(-towerInfo.cost);
+                        Placing = false;
+                        newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
+                        newTower.GetComponent<BaseTower>().enabled = true;
+                        ResetMaterials();
+                        newTower.gameObject.layer = LayerMask.NameToLayer("Tower");
+                        playerUI.UpdateText(string.Empty);
+                        newTower = null;
+                        return;
+                    }
                 }
         }
     }
@@ -102,7 +109,8 @@ public class TowerPlacement : MonoBehaviour
 
         Destroy(newTower);
         newTower = Instantiate(towerPrefabs[selectedTowerIndex], placePos, gameObject.transform.rotation);
-        gameObject.GetComponent<PlayerUI>().UpdateText(newTower.GetComponent<TowerInfo>().towerName);
+        towerInfo = newTower.GetComponent<TowerInfo>();
+        playerUI.UpdateText(newTower.GetComponent<TowerInfo>().towerName + " $" + towerInfo.cost);
         newTower.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         StoreMaterials();
     }

@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerName: Magic Monkey
+  cost: 320
 --- !u!114 &-6540662037415338291
 MonoBehaviour:
   m_ObjectHideFlags: 0

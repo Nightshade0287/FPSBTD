@@ -5,4 +5,5 @@ using UnityEngine;
 public class TowerInfo : MonoBehaviour
 {
     public string towerName;
+    public int cost;
 }

@@ -635,6 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerName: Dart Monkey
+  cost: 170
 --- !u!114 &2742728750887221870
 MonoBehaviour:
   m_ObjectHideFlags: 0

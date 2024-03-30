@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerName: Super Monkey
+  cost: 2125
 --- !u!114 &1996891704134919710
 MonoBehaviour:
   m_ObjectHideFlags: 0
