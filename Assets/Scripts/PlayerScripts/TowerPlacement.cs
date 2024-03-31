@@ -55,7 +55,7 @@ public class TowerPlacement : MonoBehaviour
         {
             if (Placing && canPlace)
                 {
-                    if(playerUI.cash - towerInfo.cost > 0)
+                    if(playerUI.cash - towerInfo.cost >= 0)
                     {
                         playerUI.UpdateMoney(-towerInfo.cost);
                         Placing = false;

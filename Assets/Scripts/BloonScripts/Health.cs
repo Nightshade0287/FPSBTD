@@ -7,12 +7,14 @@ public class Health : MonoBehaviour
 {
     public int health = 1;
     public GameObject[] ChildBloons;
-    public int rbe; //Red Bloon Equivilent
     public GameObject dart;
     public PlayerUI playerUI;
-    void Start()
+    public AudioClip shootSound;
+    private AudioSource audioSource;
+    void Awake()
     {
         playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()

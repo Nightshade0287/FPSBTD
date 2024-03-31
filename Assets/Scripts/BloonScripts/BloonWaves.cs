@@ -47,6 +47,7 @@ public class BloonWaves : MonoBehaviour
             {
                 roundOver = true;
                 playerUI.UpdateMoney(rewardAmount + roundIndex);
+                playerUI.UpdateRound(roundIndex + 1);
             }
         }
     }
@@ -69,25 +70,12 @@ public class BloonWaves : MonoBehaviour
             roundOver = false;
             if(roundIndex == rounds.Length)
                 roundIndex = 0;
-            playerUI.UpdateRound(roundIndex + 1);
             foreach(Bloon bloon in rounds[roundIndex].bloons)
             {
                 StartCoroutine(StartBloonSpawn(bloon));
                 bloonsLeftInRound += bloon.amount;
             }
             roundIndex++;
-        }
-    }
-    public void StartRound(int roundNumber)
-    {
-        if(roundOver)
-        {
-            roundOver = false;
-            foreach(Bloon bloon in rounds[roundNumber - 1].bloons)
-            {
-                StartCoroutine(StartBloonSpawn(bloon));
-                bloonsLeftInRound += bloon.amount;
-            }
         }
     }
     IEnumerator StartBloonSpawn(Bloon bloon)
