@@ -301,7 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ea46d4a7f04454f8cdbe509e19c797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerName: Super Monkey
+  towerName: Robo Monkey
+  cost: 6000
 --- !u!114 &1996891704134919710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,11 +315,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0bec038ad848b4381a8cde9ac2e256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  sharpness: 15
-  range: 50
-  DartVelocity: 150
-  ShootDelay: 0.024
+  damage: 1
+  sharpness: 3
+  range: 20
+  DartVelocity: 100
+  ShootDelay: 0.1
   spread: 15
   bulletsPerShot: 2
   mask:

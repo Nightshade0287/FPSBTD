@@ -98,7 +98,7 @@ public class GunController : MonoBehaviour
             float spreadY = Random.Range(-spread, spread);
 
             Vector3 spreadOffset = bulletSpawnPoint.right * spreadX + bulletSpawnPoint.up * spreadY;
-            bulletDirection += (spreadOffset / 100);
+            bulletDirection += spreadOffset / 100;
 
             bulletScript.direction = bulletDirection.normalized;
             bulletScript.bulletSpeed = bulletSpeed;
@@ -185,7 +185,7 @@ public class GunController : MonoBehaviour
         }
         else
         {
-            return hitInfo.point - transform.position;
+            return (hitInfo.point - transform.position).normalized;
         }
     }
 }
