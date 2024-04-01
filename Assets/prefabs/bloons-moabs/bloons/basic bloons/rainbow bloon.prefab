@@ -237,7 +237,8 @@ MonoBehaviour:
   - {fileID: 7725224016236608112, guid: 3cbc326923a89df4eb330ef3fa510a80, type: 3}
   dart: {fileID: 0}
   playerUI: {fileID: 0}
-  popSound: {fileID: 8300000, guid: ff63e7a1029b3ac439bd58333ef7c762, type: 3}
+  popSound: {fileID: 8300000, guid: 48aabcb7e082a4b4b86786c4355e1866, type: 3}
+  audioSource: {fileID: 0}
 --- !u!114 &-2713973606141061474
 MonoBehaviour:
   m_ObjectHideFlags: 0

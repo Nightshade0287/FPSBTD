@@ -9,12 +9,9 @@ public class Health : MonoBehaviour
     public GameObject[] ChildBloons;
     public GameObject dart;
     public PlayerUI playerUI;
-    public AudioClip popSound;
-    public AudioSource audioSource;
     void Awake()
     {
         playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
-        audioSource = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -40,7 +37,6 @@ public class Health : MonoBehaviour
             dart.GetComponent<DartBehavior>().bloonHitList.Add(bloon);
             bloonHealth.TakeDamage(damage);
         }
-        audioSource.PlayOneShot(popSound);
         playerUI.UpdateMoney(1);
         Destroy(gameObject);
     }
