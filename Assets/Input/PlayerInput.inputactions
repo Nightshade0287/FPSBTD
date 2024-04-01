@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ExitGame",
+                    "type": "Button",
+                    "id": "6407af87-bdae-4752-831e-2abfcb86abd9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -263,7 +272,7 @@
                     "id": "812f10b5-8ee1-4a83-ace6-05b3c3db77db",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=8,y=8)",
+                    "processors": "ScaleVector2(x=6,y=6)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,
@@ -459,7 +468,7 @@
                 {
                     "name": "",
                     "id": "75a96ca8-b43f-4425-b0e7-7a0902b57348",
-                    "path": "<Gamepad>/dpad/down",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -486,6 +495,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpeedUpTime",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bacad251-0a76-4d4d-beac-9acc9b8bd234",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05203dcc-c266-4359-bfec-416f63758cf9",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

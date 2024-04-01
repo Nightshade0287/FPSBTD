@@ -29,7 +29,6 @@ public class GunController : MonoBehaviour
     public bool randomizeRecoil;
     public Vector2 randomRecoilContraints;
     public Vector2[] RecoilPattern;
-
     [Header("References")]
     public Transform bulletSpawnPoint;
     public GameObject bulletPrefab;

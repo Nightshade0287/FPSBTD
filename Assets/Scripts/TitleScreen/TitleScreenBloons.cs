@@ -7,21 +7,7 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using UnityEngine.InputSystem;
-
-[System.Serializable]
-public class Bloon
-{
-    public GameObject prefab;
-    public int amount;
-    public Vector2 timeStamps;
-}
-
-[System.Serializable]
-public class Round
-{
-    public Bloon[] bloons;
-}
-public class BloonWaves : MonoBehaviour
+public class TitleScreenBloons : MonoBehaviour
 {
     public float spawnRadius;
     public Round[] rounds;
@@ -36,8 +22,7 @@ public class BloonWaves : MonoBehaviour
     private int rewardAmount = 100;
     void Start()
     {
-        playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
-        playerUI.UpdateRound(roundIndex);
+        StartNextRound();
     }
     void Update()
     {
@@ -46,8 +31,7 @@ public class BloonWaves : MonoBehaviour
             if(BloonHolder.childCount == 0 && bloonsLeftInRound == 0)
             {
                 roundOver = true;
-                playerUI.UpdateMoney(rewardAmount + roundIndex - 1);
-                playerUI.UpdateRound(roundIndex);
+                StartNextRound();
             }
         }
     }

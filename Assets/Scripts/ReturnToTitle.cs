@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class ReturnToTitle : MonoBehaviour
 {
-    public KeyCode key;
-    // Update is called once per frame
-    void Update()
+    public void ExitToMenu(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyDown(key))
+        if(ctx.performed)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
