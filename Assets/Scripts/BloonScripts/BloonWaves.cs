@@ -86,7 +86,7 @@ public class BloonWaves : MonoBehaviour
     IEnumerator StartBloonSpawn(Bloon bloon)
     {
         yield return new WaitForSeconds(bloon.timeStamps.x);
-        bloon.amount *= timesReset;
+        bloon.amount *= timesReset + 1;
         if(bloon.amount > 0)
             SpawnBloonOnRandomPath(bloon.prefab);
         float timeDelay = (bloon.timeStamps.y - bloon.timeStamps.x) / (bloon.amount - 1);
