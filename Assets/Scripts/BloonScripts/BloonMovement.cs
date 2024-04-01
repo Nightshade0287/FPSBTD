@@ -33,8 +33,8 @@ public class BloonMovement : MonoBehaviour
     }
     public void UpdateChild(GameObject bloon)
     {
-        bloon.GetComponent<BloonMovement>().path = path;
         bloon.GetComponent<BloonMovement>().currentWaypoint = currentWaypoint;
+        bloon.GetComponent<BloonMovement>().path = path;
         bloon.GetComponent<NavMeshAgent>().velocity = GetComponent<NavMeshAgent>().velocity;
         bloon.transform.SetParent(transform.parent);
     }

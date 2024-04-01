@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 4960190583267284061}
   - component: {fileID: 241669337562394673}
   - component: {fileID: 1996891704134919710}
+  - component: {fileID: 3306689011720771997}
   m_Layer: 13
   m_Name: Robo Monkey
   m_TagString: Untagged
@@ -315,11 +316,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0bec038ad848b4381a8cde9ac2e256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  sharpness: 3
-  range: 20
+  damage: 5
+  sharpness: 15
+  range: 40
   DartVelocity: 100
-  ShootDelay: 0.1
+  ShootDelay: 0.024
   spread: 15
   bulletsPerShot: 2
   mask:
@@ -328,6 +329,20 @@ MonoBehaviour:
   BloonHolder: {fileID: 0}
   bulletPrefab: {fileID: 8644958981687227441, guid: 82b517c27e15b9c46a024cb32067339f, type: 3}
   shootPoint: {fileID: 6485483421223912218}
+--- !u!114 &3306689011720771997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6854333308694126326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad18794be3cda704a8458f2bde5b02ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: Sell Tower
+  useEvents: 0
 --- !u!1 &6854333308792536658
 GameObject:
   m_ObjectHideFlags: 0

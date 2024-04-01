@@ -583,8 +583,7 @@ GameObject:
   - component: {fileID: 38209254970409306}
   - component: {fileID: 3662915285410759348}
   - component: {fileID: 2742728750887221870}
-  - component: {fileID: 8336102008991595136}
-  - component: {fileID: 3610183501658367402}
+  - component: {fileID: -7156012659695190611}
   m_Layer: 13
   m_Name: dart monkey
   m_TagString: Untagged
@@ -661,7 +660,7 @@ MonoBehaviour:
   BloonHolder: {fileID: 0}
   bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
   shootPoint: {fileID: 1976410352711116944}
---- !u!114 &8336102008991595136
+--- !u!114 &-7156012659695190611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -670,38 +669,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7077659787000649759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b0bbe9171c2edf418d3e50ed2e1e793, type: 3}
+  m_Script: {fileID: 11500000, guid: ad18794be3cda704a8458f2bde5b02ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Sell Tower
-  useEvents: 1
---- !u!114 &3610183501658367402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7077659787000649759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6e12515353a3444bd4f8f930bb44d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7077659787000649759}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  useEvents: 0
 --- !u!1 &7077659787462433433
 GameObject:
   m_ObjectHideFlags: 0

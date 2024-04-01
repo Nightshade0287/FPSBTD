@@ -26,6 +26,7 @@ public class BloonWaves : MonoBehaviour
     public float spawnRadius;
     public Round[] rounds;
     public int roundIndex = 0;
+    public int realRoundIndex = 1;
     public int bloonsLeftInRound = 0;
     public bool roundOver = true;
     [Header("References")]
@@ -34,7 +35,7 @@ public class BloonWaves : MonoBehaviour
     private bool speedUp;
     private PlayerUI playerUI;
     private int rewardAmount = 100;
-    
+    public int timesReset = 1;
     void Start()
     {
         playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
@@ -47,7 +48,7 @@ public class BloonWaves : MonoBehaviour
             {
                 roundOver = true;
                 playerUI.UpdateMoney(rewardAmount + roundIndex);
-                playerUI.UpdateRound(roundIndex + 1);
+                playerUI.UpdateRound(realRoundIndex);
             }
         }
     }
@@ -70,17 +71,20 @@ public class BloonWaves : MonoBehaviour
             roundOver = false;
             if(roundIndex == rounds.Length)
                 roundIndex = 0;
+                timesReset++;
             foreach(Bloon bloon in rounds[roundIndex].bloons)
             {
                 StartCoroutine(StartBloonSpawn(bloon));
                 bloonsLeftInRound += bloon.amount;
             }
             roundIndex++;
+            realRoundIndex++;
         }
     }
     IEnumerator StartBloonSpawn(Bloon bloon)
     {
         yield return new WaitForSeconds(bloon.timeStamps.x);
+        bloon.amount *= timesReset;
         if(bloon.amount > 0)
             SpawnBloonOnRandomPath(bloon.prefab);
         float timeDelay = (bloon.timeStamps.y - bloon.timeStamps.x) / (bloon.amount - 1);

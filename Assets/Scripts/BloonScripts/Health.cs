@@ -9,16 +9,13 @@ public class Health : MonoBehaviour
     public GameObject[] ChildBloons;
     public GameObject dart;
     public PlayerUI playerUI;
-    public AudioClip shootSound;
-    private AudioSource audioSource;
     void Awake()
     {
         playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
-    {   
+    {
     }
     public void TakeDamage(int damage)
     {

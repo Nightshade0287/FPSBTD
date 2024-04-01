@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -28,22 +29,20 @@ public class PlayerInteract : MonoBehaviour
             interactable = hitInfo.collider.GetComponent<Interactable>();
             if(hitInfo.collider.GetComponent<Interactable>() != null)
             {
-                if(hitInfo.collider.GetComponent<Gun>() == null || (hitInfo.collider.GetComponent<Gun>() != null && GameObject.Find("GunHolder").transform.childCount == 0))
-                {
-                    playerUI.UpdateText(interactable.promptMessage);
-                }
-                else
-                    playerUI.UpdateText("Hands Full");
+                playerUI.UpdateText(interactable.promptMessage);
             }
         }
-        // else
-        //     playerUI.UpdateText(string.Empty);
+        else
+            playerUI.UpdateText(string.Empty);
     }
-    public void Interact()
+    public void Interact(InputAction.CallbackContext ctx)
     {
-        if(interactable != null)
+        if(ctx.performed)
         {
-                interactable.BaseInteract();
+            if(interactable != null)
+            {
+                    interactable.BaseInteract();
+            }
         }
     }
 }
