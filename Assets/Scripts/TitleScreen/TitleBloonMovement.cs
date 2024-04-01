@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BloonMovement : MonoBehaviour
+public class TitleBloonMovement : MonoBehaviour
 {
     [Header("Variables")]
     public float speedMultiplier;
@@ -19,7 +19,6 @@ public class BloonMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = baseSpeed * speedMultiplier;
-        agent.SetDestination(path.waypoints[currentWaypoint].position);
         playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
     }
 
@@ -34,7 +33,7 @@ public class BloonMovement : MonoBehaviour
     }
     public void UpdateChild(GameObject bloon)
     {
-        bloon.GetComponent<BloonMovement>().currentWaypoint = currentWaypoint;
+        //bloon.GetComponent<BloonMovement>().pointOnPath =;
         bloon.GetComponent<BloonMovement>().path = path;
         bloon.GetComponent<NavMeshAgent>().velocity = GetComponent<NavMeshAgent>().velocity;
         bloon.transform.SetParent(transform.parent);
@@ -42,7 +41,7 @@ public class BloonMovement : MonoBehaviour
 
     public void PathMovement()
     {
-        if(Vector3.Distance(transform.position, path.waypoints[currentWaypoint].position) < 3f)
+        if(agent.remainingDistance < 3f)
         {
             if(currentWaypoint < path.waypoints.Count - 1)
             {
@@ -51,7 +50,6 @@ public class BloonMovement : MonoBehaviour
             }
             else
             {
-                playerUI.UpdateHealth(rbe);
                 Destroy(gameObject);
             }
         }

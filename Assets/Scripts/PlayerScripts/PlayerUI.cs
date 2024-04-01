@@ -21,7 +21,7 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moneyText.text = "$" + cash;
+        //moneyText.text = "$" + cash;
     }
 
     // Update is called once per frame
