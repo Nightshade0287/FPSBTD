@@ -9,6 +9,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI promptText;
     [SerializeField]
+    private TextMeshProUGUI towerText;
+    [SerializeField]
     private TextMeshProUGUI moneyText;
     [SerializeField]
     private TextMeshProUGUI roundText;
@@ -23,10 +25,13 @@ public class PlayerUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void UpdateText(string promptMessage)
+    public void UpdateText(string message)
     {
-
-        promptText.text = promptMessage;
+        promptText.text = message;
+    }
+    public void UpdateTowerText(string message)
+    {
+        towerText.text = message;
     }
 
     public void UpdateMoney(int amount)

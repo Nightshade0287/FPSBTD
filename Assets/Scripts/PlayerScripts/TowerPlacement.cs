@@ -44,7 +44,7 @@ public class TowerPlacement : MonoBehaviour
             {
                 Destroy(newTower);
                 Placing = false;
-                playerUI.UpdateText(string.Empty);
+                playerUI.UpdateTowerText(string.Empty);
             }
         }
     }
@@ -63,7 +63,7 @@ public class TowerPlacement : MonoBehaviour
                         newTower.GetComponent<BaseTower>().enabled = true;
                         ResetMaterials();
                         newTower.gameObject.layer = LayerMask.NameToLayer("Tower");
-                        playerUI.UpdateText(string.Empty);
+                        playerUI.UpdateTowerText(string.Empty);
                         newTower = null;
                         return;
                     }
@@ -110,7 +110,7 @@ public class TowerPlacement : MonoBehaviour
         Destroy(newTower);
         newTower = Instantiate(towerPrefabs[selectedTowerIndex], placePos, gameObject.transform.rotation);
         towerInfo = newTower.GetComponent<TowerInfo>();
-        playerUI.UpdateText(newTower.GetComponent<TowerInfo>().towerName + " $" + towerInfo.cost);
+        playerUI.UpdateTowerText(newTower.GetComponent<TowerInfo>().towerName + " $" + towerInfo.cost);
         newTower.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         StoreMaterials();
     }
@@ -172,5 +172,13 @@ public class TowerPlacement : MonoBehaviour
         {
             renderers[i].material = originalMaterials[i];
         }
+    }
+    public void SellTower(TowerInfo towerInfo)
+    {
+        towerInfo = GetComponent<TowerInfo>();
+        playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
+        playerUI.UpdateMoney(towerInfo.cost);
+        Debug.Log("e");
+        Destroy(gameObject);
     }
 }
