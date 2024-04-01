@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 2931134553739559304}
   - component: {fileID: 6357176782700898756}
   - component: {fileID: -6540662037415338291}
+  - component: {fileID: 6127279171697802297}
   m_Layer: 13
   m_Name: magic monkey
   m_TagString: Untagged
@@ -297,6 +298,20 @@ MonoBehaviour:
   BloonHolder: {fileID: 0}
   bulletPrefab: {fileID: 8644958981687227441, guid: 82b517c27e15b9c46a024cb32067339f, type: 3}
   shootPoint: {fileID: 8946520020178205900}
+--- !u!114 &6127279171697802297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364416727616722848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad18794be3cda704a8458f2bde5b02ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: Sell Tower
+  useEvents: 0
 --- !u!1 &2364416727684461646
 GameObject:
   m_ObjectHideFlags: 0

@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 4960190583267284061}
   - component: {fileID: 241669337562394673}
   - component: {fileID: 1996891704134919710}
+  - component: {fileID: 7656505289016092040}
   m_Layer: 13
   m_Name: super monkey
   m_TagString: Untagged
@@ -328,6 +329,20 @@ MonoBehaviour:
   BloonHolder: {fileID: 0}
   bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
   shootPoint: {fileID: 6485483421223912218}
+--- !u!114 &7656505289016092040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6854333308694126326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad18794be3cda704a8458f2bde5b02ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: Sell Tower
+  useEvents: 0
 --- !u!1 &6854333308792536658
 GameObject:
   m_ObjectHideFlags: 0
