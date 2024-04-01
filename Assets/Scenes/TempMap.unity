@@ -9812,7 +9812,7 @@ MonoBehaviour:
   paths:
   - {fileID: 1011836670}
   BloonHolder: {fileID: 1724287931}
-  timesReset: 1
+  timesReset: 10
 --- !u!1 &1878890326
 GameObject:
   m_ObjectHideFlags: 0
@@ -10815,6 +10815,10 @@ PrefabInstance:
     - target: {fileID: 1579844137029761750, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943838641337983766, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: cash
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2943838641337983766, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: moneyText

@@ -71,6 +71,7 @@ public class BloonWaves : MonoBehaviour
             roundOver = false;
             if(roundIndex == rounds.Length)
                 roundIndex = 0;
+                timesReset++;
             foreach(Bloon bloon in rounds[roundIndex].bloons)
             {
                 StartCoroutine(StartBloonSpawn(bloon));
@@ -83,6 +84,7 @@ public class BloonWaves : MonoBehaviour
     IEnumerator StartBloonSpawn(Bloon bloon)
     {
         yield return new WaitForSeconds(bloon.timeStamps.x);
+        bloon.amount *= timesReset;
         if(bloon.amount > 0)
             SpawnBloonOnRandomPath(bloon.prefab);
         float timeDelay = (bloon.timeStamps.y - bloon.timeStamps.x) / (bloon.amount - 1);
