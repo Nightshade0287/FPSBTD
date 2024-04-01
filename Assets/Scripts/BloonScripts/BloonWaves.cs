@@ -70,8 +70,10 @@ public class BloonWaves : MonoBehaviour
         {
             roundOver = false;
             if(roundIndex == rounds.Length)
+            {
                 roundIndex = 0;
                 timesReset++;
+            }
             foreach(Bloon bloon in rounds[roundIndex].bloons)
             {
                 StartCoroutine(StartBloonSpawn(bloon));
