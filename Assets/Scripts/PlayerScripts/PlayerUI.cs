@@ -18,10 +18,15 @@ public class PlayerUI : MonoBehaviour
     private TextMeshProUGUI healthText;
     public int cash;
     public int health;
+    public bool infinteCash;
+    public bool infinteHealth;
     // Start is called before the first frame update
     void Start()
     {
-        //moneyText.text = "$" + cash;
+        if(infinteCash)
+            cash = 100000;
+        UpdateMoney(0);
+        UpdateHealth(0);
     }
 
     // Update is called once per frame
@@ -36,6 +41,8 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateMoney(int amount)
     {
+        if(infinteCash)
+            return;
         cash += amount;
         moneyText.text = "$" + cash;
     }
@@ -45,6 +52,8 @@ public class PlayerUI : MonoBehaviour
     }
     public void UpdateHealth(int amount)
     {
+        if(infinteHealth)
+            return;
         if(health - amount > 0)
         {
             health -= amount;

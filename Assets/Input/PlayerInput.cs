@@ -437,7 +437,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""id"": ""cfe75689-30dd-4b73-84f1-4569132bf3c2"",
                     ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""Invert"",
                     ""groups"": """",
                     ""action"": ""CycleTower"",
                     ""isComposite"": false,
