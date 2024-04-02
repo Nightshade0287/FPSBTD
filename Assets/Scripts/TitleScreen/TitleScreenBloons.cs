@@ -7,6 +7,9 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using UnityEngine.InputSystem;
+using System.Threading;
+
+[System.Serializable]
 public class TitleScreenBloons : MonoBehaviour
 {
     public float spawnRadius;
@@ -52,10 +55,9 @@ public class TitleScreenBloons : MonoBehaviour
         if(roundOver)
         {
             roundOver = false;
-            Debug.Log((roundIndex - 1) % rounds.Length);
             foreach(Bloon bloon in rounds[(roundIndex - 1) % rounds.Length].bloons)
             {
-                bloon.amount *= (roundIndex / rounds.Length) + 1;
+                bloon.amount *= (int)Mathf.Pow(4, (roundIndex - 1) / rounds.Length);
                 StartCoroutine(StartBloonSpawn(bloon));
                 bloonsLeftInRound += bloon.amount;
             }
@@ -65,13 +67,27 @@ public class TitleScreenBloons : MonoBehaviour
     IEnumerator StartBloonSpawn(Bloon bloon)
     {
         yield return new WaitForSeconds(bloon.timeStamps.x);
-        if(bloon.amount > 0)
-            SpawnBloonOnRandomPath(bloon.prefab);
-        float timeDelay = (bloon.timeStamps.y - bloon.timeStamps.x) / (bloon.amount - 1);
-        for (int i = 1; i < bloon.amount; i++)
+        int bloonsLeft = bloon.amount;
+        if(bloonsLeft != 0)
         {
-            yield return new WaitForSeconds(timeDelay);
             SpawnBloonOnRandomPath(bloon.prefab);
+            bloonsLeft--;
+        }
+        float timer = 0f;
+        float timeDelay = (bloon.timeStamps.y - bloon.timeStamps.x) / bloonsLeft;
+        while(bloonsLeft > 0)
+        {
+            timer += Time.deltaTime;
+            int bloonsPerFrame = Mathf.Clamp(Mathf.FloorToInt(timer / timeDelay), 0, 1);
+            if(bloonsLeft - bloonsPerFrame < 0)
+                bloonsPerFrame = bloonsLeft;
+            for(int i = 0; i < bloonsPerFrame; i++)
+            {
+                SpawnBloonOnRandomPath(bloon.prefab);
+                bloonsLeft--;
+                timer = timer % timeDelay;
+            }
+            yield return null;
         }
     }
     private void SpawnBloonOnRandomPath(GameObject bloon)

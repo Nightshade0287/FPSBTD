@@ -46,7 +46,8 @@ public class SpawnBasicBloons : MonoBehaviour
     {
         while (true)
         {
-            SpawnBloonOnRandomPath();
+            for(int i = 0; i < 101; i++)
+                SpawnBloonOnRandomPath();
             yield return new WaitForSeconds(spawnDelay);
         }
     }

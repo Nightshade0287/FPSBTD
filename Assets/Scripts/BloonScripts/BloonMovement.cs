@@ -13,7 +13,7 @@ public class BloonMovement : MonoBehaviour
     public Path path;
     private NavMeshAgent agent;
     public int currentWaypoint = 0;
-    private float baseSpeed = 2f;
+    private float baseSpeed = 3f;
     private PlayerUI playerUI;
     void Start()
     {
@@ -26,7 +26,7 @@ public class BloonMovement : MonoBehaviour
     public void Update()
     {
         PathMovement();
-        if(agent.velocity.magnitude > agent.speed + 2)
+        if(agent.velocity.magnitude > agent.speed * 5)
         {
             agent.velocity = Vector3.zero;
         }

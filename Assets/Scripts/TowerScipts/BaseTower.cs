@@ -6,7 +6,7 @@ public class BaseTower : MonoBehaviour
 {
     [Header("Variables")]
     public int damage;
-    public int sharpness;
+    public int pierce;
     public float range;
     public float DartVelocity;
     public float ShootDelay;
@@ -124,7 +124,7 @@ public class BaseTower : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
             DartBehavior bulletScript = bullet.GetComponent<DartBehavior>();
             bulletScript.damage = damage;
-            bulletScript.sharpness = sharpness;
+            bulletScript.pierce = pierce;
             bulletScript.range = range;
 
             // Calculate bullet direction with spread

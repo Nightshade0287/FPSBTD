@@ -14,7 +14,7 @@ public class GunController : MonoBehaviour
 
     [Header("Specs")]
     public int damage;
-    public int sharpness;
+    public int pierce;
     public float range;
     public float bulletSpeed = 100f;
     public float spread;
@@ -87,7 +87,7 @@ public class GunController : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             DartBehavior bulletScript = bullet.GetComponent<DartBehavior>();
             bulletScript.damage = damage;
-            bulletScript.sharpness = sharpness;
+            bulletScript.pierce = pierce;
             bulletScript.range = range;
             if(bulletDrop) bulletScript.gravity = 9.8f;
 

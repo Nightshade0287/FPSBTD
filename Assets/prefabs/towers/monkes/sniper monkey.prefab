@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  sharpness: 1
+  pierce: 1
   range: 1000
   DartVelocity: 1000
   ShootDelay: 1.59
