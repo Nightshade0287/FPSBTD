@@ -134,6 +134,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""6407af87-bdae-4752-831e-2abfcb86abd9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -285,7 +294,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""id"": ""812f10b5-8ee1-4a83-ace6-05b3c3db77db"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=8,y=8)"",
+                    ""processors"": ""ScaleVector2(x=6,y=6)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -428,7 +437,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""id"": ""cfe75689-30dd-4b73-84f1-4569132bf3c2"",
                     ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""Invert"",
                     ""groups"": """",
                     ""action"": ""CycleTower"",
                     ""isComposite"": false,
@@ -481,7 +490,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""75a96ca8-b43f-4425-b0e7-7a0902b57348"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -508,6 +517,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpeedUpTime"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bacad251-0a76-4d4d-beac-9acc9b8bd234"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05203dcc-c266-4359-bfec-416f63758cf9"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1046,6 +1077,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_BaseGameplay_CycleTower = m_BaseGameplay.FindAction("CycleTower", throwIfNotFound: true);
         m_BaseGameplay_StartRound = m_BaseGameplay.FindAction("StartRound", throwIfNotFound: true);
         m_BaseGameplay_SpeedUpTime = m_BaseGameplay.FindAction("SpeedUpTime", throwIfNotFound: true);
+        m_BaseGameplay_ExitGame = m_BaseGameplay.FindAction("ExitGame", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1131,6 +1163,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_BaseGameplay_CycleTower;
     private readonly InputAction m_BaseGameplay_StartRound;
     private readonly InputAction m_BaseGameplay_SpeedUpTime;
+    private readonly InputAction m_BaseGameplay_ExitGame;
     public struct BaseGameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -1147,6 +1180,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @CycleTower => m_Wrapper.m_BaseGameplay_CycleTower;
         public InputAction @StartRound => m_Wrapper.m_BaseGameplay_StartRound;
         public InputAction @SpeedUpTime => m_Wrapper.m_BaseGameplay_SpeedUpTime;
+        public InputAction @ExitGame => m_Wrapper.m_BaseGameplay_ExitGame;
         public InputActionMap Get() { return m_Wrapper.m_BaseGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1192,6 +1226,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SpeedUpTime.started += instance.OnSpeedUpTime;
             @SpeedUpTime.performed += instance.OnSpeedUpTime;
             @SpeedUpTime.canceled += instance.OnSpeedUpTime;
+            @ExitGame.started += instance.OnExitGame;
+            @ExitGame.performed += instance.OnExitGame;
+            @ExitGame.canceled += instance.OnExitGame;
         }
 
         private void UnregisterCallbacks(IBaseGameplayActions instance)
@@ -1232,6 +1269,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SpeedUpTime.started -= instance.OnSpeedUpTime;
             @SpeedUpTime.performed -= instance.OnSpeedUpTime;
             @SpeedUpTime.canceled -= instance.OnSpeedUpTime;
+            @ExitGame.started -= instance.OnExitGame;
+            @ExitGame.performed -= instance.OnExitGame;
+            @ExitGame.canceled -= instance.OnExitGame;
         }
 
         public void RemoveCallbacks(IBaseGameplayActions instance)
@@ -1381,6 +1421,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnCycleTower(InputAction.CallbackContext context);
         void OnStartRound(InputAction.CallbackContext context);
         void OnSpeedUpTime(InputAction.CallbackContext context);
+        void OnExitGame(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

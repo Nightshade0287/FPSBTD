@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  sharpness: 15
+  pierce: 15
   range: 40
   DartVelocity: 100
   ShootDelay: 0.024

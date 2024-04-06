@@ -85,7 +85,6 @@ MonoBehaviour:
   - {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
   - {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
   - {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
-  rbe: 0
   dart: {fileID: 0}
   playerUI: {fileID: 0}
 --- !u!114 &322282461393084079
@@ -103,7 +102,7 @@ MonoBehaviour:
   speedMultiplier: 1
   rbe: 616
   path: {fileID: 0}
-  currentWaypoint: 1
+  currentWaypoint: 0
 --- !u!195 &8327279115190307184
 NavMeshAgent:
   m_ObjectHideFlags: 0

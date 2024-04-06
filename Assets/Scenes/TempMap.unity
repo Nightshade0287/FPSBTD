@@ -2940,7 +2940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &683025185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4310,7 +4310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405165086, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: spawnDelay
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 405165086, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: paths.Array.data[0]
@@ -4319,7 +4319,7 @@ PrefabInstance:
     - target: {fileID: 405165086, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: bloonSpawnOptions.Array.data[0].bloonPrefab
       value: 
-      objectReference: {fileID: 8116791947226134723, guid: e5743dd99d0bbab438edbce8567d59fd, type: 3}
+      objectReference: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
     - target: {fileID: 5558818533225088973, guid: 60606946d6ce4b648b7dbb14da86b26f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -5668,7 +5668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054791128}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22, y: 0, z: -69.5}
+  m_LocalPosition: {x: -21.06, y: 0, z: -69.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9405,6 +9405,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1854600112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4823333866588339592, guid: 1c7764dfbd5be0f4982822ba7a2181c9, type: 3}
+  m_PrefabInstance: {fileID: 863586523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1854600113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854600112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1c511c4f435e64696c53a5756913c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1857203845
 GameObject:
   m_ObjectHideFlags: 0
@@ -9571,10 +9588,6 @@ MonoBehaviour:
       timeStamps: {x: 0, y: 17.51}
   - bloons:
     - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
-      amount: 35
-      timeStamps: {x: 0, y: 19}
-  - bloons:
-    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
       amount: 10
       timeStamps: {x: 0, y: 5.1}
     - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
@@ -9583,16 +9596,6 @@ MonoBehaviour:
     - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
       amount: 5
       timeStamps: {x: 9.71, y: 16.71}
-  - bloons:
-    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
-      amount: 25
-      timeStamps: {x: 0, y: 12}
-    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
-      amount: 18
-      timeStamps: {x: 7.9, y: 10.4}
-    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
-      amount: 10
-      timeStamps: {x: 14.51, y: 17.31}
   - bloons:
     - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
       amount: 12
@@ -9603,16 +9606,6 @@ MonoBehaviour:
     - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
       amount: 5
       timeStamps: {x: 8.6, y: 16.5}
-  - bloons:
-    - prefab: {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
-      amount: 4
-      timeStamps: {x: 0, y: 1.71}
-    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
-      amount: 15
-      timeStamps: {x: 5.33, y: 10.33}
-    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
-      amount: 15
-      timeStamps: {x: 10.8, y: 18.7}
   - bloons:
     - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
       amount: 10
@@ -9626,19 +9619,6 @@ MonoBehaviour:
     - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
       amount: 20
       timeStamps: {x: 22.81, y: 26.8}
-  - bloons:
-    - prefab: {fileID: 8513565125455039766, guid: 27269f1772ad7fb48b843442536e060c, type: 3}
-      amount: 20
-      timeStamps: {x: 0, y: 10.84}
-    - prefab: {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
-      amount: 2
-      timeStamps: {x: 11.42, y: 11.99}
-    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
-      amount: 10
-      timeStamps: {x: 14.03, y: 16}
-    - prefab: {fileID: 8513565125455039766, guid: 892407031334b684dbcedf33ac2edc7a, type: 3}
-      amount: 12
-      timeStamps: {x: 18.27, y: 28.87}
   - bloons:
     - prefab: {fileID: 1442408771101411259, guid: 3a883390013cac94d8817188554864c5, type: 3}
       amount: 30
@@ -9805,14 +9785,36 @@ MonoBehaviour:
     - prefab: {fileID: 270858087927334935, guid: d3dcdd225802cf74b84ed9d897879267, type: 3}
       amount: 1
       timeStamps: {x: 0, y: 1}
-  roundIndex: 0
-  realRoundIndex: 1
+  roundIndex: 1
   bloonsLeftInRound: 0
   roundOver: 1
   paths:
   - {fileID: 1011836670}
   BloonHolder: {fileID: 1724287931}
-  timesReset: 10
+--- !u!114 &1864940258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864940253}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b38c68d1990e241b4f014ce2d97926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRadius: 0
+  rounds:
+  - bloons:
+    - prefab: {fileID: 1971089759986992418, guid: 7805aaf852e446b4d9f63993b24c4314, type: 3}
+      amount: 2000
+      timeStamps: {x: 0, y: 1}
+  roundIndex: 1
+  bloonsLeftInRound: 0
+  roundOver: 1
+  paths:
+  - {fileID: 1011836670}
+  BloonHolder: {fileID: 1724287931}
 --- !u!1 &1878890326
 GameObject:
   m_ObjectHideFlags: 0
@@ -10565,7 +10567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084314167}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0, z: -76}
+  m_LocalPosition: {x: -5.34, y: 0, z: -75.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10801,6 +10803,26 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_ActionId
+      value: 6407af87-bdae-4752-831e-2abfcb86abd9
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_ActionName
+      value: BaseGameplay/ExitGame[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1864940254}
@@ -10808,6 +10830,42 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[21].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1864940254}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1854600113}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitToMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ReturnToTitle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 233171509, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: pierce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: fullAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: sharpness
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 761931356, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: ShootDelay
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 282794240218370260, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: BloonHolder
       value: 
@@ -10819,6 +10877,10 @@ PrefabInstance:
     - target: {fileID: 2943838641337983766, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: cash
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943838641337983766, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: health
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2943838641337983766, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: moneyText
@@ -10840,6 +10902,14 @@ PrefabInstance:
       propertyPath: promptText
       value: 
       objectReference: {fileID: 1966924122}
+    - target: {fileID: 2943838641337983766, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: infinteCash
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943838641337983766, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
+      propertyPath: infinteHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4876769386957408535, guid: e108c1b148d888649903497a7bcf9f23, type: 3}
       propertyPath: m_RootOrder
       value: 1
