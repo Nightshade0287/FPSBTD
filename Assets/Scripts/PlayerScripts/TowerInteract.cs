@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 
-public class TowerPlacement : MonoBehaviour
+public class TowerInteract : MonoBehaviour
 {
     [Header("Variables")]
     public int MaxPlaceDistance;
