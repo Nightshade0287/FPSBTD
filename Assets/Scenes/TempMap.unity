@@ -4266,6 +4266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4823333866588339592, guid: 1c7764dfbd5be0f4982822ba7a2181c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4823333866588339594, guid: 1c7764dfbd5be0f4982822ba7a2181c9, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -13079,6 +13083,10 @@ PrefabInstance:
     - target: {fileID: 9094210885686878178, guid: 4626662fb03f1494ca5b61050b19b1a7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097864974963809875, guid: 4626662fb03f1494ca5b61050b19b1a7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4626662fb03f1494ca5b61050b19b1a7, type: 3}
