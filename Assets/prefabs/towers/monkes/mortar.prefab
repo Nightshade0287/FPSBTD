@@ -108,7 +108,6 @@ GameObject:
   - component: {fileID: 3911976803941784166}
   - component: {fileID: 8642734815157179300}
   - component: {fileID: 1613516720326030312}
-  - component: {fileID: 8389113368528201331}
   m_Layer: 0
   m_Name: baseplate
   m_TagString: Untagged
@@ -181,20 +180,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8389113368528201331
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290876338501548932}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &301050486729967219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,7 +1078,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2878104114584479943}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.7122427, y: 1.7122427, z: 1.7122427}
   m_ConstrainProportionsScale: 0
@@ -1104,9 +1089,10 @@ Transform:
   - {fileID: 8075669527275777810}
   - {fileID: 7144273416779095868}
   - {fileID: 6022200416887231094}
+  - {fileID: 3628974921419237435}
   m_Father: {fileID: 8750901119312982843}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &3002742942031138602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3628974921419237435}
   m_Layer: 13
-  m_Name: Model
+  m_Name: Solja monkey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1213,9 +1199,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3139819535577360637}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.595, y: 0, z: -0.368}
-  m_LocalScale: {x: 1.6999999, y: 1.6999999, z: 1.6999999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.34749746, y: 0, z: -0.21492279}
+  m_LocalScale: {x: 0.99284977, y: 0.99284977, z: 0.99284977}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2009743407663007436}
@@ -1233,8 +1219,8 @@ Transform:
   - {fileID: 5154331069957346432}
   - {fileID: 464465633620098823}
   - {fileID: 8636551642169978771}
-  m_Father: {fileID: 8750901119312982843}
-  m_RootOrder: 1
+  m_Father: {fileID: 3815529005213437642}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3951130656620110683
 GameObject:
@@ -1628,7 +1614,6 @@ GameObject:
   - component: {fileID: 3965338473669272997}
   - component: {fileID: 7331711761648944162}
   - component: {fileID: 476324920672264582}
-  - component: {fileID: 4629476345543211652}
   m_Layer: 0
   m_Name: 87mm mortar tube
   m_TagString: Untagged
@@ -1701,20 +1686,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4629476345543211652
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4837126166459816961}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &5014188953179358108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,7 +2380,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3815529005213437642}
-  - {fileID: 3628974921419237435}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
