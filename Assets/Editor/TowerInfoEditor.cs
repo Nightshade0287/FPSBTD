@@ -22,7 +22,6 @@ public class TowerInfoEditor : Editor
             DisplayUpgradePath(towerInfo.path1, "Path 1 Upgrades");
             DisplayUpgradePath(towerInfo.path2, "Path 2 Upgrades");
             DisplayUpgradePath(towerInfo.path3, "Path 3 Upgrades");
-
             EditorGUI.indentLevel--;
         }
     }
@@ -31,12 +30,23 @@ public class TowerInfoEditor : Editor
     {
         EditorGUILayout.LabelField(label);
         EditorGUI.indentLevel++;
+
+        int upgradeCount = 1; // Counter for upgrade number
+
         foreach (var upgrade in upgrades)
         {
-            upgrade.upgradeName = EditorGUILayout.TextField("Upgrade Name", upgrade.upgradeName);
-            upgrade.price = EditorGUILayout.IntField("Price", upgrade.price);
-            EditorGUILayout.Space();
+            upgrade.upgradeInfoFoldout = EditorGUILayout.Foldout(upgrade.upgradeInfoFoldout, "Upgrade " + upgradeCount + " " + upgrade.name);
+            if (upgrade.upgradeInfoFoldout)
+            {
+                EditorGUI.indentLevel++;
+                upgrade.name = EditorGUILayout.TextField("Upgrade Name", upgrade.name);
+                upgrade.price = EditorGUILayout.IntField("Price", upgrade.price);
+                EditorGUI.indentLevel--;
+            }
+
+            upgradeCount++;
         }
+
         EditorGUI.indentLevel--;
     }
 }

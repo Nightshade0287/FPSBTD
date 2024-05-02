@@ -64,15 +64,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""40a704cf-8035-4d07-9a18-87fb7dfccab6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Shoot"",
                     ""type"": ""Button"",
                     ""id"": ""52a8f602-86ca-4c42-806a-71af8418956c"",
@@ -89,33 +80,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PlaceMode"",
-                    ""type"": ""Button"",
-                    ""id"": ""5b403e0e-7b33-45a2-b51a-9d0c5720dac0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Place"",
-                    ""type"": ""Button"",
-                    ""id"": ""f1d8416c-4bf2-49b4-b547-35a8992056f7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CycleTower"",
-                    ""type"": ""Value"",
-                    ""id"": ""cc41b1a7-d2ab-4767-96fd-b14eadb3336f"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""StartRound"",
@@ -324,28 +288,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9d933adf-98da-4817-9b90-882e58b2e88a"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9611f458-4b56-4c8b-88aa-3711d52f219a"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""844e8957-6c33-42cc-a9a0-cf40cefc4da8"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -387,94 +329,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f9101cba-32cf-44da-a454-48f122ed1fe6"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlaceMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cfd448df-a1d6-4214-ba55-f2f27be9d1e4"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlaceMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f25e251d-92e7-4f0b-908b-0cc4049a90ce"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Place"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b9d9454d-0ab8-4f5f-9a0b-ef8271d7d8c8"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Place"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cfe75689-30dd-4b73-84f1-4569132bf3c2"",
-                    ""path"": ""<Mouse>/scroll/y"",
-                    ""interactions"": """",
-                    ""processors"": ""Invert"",
-                    ""groups"": """",
-                    ""action"": ""CycleTower"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Left/Right D-Pad"",
-                    ""id"": ""4bbb0ff5-61d6-4cc6-ba88-b0941c0f6058"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CycleTower"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""549c425a-651d-4e49-baf6-fe2409613b7a"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CycleTower"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""ddd8a73f-0810-455c-a5a0-4e27496eafbe"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CycleTower"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -539,6 +393,107 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ExitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerUI"",
+            ""id"": ""f7a2653b-1c78-4b54-8d7b-894a91cca070"",
+            ""actions"": [
+                {
+                    ""name"": ""Place"",
+                    ""type"": ""Button"",
+                    ""id"": ""e58adc7d-ec6d-4160-801e-b8855aac6633"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlaceMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""becfe4e3-2895-447f-bcf2-2975bf54a8ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0994f0c-8b52-43b2-a7db-57d623520054"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5cc9266c-6f79-408c-a1e6-632e64b52dfa"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1722f9b7-f23c-4b13-bceb-128a8d4ab94c"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed6baba5-1736-4019-b466-410a4c8d2579"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4848e9e0-4919-4bbb-ad7e-7324fa7ae489"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d872bf11-6ef1-4db5-b655-a6bf1d4caddb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbd39aee-0675-4c96-a9fa-9295765960c4"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1069,15 +1024,16 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_BaseGameplay_Jump = m_BaseGameplay.FindAction("Jump", throwIfNotFound: true);
         m_BaseGameplay_Look = m_BaseGameplay.FindAction("Look", throwIfNotFound: true);
         m_BaseGameplay_Sprint = m_BaseGameplay.FindAction("Sprint", throwIfNotFound: true);
-        m_BaseGameplay_Interact = m_BaseGameplay.FindAction("Interact", throwIfNotFound: true);
         m_BaseGameplay_Shoot = m_BaseGameplay.FindAction("Shoot", throwIfNotFound: true);
         m_BaseGameplay_Aim = m_BaseGameplay.FindAction("Aim", throwIfNotFound: true);
-        m_BaseGameplay_PlaceMode = m_BaseGameplay.FindAction("PlaceMode", throwIfNotFound: true);
-        m_BaseGameplay_Place = m_BaseGameplay.FindAction("Place", throwIfNotFound: true);
-        m_BaseGameplay_CycleTower = m_BaseGameplay.FindAction("CycleTower", throwIfNotFound: true);
         m_BaseGameplay_StartRound = m_BaseGameplay.FindAction("StartRound", throwIfNotFound: true);
         m_BaseGameplay_SpeedUpTime = m_BaseGameplay.FindAction("SpeedUpTime", throwIfNotFound: true);
         m_BaseGameplay_ExitGame = m_BaseGameplay.FindAction("ExitGame", throwIfNotFound: true);
+        // PlayerUI
+        m_PlayerUI = asset.FindActionMap("PlayerUI", throwIfNotFound: true);
+        m_PlayerUI_Place = m_PlayerUI.FindAction("Place", throwIfNotFound: true);
+        m_PlayerUI_PlaceMode = m_PlayerUI.FindAction("PlaceMode", throwIfNotFound: true);
+        m_PlayerUI_Interact = m_PlayerUI.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1155,12 +1111,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_BaseGameplay_Jump;
     private readonly InputAction m_BaseGameplay_Look;
     private readonly InputAction m_BaseGameplay_Sprint;
-    private readonly InputAction m_BaseGameplay_Interact;
     private readonly InputAction m_BaseGameplay_Shoot;
     private readonly InputAction m_BaseGameplay_Aim;
-    private readonly InputAction m_BaseGameplay_PlaceMode;
-    private readonly InputAction m_BaseGameplay_Place;
-    private readonly InputAction m_BaseGameplay_CycleTower;
     private readonly InputAction m_BaseGameplay_StartRound;
     private readonly InputAction m_BaseGameplay_SpeedUpTime;
     private readonly InputAction m_BaseGameplay_ExitGame;
@@ -1172,12 +1124,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_BaseGameplay_Jump;
         public InputAction @Look => m_Wrapper.m_BaseGameplay_Look;
         public InputAction @Sprint => m_Wrapper.m_BaseGameplay_Sprint;
-        public InputAction @Interact => m_Wrapper.m_BaseGameplay_Interact;
         public InputAction @Shoot => m_Wrapper.m_BaseGameplay_Shoot;
         public InputAction @Aim => m_Wrapper.m_BaseGameplay_Aim;
-        public InputAction @PlaceMode => m_Wrapper.m_BaseGameplay_PlaceMode;
-        public InputAction @Place => m_Wrapper.m_BaseGameplay_Place;
-        public InputAction @CycleTower => m_Wrapper.m_BaseGameplay_CycleTower;
         public InputAction @StartRound => m_Wrapper.m_BaseGameplay_StartRound;
         public InputAction @SpeedUpTime => m_Wrapper.m_BaseGameplay_SpeedUpTime;
         public InputAction @ExitGame => m_Wrapper.m_BaseGameplay_ExitGame;
@@ -1202,24 +1150,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
-            @PlaceMode.started += instance.OnPlaceMode;
-            @PlaceMode.performed += instance.OnPlaceMode;
-            @PlaceMode.canceled += instance.OnPlaceMode;
-            @Place.started += instance.OnPlace;
-            @Place.performed += instance.OnPlace;
-            @Place.canceled += instance.OnPlace;
-            @CycleTower.started += instance.OnCycleTower;
-            @CycleTower.performed += instance.OnCycleTower;
-            @CycleTower.canceled += instance.OnCycleTower;
             @StartRound.started += instance.OnStartRound;
             @StartRound.performed += instance.OnStartRound;
             @StartRound.canceled += instance.OnStartRound;
@@ -1245,24 +1181,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
-            @PlaceMode.started -= instance.OnPlaceMode;
-            @PlaceMode.performed -= instance.OnPlaceMode;
-            @PlaceMode.canceled -= instance.OnPlaceMode;
-            @Place.started -= instance.OnPlace;
-            @Place.performed -= instance.OnPlace;
-            @Place.canceled -= instance.OnPlace;
-            @CycleTower.started -= instance.OnCycleTower;
-            @CycleTower.performed -= instance.OnCycleTower;
-            @CycleTower.canceled -= instance.OnCycleTower;
             @StartRound.started -= instance.OnStartRound;
             @StartRound.performed -= instance.OnStartRound;
             @StartRound.canceled -= instance.OnStartRound;
@@ -1289,6 +1213,68 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public BaseGameplayActions @BaseGameplay => new BaseGameplayActions(this);
+
+    // PlayerUI
+    private readonly InputActionMap m_PlayerUI;
+    private List<IPlayerUIActions> m_PlayerUIActionsCallbackInterfaces = new List<IPlayerUIActions>();
+    private readonly InputAction m_PlayerUI_Place;
+    private readonly InputAction m_PlayerUI_PlaceMode;
+    private readonly InputAction m_PlayerUI_Interact;
+    public struct PlayerUIActions
+    {
+        private @PlayerInput m_Wrapper;
+        public PlayerUIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Place => m_Wrapper.m_PlayerUI_Place;
+        public InputAction @PlaceMode => m_Wrapper.m_PlayerUI_PlaceMode;
+        public InputAction @Interact => m_Wrapper.m_PlayerUI_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerUIActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Add(instance);
+            @Place.started += instance.OnPlace;
+            @Place.performed += instance.OnPlace;
+            @Place.canceled += instance.OnPlace;
+            @PlaceMode.started += instance.OnPlaceMode;
+            @PlaceMode.performed += instance.OnPlaceMode;
+            @PlaceMode.canceled += instance.OnPlaceMode;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+        }
+
+        private void UnregisterCallbacks(IPlayerUIActions instance)
+        {
+            @Place.started -= instance.OnPlace;
+            @Place.performed -= instance.OnPlace;
+            @Place.canceled -= instance.OnPlace;
+            @PlaceMode.started -= instance.OnPlaceMode;
+            @PlaceMode.performed -= instance.OnPlaceMode;
+            @PlaceMode.canceled -= instance.OnPlaceMode;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+        }
+
+        public void RemoveCallbacks(IPlayerUIActions instance)
+        {
+            if (m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerUIActions @PlayerUI => new PlayerUIActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -1413,15 +1399,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
-        void OnPlaceMode(InputAction.CallbackContext context);
-        void OnPlace(InputAction.CallbackContext context);
-        void OnCycleTower(InputAction.CallbackContext context);
         void OnStartRound(InputAction.CallbackContext context);
         void OnSpeedUpTime(InputAction.CallbackContext context);
         void OnExitGame(InputAction.CallbackContext context);
+    }
+    public interface IPlayerUIActions
+    {
+        void OnPlace(InputAction.CallbackContext context);
+        void OnPlaceMode(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

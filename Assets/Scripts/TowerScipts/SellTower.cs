@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SellTower : Interactable
+public class SellTower : MonoBehaviour
 {
     private TowerInfo towerInfo;
     private PlayerUI playerUI;
-    protected override void Interact()
+    public void Sell()
     {
         towerInfo = GetComponent<TowerInfo>();
         playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();

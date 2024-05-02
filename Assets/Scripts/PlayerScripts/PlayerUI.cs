@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Globalization;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -23,6 +24,25 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // For loop iterating from 0 to 555
+        int num = 0;
+        for (int i = 0; i <= 555; i++)
+        {
+            int a = i / 100 % 10;
+            int b = i / 10 % 10;
+            int c = i % 10;
+            if(a <= 5 && b <= 5 && c <= 5)
+            {
+                if(a == 0 || b == 0 || c == 0)
+                {
+                    if((a == 0 && !(b > 2 && c > 2)) || (b == 0 && !(a > 2 && c > 2)) || (c == 0 && !(b > 2 && a > 2)))
+                    {
+                        num++;
+                        Debug.Log(num + ": " + a + " " + b + " " + c);
+                    }
+                }
+            }
+        }
         if(infinteCash)
             cash = 100000;
         UpdateMoney(0);

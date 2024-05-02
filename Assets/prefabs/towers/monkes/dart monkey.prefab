@@ -581,7 +581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7077659787000649756}
   - component: {fileID: 38209254970409306}
-  - component: {fileID: 3662915285410759348}
+  - component: {fileID: -7219751648594897232}
   - component: {fileID: 2742728750887221870}
   - component: {fileID: -7156012659695190611}
   m_Layer: 13
@@ -621,7 +621,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 1, z: 0.85}
   m_Center: {x: 0, y: 0.5, z: 0.05}
---- !u!114 &3662915285410759348
+--- !u!114 &-7219751648594897232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -630,11 +630,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 7077659787000649759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49ea46d4a7f04454f8cdbe509e19c797, type: 3}
+  m_Script: {fileID: 11500000, guid: 21f79aa7cb86df74d9d8bb0aa9a5a76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   towerName: Dart Monkey
   cost: 170
+  availableTargetingModes: 00000000010000000200000003000000
+  path1:
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  path2:
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  path3:
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  path1Index: 0
+  path2Index: 0
+  path3Index: 0
 --- !u!114 &2742728750887221870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,9 +702,11 @@ MonoBehaviour:
   damage: 1
   pierce: 2
   range: 7
-  DartVelocity: 60
-  ShootDelay: 0.95
-  spread: 15
+  rangeMultiplier: 1
+  dartVelocity: 40
+  shootDelay: 0.95
+  shootDelayMultiplier: 1
+  spread: 0
   bulletsPerShot: 1
   mask:
     serializedVersion: 2
@@ -672,8 +726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad18794be3cda704a8458f2bde5b02ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Sell Tower
-  useEvents: 0
 --- !u!1 &7077659787462433433
 GameObject:
   m_ObjectHideFlags: 0

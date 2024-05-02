@@ -8,8 +8,10 @@ public class BaseTower : MonoBehaviour
     public int damage;
     public int pierce;
     public float range;
-    public float DartVelocity;
-    public float ShootDelay;
+    public float rangeMultiplier = 1;
+    public float dartVelocity;
+    public float shootDelay;
+    public float shootDelayMultiplier = 1;
     public float spread;
     public int bulletsPerShot;
 
@@ -131,14 +133,13 @@ public class BaseTower : MonoBehaviour
             Vector3 bulletDirection = (target.position - shootPoint.position).normalized;
 
             // Calculate spread offset
-            float spreadX = Random.Range(-spread, spread);
-            float spreadY = Random.Range(-spread, spread);
+            float spreadX = Random.Range(-spread/2, spread/2);
+            Debug.Log(spreadX);
 
-            Vector3 spreadOffset = shootPoint.right * spreadX + shootPoint.up * spreadY;
-            bulletDirection += spreadOffset;
+            bulletDirection = (Quaternion.AngleAxis(spreadX, Vector3.up) * bulletDirection).normalized;
 
             bulletScript.direction = bulletDirection.normalized;
-            bulletScript.bulletSpeed = DartVelocity;
+            bulletScript.bulletSpeed = dartVelocity;
         }
 
         // Set a cooldown before the next shot
@@ -149,7 +150,7 @@ public class BaseTower : MonoBehaviour
     // Reset the shooting cooldown
     protected IEnumerator ResetShootCooldown()
     {
-        yield return new WaitForSeconds(ShootDelay);
+        yield return new WaitForSeconds(shootDelay);
         canShoot = true;
     }
 }

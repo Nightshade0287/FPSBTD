@@ -50,14 +50,6 @@ public class DartBehavior : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
-    private void BloonsHit(int hit)
-    {
-        bloonsHit += hit;
-        if (bloonsHit >= pierce)
-        {
-            Destroy(gameObject);
-        }
-    }
     Vector3 CalculatePosition(Vector3 initialPosition, Vector3 initialDireciton, float speed, float gravity, float time)
     {
         Vector3 newPosition = initialPosition + bulletSpeed * time * initialDireciton;

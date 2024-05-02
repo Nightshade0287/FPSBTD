@@ -1,184 +1,106 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
 
 public class TowerInteract : MonoBehaviour
 {
-    [Header("Variables")]
-    public int MaxPlaceDistance;
     [Header("References")]
-    public Transform cam;
-    public GameObject[] towerPrefabs;
-    public Transform BloonHolder;
-    public Material placeMaterial;
-    public Material unPlaceMaterial;
-    protected Vector3 placePos;
-    private bool Placing = false;
-    private bool canPlace = true;
-    protected GameObject newTower;
-    private int selectedTowerIndex = 0;
-    private Material[] originalMaterials;
+    private Camera cam;
+    [SerializeField]
+    private float distance = 3f;
+    [SerializeField]
+    private LayerMask mask;
+    public InputActionAsset inputActions;
     private PlayerUI playerUI;
+    private GameObject tower;
     private TowerInfo towerInfo;
+    private Transform towerUpgrades;
+    private InputActionMap baseGameplay;
+    private bool upgrading = false;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        cam = GetComponent<PlayerLook>().cam;
         playerUI = GetComponent<PlayerUI>();
-    }
-
-    public void PlaceMode(InputAction.CallbackContext ctx)
-    {
-        if(ctx.performed)
-        {
-            if (!Placing)
-            {
-                ChangeSelectedTower(0);
-                Placing = true;
-                return;
-            }
-            if (Placing)
-            {
-                Destroy(newTower);
-                Placing = false;
-                playerUI.UpdateTowerText(string.Empty);
-            }
-        }
-    }
-
-    public void PlaceTower(InputAction.CallbackContext ctx)
-    {
-        if(ctx.performed)
-        {
-            if (Placing && canPlace)
-                {
-                    if(playerUI.cash - towerInfo.cost >= 0)
-                    {
-                        playerUI.UpdateMoney(-towerInfo.cost);
-                        Placing = false;
-                        newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
-                        newTower.GetComponent<BaseTower>().enabled = true;
-                        ResetMaterials();
-                        newTower.gameObject.layer = LayerMask.NameToLayer("Tower");
-                        playerUI.UpdateTowerText(string.Empty);
-                        newTower = null;
-                        return;
-                    }
-                }
-        }
+        towerUpgrades = GameObject.Find("TowerUI").transform.Find("Upgrades");
+        baseGameplay = inputActions.FindActionMap("BaseGameplay");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Placing)
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        RaycastHit hitInfo;
+        if(Physics.Raycast(ray, out hitInfo, distance, mask))
         {
-            CalculatePlacePos();
-            newTower.transform.position = placePos;
-            newTower.transform.rotation = gameObject.transform.rotation;
-        }
-    }
-    public void GetScroll(InputAction.CallbackContext ctx)
-    {
-        float scroll = ctx.ReadValue<float>();
-        if(ctx.performed && Placing)
-        {
-            if(scroll > 0)
-                ChangeSelectedTower(1);
-            else if(scroll < 0)
-                ChangeSelectedTower(-1);
-        }
-    }
-    public void ChangeSelectedTower(int direction)
-    {
-        selectedTowerIndex += direction;
-
-        // Wrap around to the beginning if at the end of the array
-        if (selectedTowerIndex < 0)
-        {
-            selectedTowerIndex = towerPrefabs.Length - 1;
-        }
-        // Wrap around to the end if at the beginning of the array
-        else if (selectedTowerIndex >= towerPrefabs.Length)
-        {
-            selectedTowerIndex = 0;
-        }
-
-        Destroy(newTower);
-        newTower = Instantiate(towerPrefabs[selectedTowerIndex], placePos, gameObject.transform.rotation);
-        towerInfo = newTower.GetComponent<TowerInfo>();
-        playerUI.UpdateTowerText(newTower.GetComponent<TowerInfo>().towerName + " $" + towerInfo.cost);
-        newTower.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        StoreMaterials();
-    }
-
-
-    public void CalculatePlacePos()
-    {
-        RaycastHit hit;
-        Ray ray = new Ray(cam.position, cam.forward);
-        if (Physics.Raycast(cam.position, cam.forward, out hit, MaxPlaceDistance))
-        {
-            placePos = hit.point;
-            if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            tower = hitInfo.collider.gameObject;
+            towerInfo = tower.GetComponent<TowerInfo>();
+            if(tower != null)
             {
-                canPlace = true;
-                ChangeToMaterial(placeMaterial);
+                playerUI.UpdateText(tower.GetComponent<TowerInfo>().towerName);
             }
-            else
+        }
+        else
+        {
+            tower = null;
+            playerUI.UpdateText(string.Empty);
+        }
+    }
+    public void Interact(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed)
+        {
+            if(tower != null)
             {
-                canPlace = false;
-                ChangeToMaterial(unPlaceMaterial);
+                if(!upgrading)
+                {
+                    towerUpgrades.gameObject.SetActive(true);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    baseGameplay.Disable();
+                    upgrading = true;
+                    tower.GetComponent<TowerInfo>().UpdateTowerUpgradeUI();
+                }
+
+                else if(upgrading)
+                {
+                    towerUpgrades.gameObject.SetActive(false);
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                    baseGameplay.Enable();
+                    upgrading = false;
+                }
             }
         }
     }
-    void StoreMaterials()
+
+    public void UpgradeTower(int path)
     {
-        // Get all Renderer components attached to this GameObject and its children
-        Renderer[] renderers = newTower.transform.Find("Model").GetComponentsInChildren<Renderer>();
-
-        // Initialize the array to store original materials
-        originalMaterials = new Material[renderers.Length];
-
-        // Store original materials for each renderer
-        for (int i = 0; i < renderers.Length; i++)
+        if(upgrading)
         {
-            originalMaterials[i] = renderers[i].material;
+            towerInfo.UpgradeTower(path);
         }
     }
 
-    void ChangeToMaterial(Material material)
+    public void CycleTargetingMode(int direction)
     {
-        // Get all Renderer components attached to this GameObject and its children
-        Renderer[] renderers = newTower.transform.Find("Model").GetComponentsInChildren<Renderer>();
-
-        // Change materials for each renderer
-        foreach (Renderer renderer in renderers)
+        if(upgrading)
         {
-            renderer.material = material;
+            towerInfo.CycleTargetingMode(direction);
         }
     }
 
-    public void ResetMaterials()
+    public void Sell()
     {
-        // Get all Renderer components attached to this GameObject and its children
-        Renderer[] renderers = newTower.transform.Find("Model").GetComponentsInChildren<Renderer>();
-
-        // Restore original materials for each renderer
-        for (int i = 0; i < renderers.Length; i++)
+        if(upgrading)
         {
-            renderers[i].material = originalMaterials[i];
+            towerUpgrades.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            baseGameplay.Enable();
+            upgrading = false;
+            towerInfo.Sell();
         }
-    }
-    public void SellTower(TowerInfo towerInfo)
-    {
-        towerInfo = GetComponent<TowerInfo>();
-        playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
-        playerUI.UpdateMoney(towerInfo.cost);
-        Debug.Log("e");
-        Destroy(gameObject);
     }
 }
