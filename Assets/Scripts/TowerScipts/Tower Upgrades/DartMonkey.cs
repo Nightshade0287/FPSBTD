@@ -39,26 +39,26 @@ public class DartMonkey : TowerInfo
         // Path 2 Upgrades
         path2[0] = new Upgrade("Quick Shots", 120, (baseTower) =>
         {
-            baseTower.shootDelayMultiplier = 1.176f;
+            baseTower.shootDelayMultiplier = 0.85f;
         });
         path2[1] = new Upgrade("Very Quick Shots", 230, (baseTower) =>
         {
-            baseTower.shootDelayMultiplier = 1.50f;
+            baseTower.shootDelayMultiplier = 0.67f;
         });
         path2[2] = new Upgrade("Triple Shot", 480, (baseTower) =>
         {
-            baseTower.spread = 30;
+            baseTower.spread = 5;
             baseTower.bulletsPerShot = 3;
         });
         path2[3] = new Upgrade("Super Monkey Fan Club", 9600, (baseTower) =>
         {
-            baseTower.shootDelayMultiplier *= 1.5f;
+            baseTower.shootDelayMultiplier = 0.5025f;
         });
         path2[4] = new Upgrade("Plasma Monkey Fan Club", 54000, (baseTower) =>
         {
             baseTower.pierce += 2;
             baseTower.damage += 3;
-            baseTower.shootDelayMultiplier *= 1.5f;
+            baseTower.shootDelayMultiplier = 0.335f;
         });
         // Path 3 Upgrades
         path3[0] = new Upgrade("Long Range Darts", 110, (baseTower) =>

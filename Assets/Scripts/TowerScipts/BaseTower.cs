@@ -59,7 +59,7 @@ public class BaseTower : MonoBehaviour
     {
         Transform closestBloon = null;
         float closestDistance = Mathf.Infinity;
-
+        BloonHolder = GameObject.Find("Bloons").transform;
         if (BloonHolder.childCount != 0)
         {
             foreach (Transform bloon in BloonHolder)
@@ -134,9 +134,9 @@ public class BaseTower : MonoBehaviour
 
             // Calculate spread offset
             float spreadX = Random.Range(-spread/2, spread/2);
-            Debug.Log(spreadX);
+            float spreadY = Random.Range(-spread/2, spread/2);
 
-            bulletDirection = (Quaternion.AngleAxis(spreadX, Vector3.up) * bulletDirection).normalized;
+            bulletDirection = (Quaternion.AngleAxis(spreadX, Vector3.up) * Quaternion.AngleAxis(spreadY, Vector3.right) * bulletDirection).normalized;
 
             bulletScript.direction = bulletDirection.normalized;
             bulletScript.bulletSpeed = dartVelocity;
@@ -150,7 +150,7 @@ public class BaseTower : MonoBehaviour
     // Reset the shooting cooldown
     protected IEnumerator ResetShootCooldown()
     {
-        yield return new WaitForSeconds(shootDelay);
+        yield return new WaitForSeconds(shootDelay * shootDelayMultiplier);
         canShoot = true;
     }
 }

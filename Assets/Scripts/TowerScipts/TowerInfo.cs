@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
-using System.Runtime.CompilerServices;
 
 [System.Serializable]
 public class Upgrade

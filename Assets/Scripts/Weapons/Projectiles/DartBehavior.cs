@@ -19,11 +19,11 @@ public class DartBehavior : MonoBehaviour
     public Vector3 direction;
     public float bulletSpeed;
     [SerializeField]
-    private int bloonsHit = 0;
-    private float timeSinceShot;
-    private Vector3 startPoint;
-    private Vector3 lastPostition;
-    public List<GameObject> bloonHitList = new List<GameObject>();
+    public int bloonsHit = 0;
+    protected float timeSinceShot;
+    protected Vector3 startPoint;
+    protected Vector3 lastPostition;
+    public List<int> bloonHitList = new List<int>();
     private void Awake()
     {
         timeSinceShot = 0f;
@@ -42,7 +42,8 @@ public class DartBehavior : MonoBehaviour
     }
     private void CheckDistance() // Checks if current position is further than maxDistance if so destroys game object
     {
-        if ((new Vector3(transform.position.x, 0f, transform.position.z) - new Vector3(startPoint.x, 0f, startPoint.z)).magnitude >= range)
+        //if ((new Vector3(transform.position.x, 0f, transform.position.z) - new Vector3(startPoint.x, 0f, startPoint.z)).magnitude >= range)
+        if(Vector3.Distance(transform.position, startPoint) >= range)
             Destroy(gameObject);
     }
     private IEnumerator Decay()
@@ -55,6 +56,16 @@ public class DartBehavior : MonoBehaviour
         Vector3 newPosition = initialPosition + bulletSpeed * time * initialDireciton;
         newPosition.y += 0.5f * gravity * time * time;
         return newPosition;
+    }
+
+    public virtual void BloonHitAction(GameObject bloon, List<GameObject> bloonOrder)
+    {
+        Health bloonHealth = bloon.GetComponent<Health>();
+        bloonHealth.dart = gameObject;
+        bloonHealth.TakeDamage(damage);
+        bloonHitList.Add(bloon.GetInstanceID());
+        bloonsHit += 1;
+        if(bloonsHit >= pierce) Destroy(gameObject);
     }
     private void CheckForBloons()
     {
@@ -71,7 +82,7 @@ public class DartBehavior : MonoBehaviour
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Bloons"))
             {
-                bloonOrder.Add(hit.collider.gameObject);
+                if(!bloonHitList.Contains(hit.collider.gameObject.GetInstanceID())) bloonOrder.Add(hit.collider.gameObject);
             }
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
@@ -89,19 +100,14 @@ public class DartBehavior : MonoBehaviour
 
         foreach (GameObject bloon in bloonOrder)
         {
-            if(!bloonHitList.Contains(bloon))
+            if(!bloonHitList.Contains(bloon.GetInstanceID()))
             {
                 if(bloonsHit < pierce)
                 {
-                    Health bloonHealth = bloon.GetComponent<Health>();
-                    bloonHealth.dart = gameObject;
-                    bloonHealth.TakeDamage(damage);
-                    bloonHitList.Add(bloon);
-                    bloonsHit += 1;
-                    if(bloonsHit >= pierce) Destroy(gameObject);
+                    BloonHitAction(bloon, bloonOrder);
                 }
             }
+
         }
     }
-
 }

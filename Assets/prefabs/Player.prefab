@@ -135,7 +135,7 @@ MonoBehaviour:
   adsSpeed: 10
   aimMultiplier: 0.4
   damage: 1
-  pierce: 0
+  pierce: 2
   range: 40
   bulletSpeed: 50
   spread: 1
@@ -342,9 +342,9 @@ GameObject:
   - component: {fileID: 7727678538338222322}
   - component: {fileID: 722638848455966188}
   - component: {fileID: 3309066028777404314}
-  m_Layer: 13
-  m_Name: mouth
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -509,9 +509,9 @@ GameObject:
   - component: {fileID: 10239425110308254}
   - component: {fileID: 5624739486477584579}
   - component: {fileID: 2434073628735642439}
-  - component: {fileID: 7137423981806429006}
   - component: {fileID: 2943838641337983766}
   - component: {fileID: 282794240218370260}
+  - component: {fileID: 4552609713685419890}
   - component: {fileID: 233171509}
   - component: {fileID: 9002403418390732260}
   m_Layer: 8
@@ -589,22 +589,6 @@ MonoBehaviour:
   ySensitivity: 40
   moveVector: {x: 0, y: 0}
   aimMultiplier: 0
---- !u!114 &7137423981806429006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579844137029761750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83586e5b2602b064ca3128d10d1e94e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 3
-  mask:
-    serializedVersion: 2
-    m_Bits: 10240
 --- !u!114 &2943838641337983766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +633,26 @@ MonoBehaviour:
   BloonHolder: {fileID: 0}
   placeMaterial: {fileID: 2100000, guid: b3a86d2ca807439438b6e232d1fab525, type: 2}
   unPlaceMaterial: {fileID: 2100000, guid: c379f4f80e5987f4b9cf7a411a2c00f3, type: 2}
+  inputActions: {fileID: -944628639613478452, guid: b4357f6a4274fcf4dab7bfe04ff55440, type: 3}
+  placingTower: 0
+  placingMode: 0
+--- !u!114 &4552609713685419890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579844137029761750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05535cb3dc756d44db47e96ab3089b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 3
+  mask:
+    serializedVersion: 2
+    m_Bits: 8192
+  inputActions: {fileID: 0}
 --- !u!114 &233171509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,22 +744,6 @@ MonoBehaviour:
     m_ActionName: BaseGameplay/Sprint[/Keyboard/leftShift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7137423981806429006}
-        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 40a704cf-8035-4d07-9a18-87fb7dfccab6
-    m_ActionName: BaseGameplay/Interact[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 761931356}
         m_TargetAssemblyTypeName: GunController, Assembly-CSharp
         m_MethodName: StartShoot
@@ -786,54 +774,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 16567a14-e5b2-4c25-963c-722fe8c932e6
     m_ActionName: BaseGameplay/Aim[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 282794240218370260}
-        m_TargetAssemblyTypeName: TowerPlacement, Assembly-CSharp
-        m_MethodName: PlaceMode
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5b403e0e-7b33-45a2-b51a-9d0c5720dac0
-    m_ActionName: BaseGameplay/PlaceMode[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 282794240218370260}
-        m_TargetAssemblyTypeName: TowerPlacement, Assembly-CSharp
-        m_MethodName: PlaceTower
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f1d8416c-4bf2-49b4-b547-35a8992056f7
-    m_ActionName: BaseGameplay/Place[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 282794240218370260}
-        m_TargetAssemblyTypeName: TowerPlacement, Assembly-CSharp
-        m_MethodName: GetScroll
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: cc41b1a7-d2ab-4767-96fd-b14eadb3336f
-    m_ActionName: BaseGameplay/CycleTowerRight[/Mouse/forwardButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: eafe772b-3707-4fe2-94b2-8cd513694b4e
@@ -907,9 +847,57 @@ MonoBehaviour:
     m_ActionId: 42819894-155a-452a-897a-d31130e5858c
     m_ActionName: BaseGameplay/SpeedUpTime[/Keyboard/u,/XInputControllerWindows/leftShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ReturnToTitle, Assembly-CSharp
+        m_MethodName: ExitToMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6407af87-bdae-4752-831e-2abfcb86abd9
-    m_ActionName: BaseGameplay/ExitGame[/Keyboard/escape,/XInputControllerWindows/select]
+    m_ActionName: BaseGameplay/ExitGame[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 282794240218370260}
+        m_TargetAssemblyTypeName: TowerInteract, Assembly-CSharp
+        m_MethodName: PlaceTower
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e58adc7d-ec6d-4160-801e-b8855aac6633
+    m_ActionName: PlayerUI/Place[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 282794240218370260}
+        m_TargetAssemblyTypeName: TowerInteract, Assembly-CSharp
+        m_MethodName: PlaceMode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: becfe4e3-2895-447f-bcf2-2975bf54a8ee
+    m_ActionName: PlayerUI/PlaceMode[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b0994f0c-8b52-43b2-a7db-57d623520054
+    m_ActionName: PlayerUI/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: BaseGameplay

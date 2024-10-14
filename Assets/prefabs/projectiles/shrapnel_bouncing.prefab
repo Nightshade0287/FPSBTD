@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 4110695513497631628}
   - component: {fileID: 4483617147458529754}
   - component: {fileID: 4110695513497631630}
-  - component: {fileID: 369628651642838638}
+  - component: {fileID: 5863069679510350381}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: shrapnel_bouncing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +96,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.02
   m_Center: {x: 0, y: 0, z: 0.08}
---- !u!114 &369628651642838638
+--- !u!114 &5863069679510350381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4110695513497631665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dca78cd937144c4a96906e60b6c3e9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 252f516866c6c024c9cb84b53bb7509e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
@@ -119,7 +119,18 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   bulletSpeed: 0
   bloonsHit: 0
-  bloonHitList: []
+  bloonHitList: 
+  fragPrefab: {fileID: 7955119154036128600, guid: 4ec4e79fe9d267c4bafd43b989ead9c9, type: 3}
+  shrapnelPrefab: {fileID: 492331167404204468, guid: e148a6de36700f141ad3de4b983e2382, type: 3}
+  shrapnelCount: 5
+  shrapnelDamage: 1
+  shrapnelPierce: 2
+  shrapnelRange: 10
+  shrapnelVelocity: 40
+  shrapnelSpreadAngle: 45
+  sphereRadius: 0
+  bounceRange: 10
+  targetBloon: {fileID: 0}
 --- !u!1 &4110695513926173804
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ public class Health : MonoBehaviour
             Health bloonHealth = bloon.GetComponent<Health>();
             GetComponent<BloonMovement>().UpdateChild(bloon);
             bloonHealth.dart = dart;
-            dart.GetComponent<DartBehavior>().bloonHitList.Add(bloon);
+            dart.GetComponent<DartBehavior>().bloonHitList.Add(bloon.GetInstanceID());
             bloonHealth.TakeDamage(damage);
         }
         playerUI.UpdateMoney(1);

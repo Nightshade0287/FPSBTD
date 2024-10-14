@@ -38,7 +38,6 @@ public class PlayerUI : MonoBehaviour
                     if((a == 0 && !(b > 2 && c > 2)) || (b == 0 && !(a > 2 && c > 2)) || (c == 0 && !(b > 2 && a > 2)))
                     {
                         num++;
-                        Debug.Log(num + ": " + a + " " + b + " " + c);
                     }
                 }
             }
