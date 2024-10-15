@@ -250,7 +250,7 @@ MonoBehaviour:
   speedMultiplier: 1.8
   rbe: 47
   path: {fileID: 0}
-  pointOnPath: {x: 0, y: 0, z: 0}
+  currentWaypoint: 0
 --- !u!195 &5187300628517582008
 NavMeshAgent:
   m_ObjectHideFlags: 0

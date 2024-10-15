@@ -1,7 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D.IK;
+
+[System.Serializable]
+public enum BloonTypes
+{
+    Basic,
+    Black,
+    White,
+    Purple,
+    Lead,
+    Zebra,
+    Rainbow,
+    Ceramic,
+    Moab,
+}
 
 public class Health : MonoBehaviour
 {
