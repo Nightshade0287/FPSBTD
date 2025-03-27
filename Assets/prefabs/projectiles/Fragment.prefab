@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dca78cd937144c4a96906e60b6c3e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageTypes: 00000000
   damage: 0
   pierce: 0
   range: 0
@@ -56,7 +57,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   bulletSpeed: 0
   bloonsHit: 0
-  bloonHitList: []
+  bloonHitList: 
 --- !u!1 &905923233422097141
 GameObject:
   m_ObjectHideFlags: 0

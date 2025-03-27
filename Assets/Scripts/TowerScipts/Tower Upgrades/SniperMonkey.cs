@@ -9,68 +9,70 @@ public class SniperMonkey : TowerInfo
     public override void DefineUpgrades()
     {
         // Path 1 Upgrades
-        path1[0] = new Upgrade("Full Metal Jacket", 420, (baseTower) =>
+        path1[0] = new Upgrade("Full Metal Jacket", 420, (tower) =>
         {
-            baseTower.damage += 2;
+            tower.damage += 2;
+            tower.damageTypes.Add(DamageTypes.Normal);
+            tower.damageTypes.Remove(DamageTypes.Sharp);
         });
-        path1[1] = new Upgrade("Large Calibre", 1560, (baseTower) =>
+        path1[1] = new Upgrade("Large Calibre", 1560, (tower) =>
         {
-            baseTower.damage += 3;
+            tower.damage += 3;
         });
-        path1[2] = new Upgrade("Deadly Precision", 3600, (baseTower) =>
+        path1[2] = new Upgrade("Deadly Precision", 3600, (tower) =>
         {
-            baseTower.damage += 13;
+            tower.damage += 13;
         });
-        path1[3] = new Upgrade("Maim MOAB", 6780, (baseTower) =>
+        path1[3] = new Upgrade("Maim MOAB", 6780, (tower) =>
         {
-            baseTower.damage += 10;
+            tower.damage += 10;
         });
-        path1[4] = new Upgrade("Cripple MOAB", 38400, (baseTower) =>
+        path1[4] = new Upgrade("Cripple MOAB", 38400, (tower) =>
         {
-            baseTower.damage += 250;
+            tower.damage += 250;
         });
         // Path 2 Upgrades
-        path2[0] = new Upgrade("Night Vision Goggles", 300, (baseTower) =>
+        path2[0] = new Upgrade("Night Vision Goggles", 300, (tower) =>
         {
-
+            tower.damageTypes.Add(DamageTypes.CamoDetection);
         });
-        path2[1] = new Upgrade("Shrapnel Shot", 540, (baseTower) =>
+        path2[1] = new Upgrade("Shrapnel Shot", 540, (tower) =>
         {
-            baseTower.bulletPrefab = bouncingBulletPrefab;
+            tower.bulletPrefab = bouncingBulletPrefab;
         });
-        path2[2] = new Upgrade("Bouncing Bullets", 2880, (baseTower) =>
+        path2[2] = new Upgrade("Bouncing Bullets", 2880, (tower) =>
         {
-            baseTower.pierce = 3;
+            tower.pierce = 3;
         });
-        path2[3] = new Upgrade("Supply Drop", 9120, (baseTower) =>
+        path2[3] = new Upgrade("Supply Drop", 9120, (tower) =>
         {
-            baseTower.pierce = 4;
+            tower.pierce = 4;
             bouncingBulletPrefab.GetComponent<Shrapnel_Bouncing>().shrapnelPierce = 5;
         });
-        path2[4] = new Upgrade("Elite Sniper", 17400, (baseTower) =>
+        path2[4] = new Upgrade("Elite Sniper", 17400, (tower) =>
         {
-            baseTower.shootDelayMultiplier *= 0.4f;
+            tower.shootDelayMultiplier *= 0.4f;
         });
         // Path 3 Upgrades
-        path3[0] = new Upgrade("Fast Firing", 540, (baseTower) =>
+        path3[0] = new Upgrade("Fast Firing", 540, (tower) =>
         {
-            baseTower.shootDelayMultiplier *= 0.7f;
+            tower.shootDelayMultiplier *= 0.7f;
         });
-        path3[1] = new Upgrade("Even Faster Firing", 540, (baseTower) =>
+        path3[1] = new Upgrade("Even Faster Firing", 540, (tower) =>
         {
-            baseTower.shootDelayMultiplier *= 0.7f;
+            tower.shootDelayMultiplier *= 0.7f;
         });
-        path3[2] = new Upgrade("Semi-Automatic", 3480, (baseTower) =>
+        path3[2] = new Upgrade("Semi-Automatic", 3480, (tower) =>
         {
-            baseTower.shootDelayMultiplier = 0.167f;
+            tower.shootDelayMultiplier = 0.167f;
         });
-        path3[3] = new Upgrade("Full Auto Rifle", 4920, (baseTower) =>
+        path3[3] = new Upgrade("Full Auto Rifle", 4920, (tower) =>
         {
-            baseTower.shootDelayMultiplier = 0.0808f;
+            tower.shootDelayMultiplier = 0.0808f;
         });
-        path3[4] = new Upgrade("Elite Defender", 17640, (baseTower) =>
+        path3[4] = new Upgrade("Elite Defender", 17640, (tower) =>
         {
-            baseTower.shootDelayMultiplier = 0.0404f;
+            tower.shootDelayMultiplier = 0.0404f;
         });
     }
 }

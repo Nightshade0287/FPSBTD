@@ -273,6 +273,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Magic Monkey
   cost: 320
+  availableTargetingModes: 00000000010000000200000003000000
+  path1:
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  path2:
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  path3:
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  path1Index: 0
+  path2Index: 0
+  path3Index: 0
 --- !u!114 &-6540662037415338291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,10 +338,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  damageTypes: 07000000
   pierce: 3
   range: 8
-  DartVelocity: 60
-  ShootDelay: 1.1
+  rangeMultiplier: 1
+  dartVelocity: 0
+  shootDelay: 0
+  shootDelayMultiplier: 1
   spread: 0
   bulletsPerShot: 1
   mask:
@@ -310,8 +365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad18794be3cda704a8458f2bde5b02ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Sell Tower
-  useEvents: 0
 --- !u!1 &2364416727684461646
 GameObject:
   m_ObjectHideFlags: 0

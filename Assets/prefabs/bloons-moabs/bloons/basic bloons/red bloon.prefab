@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 8001936150559199546}
   - component: {fileID: 905109371172986240}
   - component: {fileID: -8287904522653960912}
+  - component: {fileID: 5412590699758565717}
   m_Layer: 7
   m_Name: red bloon
   m_TagString: Untagged
@@ -374,6 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b08200daa3ed1489cb162c9a9a27d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloonTypes: 00000000
+  bloonEffects: 
   health: 1
   ChildBloons: []
   dart: {fileID: 0}
@@ -416,3 +419,19 @@ NavMeshAgent:
   m_BaseOffset: 0.8
   m_WalkableMask: 7
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5412590699758565717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513565125455039766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a312410e56d313a49b0f63542b37ace2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects: 
+  types: 
+  bloonMaterial: {fileID: 2100000, guid: 2ce74de6b46da7c44951448f05df6193, type: 2}
+  camo: {fileID: 2800000, guid: ed1aa362c2b1b30439d5dcc28cab842e, type: 3}

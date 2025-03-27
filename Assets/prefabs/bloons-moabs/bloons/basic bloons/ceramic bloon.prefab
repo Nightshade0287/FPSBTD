@@ -193,6 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b08200daa3ed1489cb162c9a9a27d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloonTypes: 04000000
+  bloonEffects: 
   health: 10
   ChildBloons:
   - {fileID: 3972527278295149294, guid: 59a968bf407928949b9b5752cc6756be, type: 3}

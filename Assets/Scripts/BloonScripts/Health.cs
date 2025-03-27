@@ -8,16 +8,25 @@ public enum BloonTypes
     Basic,
     Black,
     White,
-    Purple,
     Lead,
-    Zebra,
-    Rainbow,
     Ceramic,
-    Moab,
+    Purple,
+    Frozen,
+    Camo
 }
 
+[System.Serializable]
+public enum BloonEffects
+{
+    regrow,
+    reinforced,
+    camo
+}
 public class Health : MonoBehaviour
 {
+    public List<BloonTypes> bloonTypes = new List<BloonTypes>();
+    //[HideInInspector]
+    public List<BloonEffects> bloonEffects = new List<BloonEffects>();
     public int health = 1;
     public GameObject[] ChildBloons;
     public GameObject dart;

@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b08200daa3ed1489cb162c9a9a27d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloonTypes: 00000000
+  bloonEffects: 
   health: 1
   ChildBloons:
   - {fileID: 1465021263072242717, guid: b5f3646bfc5bb1543b102f8e8a58f0ce, type: 3}

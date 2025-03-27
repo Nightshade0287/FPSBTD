@@ -20,10 +20,8 @@ public class Shrapnel_Bouncing : DartBehavior
     public Transform targetBloon;
     public override void BloonHitAction(GameObject bloon, List<GameObject> bloonOrder)
     {
-        Debug.Log(bloonOrder[0].transform.position);
         if(bloon.GetInstanceID() == bloonOrder[0].GetInstanceID())
         {
-            Debug.Log("hit");
             Health bloonHealth = bloon.GetComponent<Health>();
             GetClosestBloon(bloon);
             bloonHealth.dart = gameObject;
@@ -65,7 +63,6 @@ public class Shrapnel_Bouncing : DartBehavior
                 {
                     if(CanSeeBloon(bloon, hitBloon.transform))
                     {
-                        Debug.Log("sees close bloon");
                         closestBloon = bloon;
                         closestDistance = distance;
                     }
@@ -75,7 +72,6 @@ public class Shrapnel_Bouncing : DartBehavior
             if (closestBloon != null)
             {
                 targetBloon = closestBloon;
-                Debug.Log(targetBloon);
             }
         }
     }

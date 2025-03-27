@@ -6,6 +6,7 @@ public class BaseTower : MonoBehaviour
 {
     [Header("Variables")]
     public int damage;
+    public List<DamageTypes> damageTypes = new List<DamageTypes>();
     public int pierce;
     public float range;
     public float rangeMultiplier = 1;
@@ -38,8 +39,14 @@ public class BaseTower : MonoBehaviour
         }
     }
 
+
+
     protected bool CanSeeBloon(Transform bloon)
     {
+        if (!DamageBloonInteraction.CanPop(bloon.GetComponent<Health>().bloonTypes, damageTypes))
+        {
+            return false;
+        }
         Transform bloonModel = bloon.Find("Model");
         Quaternion rotation = Quaternion.LookRotation((new Vector3(bloonModel.position.x, transform.position.y, bloonModel.position.z) - transform.position).normalized);
         Vector3 rotatedShootPos = rotation * shootPoint.localPosition;
@@ -128,6 +135,7 @@ public class BaseTower : MonoBehaviour
             bulletScript.damage = damage;
             bulletScript.pierce = pierce;
             bulletScript.range = range;
+            bulletScript.damageTypes = damageTypes;
 
             // Calculate bullet direction with spread
             Vector3 bulletDirection = (target.position - shootPoint.position).normalized;

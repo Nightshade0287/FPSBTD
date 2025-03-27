@@ -304,6 +304,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Super Monkey
   cost: 2125
+  availableTargetingModes: 00000000010000000200000003000000
+  path1:
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  path2:
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  path3:
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  - name: 
+    price: 0
+    upgradeInfoFoldout: 0
+  path1Index: 0
+  path2Index: 0
+  path3Index: 0
 --- !u!114 &1996891704134919710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,10 +369,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  damageTypes: 02000000
   pierce: 1
   range: 10
-  DartVelocity: 150
-  ShootDelay: 0.045
+  rangeMultiplier: 1
+  dartVelocity: 0
+  shootDelay: 0
+  shootDelayMultiplier: 1
   spread: 15
   bulletsPerShot: 1
   mask:
@@ -341,8 +396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad18794be3cda704a8458f2bde5b02ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Sell Tower
-  useEvents: 0
 --- !u!1 &6854333308792536658
 GameObject:
   m_ObjectHideFlags: 0

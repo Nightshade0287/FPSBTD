@@ -4,91 +4,96 @@ using UnityEngine;
 
 public class DartMonkey : TowerInfo
 {
+    public GameObject spikeBallPrefab;
     public override void DefineUpgrades()
     {
         // Path 1 Upgrades
-        path1[0] = new Upgrade("Sharp Shots", 170, (baseTower) =>
+        path1[0] = new Upgrade("Sharp Shots", 170, (tower) =>
         {
-            baseTower.pierce += 1;
-            if(path3Index == 5) baseTower.pierce += 5;
+            tower.pierce += 1;
+            if(path3Index == 5) tower.pierce += 5;
         });
-        path1[1] = new Upgrade("Razor Sharp Shots", 265, (baseTower) =>
+        path1[1] = new Upgrade("Razor Sharp Shots", 265, (tower) =>
         {
-            baseTower.pierce += 2;
-            if(path3Index == 5 && baseTower.pierce == 8) baseTower.pierce += 5;
+            tower.pierce += 2;
+            if(path3Index == 5 && tower.pierce == 8) tower.pierce += 5;
         });
-        path1[2] = new Upgrade("Spike-O-Pult", 360, (baseTower) =>
+        path1[2] = new Upgrade("Spike-O-Pult", 360, (tower) =>
         {
-            baseTower.pierce = 22;
-            baseTower.damage = 2;
-            baseTower.rangeMultiplier *= 1.15f;
-            baseTower.shootDelay = 1.15f;
+            tower.pierce = 22;
+            tower.damage = 2;
+            tower.rangeMultiplier *= 1.15f;
+            tower.shootDelay = 1.15f;
+            tower.damageTypes = new List<DamageTypes> {DamageTypes.Shatter};
+            tower.bulletPrefab = spikeBallPrefab;
         });
-        path1[3] = new Upgrade("Juggernaut", 2160, (baseTower) =>
+        path1[3] = new Upgrade("Juggernaut", 2160, (tower) =>
         {
-            baseTower.pierce = 55;
-            baseTower.damage = 2;
-            baseTower.pierce += 2;
+            tower.pierce = 55;
+            tower.damage = 2;
+            tower.pierce += 2;
+            tower.damageTypes = new List<DamageTypes> {DamageTypes.Normal};
         });
-        path1[4] = new Upgrade("Ultra-Juggernaut", 18000, (baseTower) =>
+        path1[4] = new Upgrade("Ultra-Juggernaut", 18000, (tower) =>
         {
-            baseTower.pierce = 200;
-            baseTower.damage = 5;
-            baseTower.pierce += 2;
+            tower.pierce = 200;
+            tower.damage = 5;
+            tower.pierce += 2;
         });
         // Path 2 Upgrades
-        path2[0] = new Upgrade("Quick Shots", 120, (baseTower) =>
+        path2[0] = new Upgrade("Quick Shots", 120, (tower) =>
         {
-            baseTower.shootDelayMultiplier = 0.85f;
+            tower.shootDelayMultiplier = 0.85f;
         });
-        path2[1] = new Upgrade("Very Quick Shots", 230, (baseTower) =>
+        path2[1] = new Upgrade("Very Quick Shots", 230, (tower) =>
         {
-            baseTower.shootDelayMultiplier = 0.67f;
+            tower.shootDelayMultiplier = 0.67f;
         });
-        path2[2] = new Upgrade("Triple Shot", 480, (baseTower) =>
+        path2[2] = new Upgrade("Triple Shot", 480, (tower) =>
         {
-            baseTower.spread = 5;
-            baseTower.bulletsPerShot = 3;
+            tower.spread = 5;
+            tower.bulletsPerShot = 3;
         });
-        path2[3] = new Upgrade("Super Monkey Fan Club", 9600, (baseTower) =>
+        path2[3] = new Upgrade("Super Monkey Fan Club", 9600, (tower) =>
         {
-            baseTower.shootDelayMultiplier = 0.5025f;
+            tower.shootDelayMultiplier = 0.5025f;
         });
-        path2[4] = new Upgrade("Plasma Monkey Fan Club", 54000, (baseTower) =>
+        path2[4] = new Upgrade("Plasma Monkey Fan Club", 54000, (tower) =>
         {
-            baseTower.pierce += 2;
-            baseTower.damage += 3;
-            baseTower.shootDelayMultiplier = 0.335f;
+            tower.pierce += 2;
+            tower.damage += 3;
+            tower.shootDelayMultiplier = 0.335f;
         });
         // Path 3 Upgrades
-        path3[0] = new Upgrade("Long Range Darts", 110, (baseTower) =>
+        path3[0] = new Upgrade("Long Range Darts", 110, (tower) =>
         {
-            baseTower.range += 8;
+            tower.range += 8;
         });
-        path3[1] = new Upgrade("Enhanced Eyesight", 215, (baseTower) =>
+        path3[1] = new Upgrade("Enhanced Eyesight", 215, (tower) =>
         {
-            baseTower.range += 8;
-            baseTower.dartVelocity *= 1.1f;
+            tower.range += 8;
+            tower.dartVelocity *= 1.1f;
         });
-        path3[2] = new Upgrade("Crossbow", 750, (baseTower) =>
+        path3[2] = new Upgrade("Crossbow", 750, (tower) =>
         {
-            baseTower.damage += 3;
-            baseTower.pierce += 1;
-            baseTower.range += 8;
-            baseTower.dartVelocity += 1;
+            tower.damage += 3;
+            tower.pierce += 1;
+            tower.range += 8;
+            tower.dartVelocity += 1;
         });
-        path3[3] = new Upgrade("Sharp Shooter", 2160, (baseTower) =>
+        path3[3] = new Upgrade("Sharp Shooter", 2160, (tower) =>
         {
-            baseTower.damage += 3;
-            baseTower.shootDelay = 0.6f;
-            baseTower.dartVelocity += 3;
-            baseTower.range += 4;
+            tower.damage += 3;
+            tower.shootDelay = 0.6f;
+            tower.dartVelocity += 3;
+            tower.range += 4;
         });
-        path3[4] = new Upgrade("Crossbow Master", 25800, (baseTower) =>
+        path3[4] = new Upgrade("Crossbow Master", 25800, (tower) =>
         {
-            baseTower.pierce += 5;
-            if(path1Index == 1 || path1Index == 2) baseTower.pierce += 5;
-            baseTower.dartVelocity += 2;
+            tower.pierce += 5;
+            if(path1Index == 1 || path1Index == 2) tower.pierce += 5;
+            tower.dartVelocity += 2;
+            tower.damageTypes = new List<DamageTypes> {DamageTypes.Normal};
         });
     }
 }

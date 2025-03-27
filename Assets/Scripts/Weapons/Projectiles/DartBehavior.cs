@@ -6,9 +6,26 @@ using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
+[System.Serializable]
+public enum DamageTypes
+{
+    Normal,
+    Acid,
+    Sharp,
+    Explosion,
+    Cold,
+    Glacier,
+    Shatter,
+    Energy,
+    Arctic,
+    Plasma,
+    Fire,
+    CamoDetection
+}
 public class DartBehavior : MonoBehaviour
 {
     [Header("Variables")]
+    public List<DamageTypes> damageTypes = new List<DamageTypes>();
     public int damage;
     public int pierce;
     public float range;
@@ -100,14 +117,13 @@ public class DartBehavior : MonoBehaviour
 
         foreach (GameObject bloon in bloonOrder)
         {
-            if(!bloonHitList.Contains(bloon.GetInstanceID()))
+            Health bloonHealth = bloon.GetComponent<Health>();
+            bool canPop = false; // Start as false, we will change to true if any match is found
+            canPop = DamageBloonInteraction.CanPop(bloonHealth.bloonTypes, damageTypes);
+            if(canPop && bloonsHit < pierce)
             {
-                if(bloonsHit < pierce)
-                {
-                    BloonHitAction(bloon, bloonOrder);
-                }
+                BloonHitAction(bloon, bloonOrder);
             }
-
         }
     }
 }

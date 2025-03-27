@@ -16870,7 +16870,7 @@ MonoBehaviour:
     - prefab: {fileID: 270858087927334935, guid: d3dcdd225802cf74b84ed9d897879267, type: 3}
       amount: 1
       timeStamps: {x: 0, y: 1}
-  roundIndex: 30
+  roundIndex: 1
   bloonsLeftInRound: 0
   roundOver: 1
   paths:
