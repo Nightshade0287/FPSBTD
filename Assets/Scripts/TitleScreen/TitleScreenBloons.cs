@@ -21,8 +21,6 @@ public class TitleScreenBloons : MonoBehaviour
     public Path[] paths;
     public Transform BloonHolder;
     private bool speedUp;
-    private PlayerUI playerUI;
-    private int rewardAmount = 100;
     void Start()
     {
         StartNextRound();

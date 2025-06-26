@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using TMPro;
+using System.Security.Cryptography.X509Certificates;
 
 [System.Serializable]
 public class Upgrade
@@ -20,13 +21,26 @@ public class Upgrade
 }
 public class TowerInfo : MonoBehaviour
 {
+    [Header("Base Tower Stats")]
     public string towerName;
     public int cost;
+    public GameObject dartPrefab;
+    public List<DamageTypes> damageTypes = new List<DamageTypes>();
+    public List<DamageBuff> damageBuffs = new List<DamageBuff>();
+    public int damage;
+    public int pierce;
+    public float range;
+    public float lifeSpan;
+    public float dartVelocity;
+    public float shootDelay;
+    public float spread;
+    public int DartsPerShot = 1;
+    public BaseTower tower;
     public List<TargetingMode> availableTargetingModes = new List<TargetingMode> { TargetingMode.First, TargetingMode.Last, TargetingMode.Closest, TargetingMode.Strongest };
     private int currentTargetingMode;
-    private int value = 0;
+    private int value = 0; // Value of the Tower, Cost + upgrades
     private Transform towerUpgrades;
-    private PlayerUI playerUI;
+    private Economy_Health economy;
     [HideInInspector]
     [SerializeField]
     [Range(5, 5)]
@@ -41,23 +55,22 @@ public class TowerInfo : MonoBehaviour
     [SerializeField]
     [Range(5, 5)]
     public Upgrade[] path3 = new Upgrade[5];
+    [HideInInspector]
     public int path1Index = 0;
+    [HideInInspector]
     public int path2Index = 0;
+    [HideInInspector]
     public int path3Index = 0;
-
     // Method to handle upgrading the tower
 
     public void Start()
     {
         value += cost;
-        playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
+        economy = GameObject.Find("GameManager").GetComponent<Economy_Health>();
         DefineUpgrades();
     }
-
-    public virtual void DefineUpgrades()
-    {
-
-    }
+    public virtual void DefineUpgrades() {} // Defined in Individual tower Scripts
+    public virtual void ApplyCrosspathEffects() {} // Defined in Individual tower Scripts
     public void UpgradeTower(int path)
     {
         Upgrade[] selectedPath;
@@ -66,19 +79,19 @@ public class TowerInfo : MonoBehaviour
         switch (path)
         {
             case 1:
-                if(path2Index > 0 && path3Index > 0 || ((path1Index == 2) && (path2Index > 2 || path3Index > 2)))
+                if (path2Index > 0 && path3Index > 0 || ((path1Index == 2) && (path2Index > 2 || path3Index > 2)))
                     return;
                 selectedPath = path1;
                 selectedIndex = path1Index;
                 break;
             case 2:
-                if(path1Index > 0 && path3Index > 0 || ((path2Index == 2) && (path1Index > 2 || path3Index > 2)))
+                if (path1Index > 0 && path3Index > 0 || ((path2Index == 2) && (path1Index > 2 || path3Index > 2)))
                     return;
                 selectedPath = path2;
                 selectedIndex = path2Index;
                 break;
             case 3:
-                if(path1Index > 0 && path2Index > 0 || ((path3Index == 2) && (path1Index > 2 || path2Index > 2)))
+                if (path1Index > 0 && path2Index > 0 || ((path3Index == 2) && (path1Index > 2 || path2Index > 2)))
                     return;
                 selectedPath = path3;
                 selectedIndex = path3Index;
@@ -91,8 +104,8 @@ public class TowerInfo : MonoBehaviour
         if (selectedIndex < selectedPath.Length)
         {
             value += selectedPath[selectedIndex].price;
-            playerUI.cash -= selectedPath[selectedIndex].price;
-            selectedPath[selectedIndex].UpgradeAction(GetComponent<BaseTower>());
+            economy.cash -= selectedPath[selectedIndex].price;
+            selectedPath[selectedIndex].UpgradeAction(tower);
             selectedIndex++;
         }
         else
@@ -113,6 +126,7 @@ public class TowerInfo : MonoBehaviour
                 path3Index = selectedIndex;
                 break;
         }
+        ApplyCrosspathEffects();
         UpdateTowerUpgradeUI();
     }
     public void CycleTargetingMode(int direction)
@@ -124,7 +138,7 @@ public class TowerInfo : MonoBehaviour
 
     public void Sell()
     {
-        playerUI.UpdateMoney(value / 2);
+        economy.UpdateMoney(value / 2);
         Destroy(gameObject);
     }
     public void UpdateTowerUpgradeUI()
@@ -141,14 +155,14 @@ public class TowerInfo : MonoBehaviour
             Transform upgradeButton = path.Find("Upgrade Button");
             //Upgrade Indicater
             Transform upgradeIndex = path.Find("Upgrade Index");
-            for(int x = 0; x < pathIndexs[i]; x++)
+            for (int x = 0; x < pathIndexs[i]; x++)
             {
                 upgradeIndex.GetChild(x).Find("On").gameObject.SetActive(true);
             }
 
             //Current Upgrade
             Transform currentUpgrade = path.Find("Current Upgrade");
-            if(pathIndexs[i] > 0)
+            if (pathIndexs[i] > 0)
             {
                 currentUpgrade.Find("Not Upgraded").gameObject.SetActive(false);
                 currentUpgrade.Find("Upgrade Name").gameObject.SetActive(true);
@@ -156,11 +170,11 @@ public class TowerInfo : MonoBehaviour
             }
 
             //Upgrade Button
-            if(pathIndexs[i] < 5)
+            if (pathIndexs[i] < 5)
             {
                 upgradeButton.Find("Name").GetComponent<TextMeshProUGUI>().text = paths[i][pathIndexs[i]].name;
                 upgradeButton.Find("Price").GetComponent<TextMeshProUGUI>().text = "$" + paths[i][pathIndexs[i]].price;
-                if(playerUI.cash >= paths[i][pathIndexs[i]].price)
+                if (economy.cash >= paths[i][pathIndexs[i]].price)
                 {
                     upgradeButton.Find("Background").Find("Buyable").gameObject.SetActive(true);
                     upgradeButton.Find("Price").GetComponent<TextMeshProUGUI>().color = Color.white;
@@ -177,14 +191,14 @@ public class TowerInfo : MonoBehaviour
                 upgradeButton.Find("Background").Find("Buyable").gameObject.SetActive(false);
                 upgradeButton.Find("Price").gameObject.SetActive(false);
             }
-            if(pathIndexs[(i + 4) % 3] > 0 && pathIndexs[(i + 2) % 3] > 0)
+            if (pathIndexs[(i + 4) % 3] > 0 && pathIndexs[(i + 2) % 3] > 0)
             {
                 upgradeButton.gameObject.SetActive(false);
                 upgradeIndex.gameObject.SetActive(false);
                 path.Find("Cant Upgrade").gameObject.SetActive(true);
                 currentUpgrade.Find("Not Upgraded").GetComponent<TextMeshProUGUI>().text = "Path Closed";
             }
-            if((pathIndexs[i] == 2) && (pathIndexs[(i + 4) % 3] > 2 || pathIndexs[(i + 2) % 3] > 2))
+            if ((pathIndexs[i] == 2) && (pathIndexs[(i + 4) % 3] > 2 || pathIndexs[(i + 2) % 3] > 2))
             {
                 upgradeButton.Find("Name").GetComponent<TextMeshProUGUI>().text = "Max Upgrades";
                 upgradeButton.Find("Background").Find("Buyable").gameObject.SetActive(false);
@@ -209,7 +223,7 @@ public class TowerInfo : MonoBehaviour
             path.Find("Cant Upgrade").gameObject.SetActive(false);
             Transform upgradeIndex = path.Find("Upgrade Index");
             upgradeIndex.gameObject.SetActive(true);
-            for(int x = 0; x < 5; x++)
+            for (int x = 0; x < 5; x++)
             {
                 upgradeIndex.GetChild(x).Find("On").gameObject.SetActive(false);
             }

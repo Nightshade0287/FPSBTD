@@ -14,13 +14,13 @@ public class BloonMovement : MonoBehaviour
     private NavMeshAgent agent;
     public int currentWaypoint = 0;
     private float baseSpeed = 3f;
-    private PlayerUI playerUI;
+    private Economy_Health economy;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = baseSpeed * speedMultiplier;
         agent.SetDestination(path.waypoints[currentWaypoint].position);
-        playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
+        economy = GameObject.Find("GameManager").GetComponent<Economy_Health>();
     }
 
     public void Update()
@@ -51,7 +51,8 @@ public class BloonMovement : MonoBehaviour
             }
             else
             {
-                playerUI.UpdateHealth(rbe);
+                economy.UpdateHealth(rbe);
+                //GlobalEvents.BloonPassed();
                 Destroy(gameObject);
             }
         }

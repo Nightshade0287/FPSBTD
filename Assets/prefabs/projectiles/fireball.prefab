@@ -160,10 +160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dca78cd937144c4a96906e60b6c3e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageTypes: 
   damage: 1
-  sharpness: 3
+  pierce: 0
   range: 100
-  gravity: 0
+  gravity: 0.98
   HitRaduis: 0.5
   hitLayers:
     serializedVersion: 2
@@ -171,7 +172,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   bulletSpeed: 0
   bloonsHit: 0
-  bloonHitList: []
+  bloonHitList: 
 --- !u!1 &9217383777065834182
 GameObject:
   m_ObjectHideFlags: 0

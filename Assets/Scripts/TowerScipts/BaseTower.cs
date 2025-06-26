@@ -5,28 +5,37 @@ using UnityEngine;
 public class BaseTower : MonoBehaviour
 {
     [Header("Variables")]
-    public int damage;
     public List<DamageTypes> damageTypes = new List<DamageTypes>();
+    public List<DamageBuff> damageBuffs = new List<DamageBuff>();
+    public Critical critical;
+    public int damage;
     public int pierce;
     public float range;
     public float rangeMultiplier = 1;
+    public float lifeSpan;
+    public float lifeSpanMultiplier = 1;
     public float dartVelocity;
+    public float dartVelocityMultiplier = 1;
     public float shootDelay;
     public float shootDelayMultiplier = 1;
     public float spread;
-    public int bulletsPerShot;
+    public Vector3 shootOffset = Vector3.zero;
+    public int dartsPerShot = 1;
 
     [Header("References")]
     public LayerMask mask;
     public Transform BloonHolder;
-    public GameObject bulletPrefab;
+    public GameObject dartPrefab;
     public Transform shootPoint;
     protected Transform targetBloon;
     protected bool canShoot = true;
+    public TowerInfo towerInfo;
 
     protected void Start()
     {
         spread /= 1000;
+        towerInfo = GetComponent<TowerInfo>();
+        if (towerInfo != null) InitializeTower();
     }
 
     // Update is called once per frame
@@ -39,8 +48,28 @@ public class BaseTower : MonoBehaviour
         }
     }
 
+    public void ReplaceDamageType(DamageTypes remove, DamageTypes replace)
+    {
+        if (damageTypes.Contains(remove))
+        {
+            damageTypes.Remove(remove);
+            damageTypes.Add(replace);
+        }
+        else if (!damageTypes.Contains(replace)) damageTypes.Add(replace);
+    }
+    public void AddOrUpdateBuff(BloonTypes type, int amount)
+    {
+        DamageBuff existingBuff = damageBuffs.Find(buff => buff.bloonType == type);
 
-
+        if (existingBuff != null)
+        {
+            existingBuff.buffAmount += amount;
+        }
+        else
+        {
+            damageBuffs.Add(new DamageBuff { bloonType = type, buffAmount = amount });
+        }
+    }
     protected bool CanSeeBloon(Transform bloon)
     {
         if (!DamageBloonInteraction.CanPop(bloon.GetComponent<Health>().bloonTypes, damageTypes))
@@ -53,11 +82,11 @@ public class BaseTower : MonoBehaviour
         Vector3 newShootPos = transform.position + rotatedShootPos;
 
         Ray ray = new Ray(newShootPos, bloonModel.position - newShootPos);
-        RaycastHit hit; 
+        RaycastHit hit;
         //Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(newShootPos, bloonModel.position));
-        if(Physics.Raycast(ray, out hit, range, mask))
+        if (Physics.Raycast(ray, out hit, range, mask))
         {
-            if(hit.collider.gameObject.layer == bloon.gameObject.layer)
+            if (hit.collider.gameObject.layer == bloon.gameObject.layer)
                 return true;
         }
         return false;
@@ -75,7 +104,7 @@ public class BaseTower : MonoBehaviour
 
                 if (distance < closestDistance)
                 {
-                    if(CanSeeBloon(bloon))
+                    if (CanSeeBloon(bloon))
                     {
                         closestBloon = bloon;
                         closestDistance = distance;
@@ -103,7 +132,7 @@ public class BaseTower : MonoBehaviour
 
                 if (health > strongest)
                 {
-                    if(CanSeeBloon(bloon))
+                    if (CanSeeBloon(bloon))
                     {
                         strongestBloon = bloon;
                         strongest = health;
@@ -126,28 +155,25 @@ public class BaseTower : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < bulletsPerShot; i++)
-        {    
+        for (int i = 0; i < dartsPerShot; i++)
+        {
             Transform target = targetBloon.Find("Model").GetChild(0);
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
-            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
-            DartBehavior bulletScript = bullet.GetComponent<DartBehavior>();
-            bulletScript.damage = damage;
-            bulletScript.pierce = pierce;
-            bulletScript.range = range;
-            bulletScript.damageTypes = damageTypes;
+            GameObject dart = Instantiate(dartPrefab, shootPoint.position, shootPoint.rotation);
+            DartBehavior dartScript = dart.GetComponent<DartBehavior>();
+            InitializeDart(dartScript);
 
-            // Calculate bullet direction with spread
-            Vector3 bulletDirection = (target.position - shootPoint.position).normalized;
+            // Calculate dart direction with spread
+            Vector3 dartDirection = ((target.position - shootPoint.position) + shootOffset).normalized;
 
             // Calculate spread offset
-            float spreadX = Random.Range(-spread/2, spread/2);
-            float spreadY = Random.Range(-spread/2, spread/2);
+            float spreadX = Random.Range(-spread / 2, spread / 2);
+            float spreadY = Random.Range(-spread / 2, spread / 2);
 
-            bulletDirection = (Quaternion.AngleAxis(spreadX, Vector3.up) * Quaternion.AngleAxis(spreadY, Vector3.right) * bulletDirection).normalized;
+            dartDirection = (Quaternion.AngleAxis(spreadX, Vector3.up) * Quaternion.AngleAxis(spreadY, Vector3.right) * dartDirection).normalized;
 
-            bulletScript.direction = bulletDirection.normalized;
-            bulletScript.bulletSpeed = dartVelocity;
+            dartScript.direction = dartDirection.normalized;
+            dartScript.dartSpeed = dartVelocity;
         }
 
         // Set a cooldown before the next shot
@@ -160,5 +186,30 @@ public class BaseTower : MonoBehaviour
     {
         yield return new WaitForSeconds(shootDelay * shootDelayMultiplier);
         canShoot = true;
+    }
+
+    public void InitializeTower()
+    {
+        dartPrefab = towerInfo.dartPrefab;
+        damage = towerInfo.damage;
+        damageTypes = towerInfo.damageTypes;
+        damageBuffs = towerInfo.damageBuffs;
+        pierce = towerInfo.pierce;
+        range = towerInfo.range;
+        lifeSpan = towerInfo.lifeSpan;
+        dartVelocity = towerInfo.dartVelocity;
+        shootDelay = towerInfo.shootDelay;
+        spread = towerInfo.spread;
+        dartsPerShot = towerInfo.DartsPerShot;
+    }
+
+    public void InitializeDart(DartBehavior dart)
+    {
+        dart.damageTypes = damageTypes;
+        dart.damageBuffs = damageBuffs;
+        dart.damage = damage + critical.CheckForCritical();
+        dart.pierce = pierce;
+        dart.lifeSpan = lifeSpan;
+        if (range / dartVelocity > lifeSpan) Debug.Log("Warning " + towerInfo.name + " dart lifespan is shorter than range");
     }
 }

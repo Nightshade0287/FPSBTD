@@ -112,7 +112,7 @@ MonoBehaviour:
   damage: 0
   pierce: 0
   range: 0
-  gravity: 0
+  gravity: 0.98
   HitRaduis: 0.01
   hitLayers:
     serializedVersion: 2

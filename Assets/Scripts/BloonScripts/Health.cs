@@ -3,19 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public enum BloonTypes
-{
-    Basic,
-    Black,
-    White,
-    Lead,
-    Ceramic,
-    Purple,
-    Frozen,
-    Camo
-}
-
-[System.Serializable]
 public enum BloonEffects
 {
     regrow,
@@ -30,10 +17,10 @@ public class Health : MonoBehaviour
     public int health = 1;
     public GameObject[] ChildBloons;
     public GameObject dart;
-    public PlayerUI playerUI;
+    public Economy_Health economy;
     void Awake()
     {
-        playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
+        economy = GameObject.Find("GameManager").GetComponent<Economy_Health>();
     }
 
     void Update()
@@ -59,7 +46,7 @@ public class Health : MonoBehaviour
             dart.GetComponent<DartBehavior>().bloonHitList.Add(bloon.GetInstanceID());
             bloonHealth.TakeDamage(damage);
         }
-        playerUI.UpdateMoney(1);
+        economy.UpdateMoney(1);
         Destroy(gameObject);
     }
 }

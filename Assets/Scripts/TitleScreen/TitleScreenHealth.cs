@@ -32,7 +32,6 @@ public class TitleScreenHealth : MonoBehaviour
             dart.GetComponent<DartBehavior>().bloonHitList.Add(bloon.GetInstanceID());
             bloonHealth.TakeDamage(damage);
         }
-        playerUI.UpdateMoney(1);
         Destroy(gameObject);
     }
 }

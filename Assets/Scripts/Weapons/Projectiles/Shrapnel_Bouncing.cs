@@ -7,16 +7,9 @@ public class Shrapnel_Bouncing : DartBehavior
 {
     [Header("Bounce and Shrapnel Variables")]
     public GameObject fragPrefab;
-    public GameObject shrapnelPrefab;
-    public int shrapnelCount;
-    public int shrapnelDamage;
-    public int shrapnelPierce;
-    public float shrapnelRange;
-    public float shrapnelVelocity;
-    [Range(0f, 360f)]
-    public float shrapnelSpreadAngle;
-    public float sphereRadius;
+    public Shrapnel shrapnel;
     public int bounceRange = 40;
+    public int bounceAmount;
     public Transform targetBloon;
     public override void BloonHitAction(GameObject bloon, List<GameObject> bloonOrder)
     {
@@ -30,7 +23,7 @@ public class Shrapnel_Bouncing : DartBehavior
             bloonsHit += 1;
             Shrapnel(bloon.transform);
             if(bloonsHit >= pierce) Destroy(gameObject);
-            BounceBullet(bloon.transform);
+            if(targetBloon != null && bloonsHit >= bounceAmount) BounceBullet(bloon.transform);
             targetBloon = null;
         }
     }
@@ -78,24 +71,18 @@ public class Shrapnel_Bouncing : DartBehavior
 
     public void BounceBullet(Transform bloon)
     {
-        if(targetBloon != null)
-        {
-            transform.position = bloon.position;
-            startPoint = bloon.position;
-            timeSinceShot = 0f;
-            direction = (targetBloon.position - bloon.position).normalized;
-        }
-        else
-        {
-            //direction = transform.forward;
-        }
+        transform.position = bloon.position;
+        startPoint = bloon.position;
+        timeSinceShot = 0f;
+        direction = (targetBloon.position - bloon.position).normalized;
     }
 
     public void Shrapnel(Transform bloon)
     {
         GameObject frag = Instantiate(fragPrefab, bloon.position, Quaternion.identity);
         Frag fragScript = frag.GetComponent<Frag>();
-        fragScript.Initialize(shrapnelCount, shrapnelDamage, shrapnelPierce, shrapnelRange, shrapnelVelocity, shrapnelSpreadAngle, sphereRadius, direction, shrapnelPrefab);
+        fragScript.Initialize(shrapnel.count, shrapnel.damage, damageTypes, damageBuffs, shrapnel.pierce,
+        shrapnel.range, shrapnel.velocity, shrapnel.spreadAngle, shrapnel.sphereRadius, direction, shrapnel.prefab);
         fragScript.parentDart = gameObject;
     }
 }

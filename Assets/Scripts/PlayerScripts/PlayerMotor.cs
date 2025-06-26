@@ -11,10 +11,6 @@ public class PlayerMotor : MonoBehaviour
     private PlayerInput playerInput;
     private Vector3 playerVelocity;
     private bool isGrounded;
-    private bool sprinting = false;
-    private bool crouching = false;
-    private float crouchTimer;
-    private bool lerpCrouch;
     private float speed;
 
     public float walkSpeed = 5f;

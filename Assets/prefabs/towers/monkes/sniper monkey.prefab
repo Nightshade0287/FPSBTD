@@ -502,7 +502,6 @@ GameObject:
   - component: {fileID: -4479116211995893336}
   - component: {fileID: -3103161844110881751}
   - component: {fileID: -7397909013197638989}
-  - component: {fileID: -7946465421272857383}
   m_Layer: 13
   m_Name: sniper monkey
   m_TagString: Untagged
@@ -554,6 +553,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Sniper Monkey
   cost: 300
+  dartPrefab: {fileID: 4110695513497631665, guid: 27b6bceea4e02b648ba76b79d2328905, type: 3}
+  damageTypes: 02000000
+  damageBuffs: []
+  damage: 2
+  pierce: 1
+  range: 1000
+  lifeSpan: 1
+  dartVelocity: 500
+  shootDelay: 1.59
+  spread: 0
+  DartsPerShot: 1
+  tower: {fileID: -7397909013197638989}
   availableTargetingModes: 00000000010000000200000003000000
   path1:
   - name: 
@@ -619,34 +630,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0bec038ad848b4381a8cde9ac2e256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
   damageTypes: 02000000
-  pierce: 1
-  range: 1000
+  damageBuffs: []
+  critical:
+    critAmount: 0
+    shotThreshold: 0
+  damage: 0
+  pierce: 0
+  range: 0
   rangeMultiplier: 1
-  dartVelocity: 500
-  shootDelay: 1.59
+  lifeSpan: 0
+  lifeSpanMultiplier: 1
+  dartVelocity: 0
+  dartVelocityMultiplier: 1
+  shootDelay: 0
   shootDelayMultiplier: 1
   spread: 0
-  bulletsPerShot: 1
+  shootOffset: {x: 0, y: 0, z: 0}
+  dartsPerShot: 1
   mask:
     serializedVersion: 2
     m_Bits: 192
   BloonHolder: {fileID: 0}
-  bulletPrefab: {fileID: 4110695513497631665, guid: 27b6bceea4e02b648ba76b79d2328905, type: 3}
+  dartPrefab: {fileID: 0}
   shootPoint: {fileID: 5449388357966388882}
---- !u!114 &-7946465421272857383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6023221377355349153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad18794be3cda704a8458f2bde5b02ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  towerInfo: {fileID: -3103161844110881751}
 --- !u!1 &6023221377416393860
 GameObject:
   m_ObjectHideFlags: 0

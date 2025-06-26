@@ -1,14 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+[System.Serializable]
+public class Shrapnel
+{
+    public GameObject prefab;
+    public int count;
+    public List<DamageTypes> damageTypes;
+    public List<DamageBuff> damageBuffs;
+    public int damage;
+    public int pierce;
+    public float range;
+    public float velocity;
+    [Range(0f, 360f)]
+    public float spreadAngle;
+    public float sphereRadius;
+
+    public Shrapnel(GameObject shrapnelPrefab, int shrapnelCount, List<DamageTypes> damageTypes, List<DamageBuff> damageBuffs, int shrapnelDamage, int shrapnelPierce, float shrapnelRange, float shrapnelVelocity, float spreadAngle, float sphereRadius)
+    {
+        prefab = shrapnelPrefab;
+        count = shrapnelCount;
+        damage = shrapnelDamage;
+        this.damageTypes = damageTypes;
+        this.damageBuffs = damageBuffs;
+        pierce = shrapnelPierce;
+        range = shrapnelRange;
+        velocity = shrapnelVelocity;
+        this.spreadAngle = spreadAngle;
+        this.sphereRadius = sphereRadius;
+    }
+
+    public void ReplaceDamageType(DamageTypes remove, DamageTypes replace)
+    {
+        if (damageTypes.Contains(remove))
+        {
+            damageTypes.Remove(remove);
+            damageTypes.Add(replace);
+        }
+        else if (!damageTypes.Contains(replace)) damageTypes.Add(replace);
+    }
+    public void AddOrUpdateBuff(BloonTypes type, int amount)
+    {
+        DamageBuff existingBuff = damageBuffs.Find(buff => buff.bloonType == type);
+
+        if (existingBuff != null)
+        {
+            existingBuff.buffAmount += amount;
+        }
+        else
+        {
+            damageBuffs.Add(new DamageBuff { bloonType = type, buffAmount = amount });
+        }
+    }
+}
 public class Frag : MonoBehaviour
 {
     [Header("Variables")]
     public int fragmentCount;
     public int damage;
+    public List<DamageTypes> damageTypes = new List<DamageTypes>();
+    public List<DamageBuff> damageBuffs = new List<DamageBuff>();
+    public Critical critical;
     public int pierce;
-    public float range;
+    public float lifeSpan;
     public float dartVelocity;
     [Range(0f, 360f)]
     public float spreadAngle;
@@ -19,12 +75,14 @@ public class Frag : MonoBehaviour
     public GameObject parentDart = null;
 
     // This method sets all the necessary variables for the dart
-    public void Initialize(int fragmentCount, int damage, int pierce, float range, float dartVelocity, float spreadAngle, float sphereRadius, Vector3 direction, GameObject fragmentPrefab)
+    public void Initialize(int fragmentCount, int damage, List<DamageTypes> damageTypes, List<DamageBuff> damageBuffs, int pierce, float lifeSpan, float dartVelocity, float spreadAngle, float sphereRadius, Vector3 direction, GameObject fragmentPrefab)
     {
         this.fragmentCount = fragmentCount;
+        this.damageTypes = damageTypes;
+        this.damageBuffs = damageBuffs;
         this.damage = damage;
         this.pierce = pierce;
-        this.range = range;
+        this.lifeSpan = lifeSpan;
         this.dartVelocity = dartVelocity;
         this.spreadAngle = spreadAngle;
         this.sphereRadius = sphereRadius;
@@ -35,7 +93,12 @@ public class Frag : MonoBehaviour
     {
         SpreadFragments();
         direction = transform.forward;
-        Destroy(gameObject);
+        //Destroy(gameObject);
+    }
+
+    void Update()
+    {
+        //SpreadFragments();
     }
     void SpreadFragments()
     {
@@ -52,13 +115,10 @@ public class Frag : MonoBehaviour
 
             // Instantiate the fragment at the calculated position
             GameObject fragment = Instantiate(fragmentPrefab, fragmentPosition, Quaternion.identity);
-            DartBehavior bulletScript = fragment.GetComponent<DartBehavior>();
-            if (parentDart != null) bulletScript.bloonHitList = new List<int>(parentDart.GetComponent<DartBehavior>().bloonHitList);
-            bulletScript.damage = damage;
-            bulletScript.pierce = pierce;
-            bulletScript.range = range;
-            bulletScript.direction = globalDirection.normalized;
-            bulletScript.bulletSpeed = dartVelocity;
+            DartBehavior dartScript = fragment.GetComponent<DartBehavior>();
+            PhysicsBasedDarts physicsBasedDarts = fragment.GetComponent<PhysicsBasedDarts>();
+            if (parentDart != null) dartScript.bloonHitList = new List<int>(parentDart.GetComponent<DartBehavior>().bloonHitList);
+            InitializeFragments(dartScript, globalDirection);
         }
     }
 
@@ -82,6 +142,17 @@ public class Frag : MonoBehaviour
     {
         // Rotate the local direction vector so that it aligns with the target direction
         return Quaternion.LookRotation(targetDirection.normalized) * localDirection;
+    }
+
+    public void InitializeFragments(DartBehavior dart, Vector3 dir)
+    {
+        dart.damage = damage;
+        dart.damageTypes = damageTypes;
+        dart.damageBuffs = damageBuffs;
+        dart.pierce = pierce;
+        dart.lifeSpan = lifeSpan;
+        dart.direction = dir.normalized;
+        dart.dartSpeed = dartVelocity;
     }
 }
 

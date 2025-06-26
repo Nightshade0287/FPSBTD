@@ -28,26 +28,32 @@ public class BloonWaves : MonoBehaviour
     public Round[] rounds;
     public int roundIndex = 0;
     public int bloonsLeftInRound = 0;
+    public int totalBloons;
+    [Range(0, 100)]
+    public float roundPercentage;
     public bool roundOver = true;
     [Header("References")]
     public Path[] paths;
     public Transform BloonHolder;
     private bool speedUp;
     private PlayerUI playerUI;
+    private Economy_Health economy;
     private int rewardAmount = 100;
     void Start()
     {
         playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
+        economy = GameObject.Find("GameManager").GetComponent<Economy_Health>();
         playerUI.UpdateRound(roundIndex);
     }
     void Update()
     {
-        if(!roundOver)
+        if (!roundOver)
         {
-            if(BloonHolder.childCount == 0 && bloonsLeftInRound == 0)
+            roundPercentage = (float)(bloonsLeftInRound + BloonHolder.childCount) / totalBloons * 100;
+            if (roundPercentage == 0)
             {
                 roundOver = true;
-                playerUI.UpdateMoney(rewardAmount + roundIndex - 1);
+                economy.UpdateMoney(rewardAmount + roundIndex - 1);
                 playerUI.UpdateRound(roundIndex);
             }
         }
@@ -73,8 +79,9 @@ public class BloonWaves : MonoBehaviour
             {
                 bloon.amount *= (int)Mathf.Pow(4, (roundIndex - 1) / rounds.Length);
                 StartCoroutine(StartBloonSpawn(bloon));
-                bloonsLeftInRound += bloon.amount;
+                totalBloons += bloon.amount;
             }
+            bloonsLeftInRound = totalBloons;
             roundIndex++;
         }
     }

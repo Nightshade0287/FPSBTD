@@ -109,28 +109,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageTypes: 02000000
+  damageBuffs: []
   damage: 0
   pierce: 0
-  range: 0
-  gravity: 0
+  lifeSpan: 2
+  gravity: 0.98
   HitRaduis: 0.01
   hitLayers:
     serializedVersion: 2
     m_Bits: 192
   direction: {x: 0, y: 0, z: 0}
-  bulletSpeed: 0
+  dartSpeed: 0
   bloonsHit: 0
   bloonHitList: 
   fragPrefab: {fileID: 7955119154036128600, guid: 4ec4e79fe9d267c4bafd43b989ead9c9, type: 3}
-  shrapnelPrefab: {fileID: 492331167404204468, guid: e148a6de36700f141ad3de4b983e2382, type: 3}
-  shrapnelCount: 5
-  shrapnelDamage: 1
-  shrapnelPierce: 2
-  shrapnelRange: 10
-  shrapnelVelocity: 40
-  shrapnelSpreadAngle: 45
-  sphereRadius: 0
+  shrapnel:
+    prefab: {fileID: 492331167404204468, guid: e148a6de36700f141ad3de4b983e2382, type: 3}
+    count: 5
+    damageTypes: 0b00000002000000
+    damageBuffs: []
+    damage: 1
+    pierce: 2
+    range: 10
+    velocity: 40
+    spreadAngle: 45
+    sphereRadius: 0
   bounceRange: 10
+  bounceAmount: 3
   targetBloon: {fileID: 0}
 --- !u!1 &4110695513926173804
 GameObject:

@@ -17,35 +17,13 @@ public class PlayerUI : MonoBehaviour
     private TextMeshProUGUI roundText;
     [SerializeField]
     private TextMeshProUGUI healthText;
-    public int cash;
-    public int health;
-    public bool infinteCash;
-    public bool infinteHealth;
+    public Economy_Health economy;
     // Start is called before the first frame update
     void Start()
     {
-        // For loop iterating from 0 to 555
-        int num = 0;
-        for (int i = 0; i <= 555; i++)
-        {
-            int a = i / 100 % 10;
-            int b = i / 10 % 10;
-            int c = i % 10;
-            if(a <= 5 && b <= 5 && c <= 5)
-            {
-                if(a == 0 || b == 0 || c == 0)
-                {
-                    if((a == 0 && !(b > 2 && c > 2)) || (b == 0 && !(a > 2 && c > 2)) || (c == 0 && !(b > 2 && a > 2)))
-                    {
-                        num++;
-                    }
-                }
-            }
-        }
-        if(infinteCash)
-            cash = 100000;
-        UpdateMoney(0);
-        UpdateHealth(0);
+        economy = GameObject.Find("GameManagemer").GetComponent<Economy_Health>();
+        UpdateHealth();
+        UpdateHealth();
     }
 
     // Update is called once per frame
@@ -58,31 +36,16 @@ public class PlayerUI : MonoBehaviour
         towerText.text = message;
     }
 
-    public void UpdateMoney(int amount)
+    public void UpdateMoney()
     {
-        if(infinteCash)
-            return;
-        cash += amount;
-        moneyText.text = "$" + cash;
+        moneyText.text = "$" + economy.cash;
     }
     public void UpdateRound(int number)
     {
         roundText.text = "Round " + number;
     }
-    public void UpdateHealth(int amount)
+    public void UpdateHealth()
     {
-        if(infinteHealth)
-            return;
-        if(health - amount > 0)
-        {
-            health -= amount;
-            healthText.text = "Health " + health;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            SceneManager.LoadScene("TitleScreen");
-        }
+        healthText.text = "Health " + economy.health;
     }
 }
