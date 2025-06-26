@@ -21,8 +21,8 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        economy = GameObject.Find("GameManagemer").GetComponent<Economy_Health>();
-        UpdateHealth();
+        economy = GameObject.Find("Economy/Health").GetComponent<Economy_Health>();
+        UpdateMoney();
         UpdateHealth();
     }
 

@@ -10,26 +10,34 @@ public class SniperMonkey : TowerInfo
     public Shrapnel_Bouncing bouncingBullet;
     public BloonWaves bloonWaves;
     public bool panicShoot;
-    public int health;
     public int lastHealth;
     public void Update()
     {
         if (path3Index == 5)
         {
-            tower.shootDelayMultiplier = !bloonWaves.roundOver ? bloonWaves.roundPercentage / 100 : 1;
-            if (panicShoot) tower.shootDelayMultiplier *= 0.25f;
+            if (!bloonWaves.roundOver)
+            {
+                tower.shootDelayMultiplier = bloonWaves.roundPercentage / 100;
+                if (panicShoot && !bloonWaves.roundOver) tower.shootDelayMultiplier *= 0.25f;
+                else if (economy.health < lastHealth)
+                {
+                    StopCoroutine(PanicShoot(7));
+                    StartCoroutine(PanicShoot(7));
+                }    
+                lastHealth = economy.health;
+            }
+            else
+            {
+                tower.shootDelayMultiplier = 1;
+                StopCoroutine(PanicShoot(7));
+                panicShoot = false;
+            }
         }
     }
-
-    public void PanicShoot()
-    {
-        StartCoroutine(Panic(7));
-    }
-
-    IEnumerator Panic(float time)
+    IEnumerator PanicShoot(float time)
     {
         panicShoot = true;
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(time);
         panicShoot = false; 
     }
     public override void DefineUpgrades()
@@ -106,6 +114,7 @@ public class SniperMonkey : TowerInfo
             tower.shootDelay = 0.0649f;
             tower.AddOrUpdateBuff(BloonTypes.Moab, 2);
             bloonWaves = GameObject.Find("BloonManager").GetComponent<BloonWaves>();
+            lastHealth = economy.health;
         });
     }
     public override void ApplyCrosspathEffects()

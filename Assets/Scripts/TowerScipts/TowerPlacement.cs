@@ -30,10 +30,10 @@ public class TowerPlacement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        economy = GetComponent<Economy_Health>();
+        economy = GameObject.Find("Economy/Health").GetComponent<Economy_Health>();
         towerMenu = GameObject.Find("TowerUI").transform.Find("TowerMenu");
         baseGameplay = inputActions.FindActionMap("BaseGameplay");
-        inputActions.FindActionMap("Player_UI").Enable();
+        inputActions.FindActionMap("PlayerUI").Enable();
     }
 
     public void PlaceMode(InputAction.CallbackContext ctx)
@@ -182,7 +182,7 @@ public class TowerPlacement : MonoBehaviour
     public void SellTower(TowerInfo towerInfo)
     {
         towerInfo = GetComponent<TowerInfo>();
-        economy = GameObject.Find("GameManager").GetComponent<Economy_Health>();
+        economy = GameObject.Find("Economy/Health").GetComponent<Economy_Health>();
         economy.UpdateMoney(towerInfo.cost);
         Debug.Log("e");
         Destroy(gameObject);

@@ -20,7 +20,7 @@ public class BloonMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = baseSpeed * speedMultiplier;
         agent.SetDestination(path.waypoints[currentWaypoint].position);
-        economy = GameObject.Find("GameManager").GetComponent<Economy_Health>();
+        economy = GameObject.Find("Economy/Health").GetComponent<Economy_Health>();
     }
 
     public void Update()

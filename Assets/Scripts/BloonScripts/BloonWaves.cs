@@ -28,7 +28,7 @@ public class BloonWaves : MonoBehaviour
     public Round[] rounds;
     public int roundIndex = 0;
     public int bloonsLeftInRound = 0;
-    public int totalBloons;
+    public int totalBloons = 0;
     [Range(0, 100)]
     public float roundPercentage;
     public bool roundOver = true;
@@ -42,7 +42,7 @@ public class BloonWaves : MonoBehaviour
     void Start()
     {
         playerUI = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerUI>();
-        economy = GameObject.Find("GameManager").GetComponent<Economy_Health>();
+        economy = GameObject.Find("Economy/Health").GetComponent<Economy_Health>();
         playerUI.UpdateRound(roundIndex);
     }
     void Update()
@@ -55,6 +55,7 @@ public class BloonWaves : MonoBehaviour
                 roundOver = true;
                 economy.UpdateMoney(rewardAmount + roundIndex - 1);
                 playerUI.UpdateRound(roundIndex);
+                roundIndex++;
             }
         }
     }
@@ -72,17 +73,17 @@ public class BloonWaves : MonoBehaviour
     }
     public void StartNextRound()
     {
-        if(roundOver)
+        if (roundOver)
         {
             roundOver = false;
-            foreach(Bloon bloon in rounds[(roundIndex - 1) % rounds.Length].bloons)
+            totalBloons = 0;
+            foreach (Bloon bloon in rounds[(roundIndex - 1) % rounds.Length].bloons)
             {
                 bloon.amount *= (int)Mathf.Pow(4, (roundIndex - 1) / rounds.Length);
                 StartCoroutine(StartBloonSpawn(bloon));
                 totalBloons += bloon.amount;
             }
             bloonsLeftInRound = totalBloons;
-            roundIndex++;
         }
     }
     IEnumerator StartBloonSpawn(Bloon bloon)

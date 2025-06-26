@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
     public Economy_Health economy;
     void Awake()
     {
-        economy = GameObject.Find("GameManager").GetComponent<Economy_Health>();
+        economy = GameObject.Find("Economy/Health").GetComponent<Economy_Health>();
     }
 
     void Update()

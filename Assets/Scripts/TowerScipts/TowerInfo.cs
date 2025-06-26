@@ -40,7 +40,7 @@ public class TowerInfo : MonoBehaviour
     private int currentTargetingMode;
     private int value = 0; // Value of the Tower, Cost + upgrades
     private Transform towerUpgrades;
-    private Economy_Health economy;
+    public Economy_Health economy;
     [HideInInspector]
     [SerializeField]
     [Range(5, 5)]
@@ -66,7 +66,7 @@ public class TowerInfo : MonoBehaviour
     public void Start()
     {
         value += cost;
-        economy = GameObject.Find("GameManager").GetComponent<Economy_Health>();
+        economy = GameObject.Find("Economy/Health").GetComponent<Economy_Health>();
         DefineUpgrades();
     }
     public virtual void DefineUpgrades() {} // Defined in Individual tower Scripts
