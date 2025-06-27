@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class Economy_Health : MonoBehaviour
@@ -31,13 +32,13 @@ public class Economy_Health : MonoBehaviour
         if (health - amount > 0)
         {
             health -= amount;
-            playerUI.UpdateMoney();
+            playerUI.UpdateHealth();
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            SceneManager.LoadScene("TitleScreen");
+            EditorApplication.isPlaying = false;
         }
     }
 }

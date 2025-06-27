@@ -58,11 +58,13 @@ public class TowerInteract : MonoBehaviour
                 if (!upgrading)
                 {
                     OpenWindow();
+                    tower.transform.Find("RangeIndicator").gameObject.SetActive(true);
                 }
 
                 else if (upgrading)
                 {
                     CloseWindow();
+                    tower.transform.Find("RangeIndicator").gameObject.SetActive(false);
                 }
             }
         }

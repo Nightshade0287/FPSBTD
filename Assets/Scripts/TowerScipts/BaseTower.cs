@@ -42,7 +42,7 @@ public class BaseTower : MonoBehaviour
     protected virtual void Update()
     {
         GetClosestBloon();
-        if (targetBloon != null && Vector3.Distance(gameObject.transform.position, targetBloon.position) <= range)
+        if (targetBloon != null && Vector3.Distance(gameObject.transform.position, targetBloon.position) <= range * rangeMultiplier)
         {
             Shoot();
         }
@@ -84,7 +84,7 @@ public class BaseTower : MonoBehaviour
         Ray ray = new Ray(newShootPos, bloonModel.position - newShootPos);
         RaycastHit hit;
         //Debug.DrawRay(ray.origin, ray.direction * Vector3.Distance(newShootPos, bloonModel.position));
-        if (Physics.Raycast(ray, out hit, range, mask))
+        if (Physics.Raycast(ray, out hit, range * rangeMultiplier, mask))
         {
             if (hit.collider.gameObject.layer == bloon.gameObject.layer)
                 return true;
@@ -161,19 +161,16 @@ public class BaseTower : MonoBehaviour
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
             GameObject dart = Instantiate(dartPrefab, shootPoint.position, shootPoint.rotation);
             DartBehavior dartScript = dart.GetComponent<DartBehavior>();
-            InitializeDart(dartScript);
 
             // Calculate dart direction with spread
-            Vector3 dartDirection = ((target.position - shootPoint.position) + shootOffset).normalized;
+            Vector3 dartDirection = (target.position - shootPoint.position + shootOffset).normalized;
 
             // Calculate spread offset
             float spreadX = Random.Range(-spread / 2, spread / 2);
             float spreadY = Random.Range(-spread / 2, spread / 2);
 
             dartDirection = (Quaternion.AngleAxis(spreadX, Vector3.up) * Quaternion.AngleAxis(spreadY, Vector3.right) * dartDirection).normalized;
-
-            dartScript.direction = dartDirection.normalized;
-            dartScript.dartSpeed = dartVelocity;
+            dartScript.InitializeDart(this, dartDirection);
         }
 
         // Set a cooldown before the next shot
@@ -201,15 +198,5 @@ public class BaseTower : MonoBehaviour
         shootDelay = towerInfo.shootDelay;
         spread = towerInfo.spread;
         dartsPerShot = towerInfo.DartsPerShot;
-    }
-
-    public void InitializeDart(DartBehavior dart)
-    {
-        dart.damageTypes = damageTypes;
-        dart.damageBuffs = damageBuffs;
-        dart.damage = damage + critical.CheckForCritical();
-        dart.pierce = pierce;
-        dart.lifeSpan = lifeSpan;
-        if (range / dartVelocity > lifeSpan) Debug.Log("Warning " + towerInfo.name + " dart lifespan is shorter than range");
     }
 }

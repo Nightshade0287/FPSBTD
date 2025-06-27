@@ -8,6 +8,7 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using UnityEngine.InputSystem;
 using System.Threading;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class Bloon
@@ -29,6 +30,8 @@ public class BloonWaves : MonoBehaviour
     public int roundIndex = 0;
     public int bloonsLeftInRound = 0;
     public int totalBloons = 0;
+    public int totalRBE = 0;
+    public int RBELeft;
     [Range(0, 100)]
     public float roundPercentage;
     public bool roundOver = true;
@@ -49,23 +52,34 @@ public class BloonWaves : MonoBehaviour
     {
         if (!roundOver)
         {
-            roundPercentage = (float)(bloonsLeftInRound + BloonHolder.childCount) / totalBloons * 100;
+            roundPercentage = (float)(RBELeft + GetRBEinMap()) / totalRBE * 100;
             if (roundPercentage == 0)
             {
                 roundOver = true;
                 economy.UpdateMoney(rewardAmount + roundIndex - 1);
-                playerUI.UpdateRound(roundIndex);
                 roundIndex++;
+                playerUI.UpdateRound(roundIndex);
             }
         }
     }
-
+    public int GetRBEinMap()
+    {
+        int total = 0;
+        if (BloonHolder.childCount != 0)
+        {
+            foreach (Transform bloon in BloonHolder)
+            {
+                total += bloon.GetComponent<BloonMovement>().rbe;
+            }
+        }
+        return total;
+    }
     public void SpeedUpTime(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed)
+        if (ctx.performed)
         {
             speedUp = !speedUp;
-            if(speedUp)
+            if (speedUp)
                 Time.timeScale = 3f;
             else
                 Time.timeScale = 1f;
@@ -75,22 +89,26 @@ public class BloonWaves : MonoBehaviour
     {
         if (roundOver)
         {
+            playerUI.UpdateRound(roundIndex);
             roundOver = false;
             totalBloons = 0;
+            totalRBE = 0;
             foreach (Bloon bloon in rounds[(roundIndex - 1) % rounds.Length].bloons)
             {
-                bloon.amount *= (int)Mathf.Pow(4, (roundIndex - 1) / rounds.Length);
+                bloon.amount *= (int)Mathf.Pow(4, (roundIndex - 1) / rounds.Length); // 4x the bloons every 20 rounds
                 StartCoroutine(StartBloonSpawn(bloon));
                 totalBloons += bloon.amount;
+                totalRBE += bloon.prefab.GetComponent<BloonMovement>().rbe * bloon.amount;
             }
             bloonsLeftInRound = totalBloons;
+            RBELeft = totalRBE;
         }
     }
     IEnumerator StartBloonSpawn(Bloon bloon)
     {
         yield return new WaitForSeconds(bloon.timeStamps.x);
         int bloonsLeft = bloon.amount;
-        if(bloonsLeft != 0)
+        if (bloonsLeft != 0)
         {
             SpawnBloonOnRandomPath(bloon.prefab);
             bloonsLeft--;
@@ -115,6 +133,7 @@ public class BloonWaves : MonoBehaviour
     private void SpawnBloonOnRandomPath(GameObject bloon)
     {
         bloonsLeftInRound--;
+        RBELeft -= bloon.GetComponent<BloonMovement>().rbe;
         Path randomPath = paths[Random.Range(0, paths.Length)];
         Vector3 spawnPoint = randomPath.transform.GetChild(0).transform.position;
         spawnPoint.y += bloon.GetComponent<NavMeshAgent>().baseOffset;

@@ -26,8 +26,7 @@ public class Ultra_Juggernaut : PhysicsBasedDarts
         GameObject frag = Instantiate(fragPrefab, transform.position, Quaternion.identity);
         Frag fragScript = frag.GetComponent<Frag>();
         direction = GetComponent<Rigidbody>().velocity;
-        fragScript.Initialize(shrapnel.count, shrapnel.damage, damageTypes, damageBuffs, shrapnel.pierce,
-        shrapnel.range, shrapnel.velocity, shrapnel.spreadAngle, shrapnel.sphereRadius, direction, shrapnel.prefab);
+        fragScript.Initialize(shrapnel, direction);
         fragScript.parentDart = gameObject;
     }
 }

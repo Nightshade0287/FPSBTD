@@ -35,10 +35,19 @@ public class TowerPlacement : MonoBehaviour
         baseGameplay = inputActions.FindActionMap("BaseGameplay");
         inputActions.FindActionMap("PlayerUI").Enable();
     }
-
+    // Update is called once per frame
+    void Update()
+    {
+        if (placingTower)
+        {
+            CalculatePlacePos();
+            newTower.transform.position = placePos;
+            newTower.transform.rotation = gameObject.transform.rotation;
+        }
+    }
     public void PlaceMode(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed)
+        if (ctx.performed)
         {
             if (!placingMode)
             {
@@ -76,7 +85,7 @@ public class TowerPlacement : MonoBehaviour
 
     public void PlaceTower(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed)
+        if (ctx.performed)
         {
             if (placingTower && canPlace)
             {
@@ -86,6 +95,7 @@ public class TowerPlacement : MonoBehaviour
                 placingMode = false;
                 newTower.GetComponent<BaseTower>().BloonHolder = BloonHolder;
                 newTower.GetComponent<BaseTower>().enabled = true;
+                newTower.transform.Find("RangeIndicator").gameObject.SetActive(false);
                 ResetMaterials();
                 newTower.gameObject.layer = LayerMask.NameToLayer("Tower");
                 newTower = null;
@@ -94,19 +104,9 @@ public class TowerPlacement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (placingTower)
-        {
-            CalculatePlacePos();
-            newTower.transform.position = placePos;
-            newTower.transform.rotation = gameObject.transform.rotation;
-        }
-    }
     public void SelectTower(GameObject tower)
     {
-        if(economy.cash - tower.GetComponent<TowerInfo>().cost >= 0)
+        if (economy.cash - tower.GetComponent<TowerInfo>().cost >= 0)
         {
             Destroy(newTower);
             baseGameplay.Enable();
@@ -115,13 +115,12 @@ public class TowerPlacement : MonoBehaviour
             Cursor.visible = false;
             placingTower = true;
             newTower = Instantiate(tower, placePos, gameObject.transform.rotation);
+            newTower.transform.Find("RangeIndicator").gameObject.SetActive(true);
             towerInfo = newTower.GetComponent<TowerInfo>();
             newTower.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
             StoreMaterials();
         }
     }
-
-
     public void CalculatePlacePos()
     {
         RaycastHit hit;
@@ -129,7 +128,7 @@ public class TowerPlacement : MonoBehaviour
         if (Physics.Raycast(cam.position, cam.forward, out hit, MaxPlaceDistance))
         {
             placePos = hit.point;
-            if(hit.collider.gameObject.tag == "Placeable")
+            if (hit.collider.gameObject.tag == "Placeable")
             {
                 canPlace = true;
                 ChangeToMaterial(placeMaterial);
@@ -178,13 +177,5 @@ public class TowerPlacement : MonoBehaviour
         {
             renderers[i].material = originalMaterials[i];
         }
-    }
-    public void SellTower(TowerInfo towerInfo)
-    {
-        towerInfo = GetComponent<TowerInfo>();
-        economy = GameObject.Find("Economy/Health").GetComponent<Economy_Health>();
-        economy.UpdateMoney(towerInfo.cost);
-        Debug.Log("e");
-        Destroy(gameObject);
     }
 }

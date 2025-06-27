@@ -124,18 +124,18 @@ MonoBehaviour:
   bloonHitList: 
   fragPrefab: {fileID: 7955119154036128600, guid: 4ec4e79fe9d267c4bafd43b989ead9c9, type: 3}
   shrapnel:
-    prefab: {fileID: 492331167404204468, guid: e148a6de36700f141ad3de4b983e2382, type: 3}
-    count: 5
-    damageTypes: 0b00000002000000
+    prefab: {fileID: 0}
+    count: 0
+    damageTypes: 
     damageBuffs: []
-    damage: 1
-    pierce: 2
-    range: 10
-    velocity: 40
-    spreadAngle: 45
+    damage: 0
+    pierce: 0
+    range: 0
+    velocity: 0
+    spreadAngle: 0
     sphereRadius: 0
-  bounceRange: 10
-  bounceAmount: 3
+  bounceRange: 0
+  bounceAmount: 0
   targetBloon: {fileID: 0}
 --- !u!1 &4110695513926173804
 GameObject:

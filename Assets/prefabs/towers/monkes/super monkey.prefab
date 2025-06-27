@@ -252,7 +252,6 @@ GameObject:
   - component: {fileID: 4960190583267284061}
   - component: {fileID: 241669337562394673}
   - component: {fileID: 1996891704134919710}
-  - component: {fileID: 7656505289016092040}
   m_Layer: 13
   m_Name: super monkey
   m_TagString: Untagged
@@ -304,7 +303,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Super Monkey
   cost: 2125
+  dartPrefab: {fileID: 0}
+  damageTypes: 
+  damageBuffs: []
+  damage: 0
+  pierce: 0
+  range: 0
+  lifeSpan: 0
+  dartVelocity: 0
+  shootDelay: 0
+  spread: 0
+  DartsPerShot: 1
+  twr: {fileID: 0}
   availableTargetingModes: 00000000010000000200000003000000
+  economy: {fileID: 0}
   path1:
   - name: 
     price: 0
@@ -368,34 +380,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0bec038ad848b4381a8cde9ac2e256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
   damageTypes: 02000000
+  damageBuffs: []
+  critical:
+    critAmount: 0
+    shotThreshold: 0
+  damage: 1
   pierce: 1
   range: 10
   rangeMultiplier: 1
+  lifeSpan: 0
+  lifeSpanMultiplier: 1
   dartVelocity: 0
+  dartVelocityMultiplier: 1
   shootDelay: 0
   shootDelayMultiplier: 1
   spread: 15
-  bulletsPerShot: 1
+  shootOffset: {x: 0, y: 0, z: 0}
+  dartsPerShot: 1
   mask:
     serializedVersion: 2
     m_Bits: 192
   BloonHolder: {fileID: 0}
-  bulletPrefab: {fileID: 492331167404204468, guid: c749f30e3b27b354b9102e8963e22f4c, type: 3}
+  dartPrefab: {fileID: 0}
   shootPoint: {fileID: 6485483421223912218}
---- !u!114 &7656505289016092040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6854333308694126326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad18794be3cda704a8458f2bde5b02ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  towerInfo: {fileID: 0}
 --- !u!1 &6854333308792536658
 GameObject:
   m_ObjectHideFlags: 0

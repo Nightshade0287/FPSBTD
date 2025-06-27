@@ -116,4 +116,16 @@ public class DartBehavior : MonoBehaviour
         }
         return totalBuff;
     }
+
+    public virtual void InitializeDart(BaseTower twr, Vector3 dir)
+    {
+        damageTypes = twr.damageTypes;
+        damageBuffs = twr.damageBuffs;
+        damage = twr.damage + twr.critical.CheckForCritical();
+        pierce = twr.pierce;
+        lifeSpan = twr.lifeSpan * twr.lifeSpanMultiplier;
+        direction = dir.normalized;
+        dartSpeed = twr.dartVelocity;
+        if (twr.range * twr.rangeMultiplier / twr.dartVelocity > lifeSpan) Debug.Log("Warning " + twr.towerInfo.name + " dart lifespan is shorter than range at path (" + twr.towerInfo.path1Index + ", " + twr.towerInfo.path2Index + ", " + twr.towerInfo.path3Index + ")");
+    }
 }

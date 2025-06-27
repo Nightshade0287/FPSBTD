@@ -15,10 +15,12 @@ public class Shrapnel
     public float range;
     public float velocity;
     [Range(0f, 360f)]
-    public float spreadAngle;
+    public float spreadAngleX;
+    [Range(0f, 360f)]
+    public float spreadAngleY;
     public float sphereRadius;
 
-    public Shrapnel(GameObject shrapnelPrefab, int shrapnelCount, List<DamageTypes> damageTypes, List<DamageBuff> damageBuffs, int shrapnelDamage, int shrapnelPierce, float shrapnelRange, float shrapnelVelocity, float spreadAngle, float sphereRadius)
+    public Shrapnel(GameObject shrapnelPrefab, int shrapnelCount, List<DamageTypes> damageTypes, List<DamageBuff> damageBuffs, int shrapnelDamage, int shrapnelPierce, float shrapnelRange, float shrapnelVelocity, float spreadAngleX, float spreadAngleY, float sphereRadius)
     {
         prefab = shrapnelPrefab;
         count = shrapnelCount;
@@ -28,7 +30,8 @@ public class Shrapnel
         pierce = shrapnelPierce;
         range = shrapnelRange;
         velocity = shrapnelVelocity;
-        this.spreadAngle = spreadAngle;
+        this.spreadAngleX = spreadAngleX;
+        this.spreadAngleY = spreadAngleY;
         this.sphereRadius = sphereRadius;
     }
 
@@ -64,10 +67,12 @@ public class Frag : MonoBehaviour
     public List<DamageBuff> damageBuffs = new List<DamageBuff>();
     public Critical critical;
     public int pierce;
-    public float lifeSpan;
-    public float dartVelocity;
+    public float range;
+    public float velocity;
     [Range(0f, 360f)]
-    public float spreadAngle;
+    public float spreadAngleX;
+    [Range(0f, 360f)]
+    public float spreadAngleY;
     public float sphereRadius;
     [HideInInspector]
     public Vector3 direction;
@@ -75,19 +80,20 @@ public class Frag : MonoBehaviour
     public GameObject parentDart = null;
 
     // This method sets all the necessary variables for the dart
-    public void Initialize(int fragmentCount, int damage, List<DamageTypes> damageTypes, List<DamageBuff> damageBuffs, int pierce, float lifeSpan, float dartVelocity, float spreadAngle, float sphereRadius, Vector3 direction, GameObject fragmentPrefab)
+    public void Initialize(Shrapnel shrap, Vector3 dir)
     {
-        this.fragmentCount = fragmentCount;
-        this.damageTypes = damageTypes;
-        this.damageBuffs = damageBuffs;
-        this.damage = damage;
-        this.pierce = pierce;
-        this.lifeSpan = lifeSpan;
-        this.dartVelocity = dartVelocity;
-        this.spreadAngle = spreadAngle;
-        this.sphereRadius = sphereRadius;
-        this.direction = direction;
-        this.fragmentPrefab = fragmentPrefab;
+        fragmentCount = shrap.count;
+        damageTypes = shrap.damageTypes;
+        damageBuffs = shrap.damageBuffs;
+        damage = shrap.damage;
+        pierce = shrap.pierce;
+        range = shrap.range;
+        velocity = shrap.velocity;
+        spreadAngleX = shrap.spreadAngleX;
+        spreadAngleY = shrap.spreadAngleY;
+        sphereRadius = shrap.sphereRadius;
+        direction = dir.normalized;
+        fragmentPrefab = shrap.prefab;
     }
     void Start()
     {
@@ -105,7 +111,7 @@ public class Frag : MonoBehaviour
         for (int i = 0; i < fragmentCount; i++)
         {
             // Generate a random direction within the specified angle
-            Vector3 localDirection = RandomDirectionWithinAngle(spreadAngle);
+            Vector3 localDirection = RandomDirectionWithinEllipticalCone(spreadAngleX, spreadAngleY);
 
             // Rotate the local direction to align with the desired explosion direction
             Vector3 globalDirection = RotateDirection(localDirection, direction);
@@ -120,23 +126,28 @@ public class Frag : MonoBehaviour
             if (parentDart != null) dartScript.bloonHitList = new List<int>(parentDart.GetComponent<DartBehavior>().bloonHitList);
             InitializeFragments(dartScript, globalDirection);
         }
+        Destroy(gameObject);
     }
 
-    Vector3 RandomDirectionWithinAngle(float angle)
+    Vector3 RandomDirectionWithinEllipticalCone(float horizontalAngle, float verticalAngle)
     {
-        // Convert angle from degrees to radians
-        float angleInRadians = Mathf.Deg2Rad * angle / 2f;  // Half angle for cone
+        // Convert angles from degrees to radians
+        float xRad = Mathf.Deg2Rad * horizontalAngle / 2f; // Half horizontal angle
+        float yRad = Mathf.Deg2Rad * verticalAngle / 2f;   // Half vertical angle
 
-        // Generate random values for spherical coordinates within the specified angle range
-        float z = Random.Range(Mathf.Cos(angleInRadians), 1f);  // Controls spread along the z-axis (forward direction)
-        float theta = Random.Range(0f, 2f * Mathf.PI);          // Azimuthal angle (around the cone)
+        // Generate a point on a unit circle, then scale it to an ellipse
+        float angle = Random.Range(0f, 2f * Mathf.PI);
+        float r = Mathf.Sqrt(Random.value); // Uniform distribution within ellipse
+        float x = r * Mathf.Cos(angle) * Mathf.Tan(xRad);
+        float y = r * Mathf.Sin(angle) * Mathf.Tan(yRad);
+        float z = 1f;
 
-        // Convert spherical coordinates to Cartesian coordinates (a cone-shaped spread)
-        float x = Mathf.Sqrt(1 - z * z) * Mathf.Cos(theta);
-        float y = Mathf.Sqrt(1 - z * z) * Mathf.Sin(theta);
-
-        return new Vector3(x, y, z);  // This is still in local space relative to the cone
+        // Create direction and normalize
+        Vector3 direction = new Vector3(x, y, z).normalized;
+        return direction;
     }
+
+
 
     Vector3 RotateDirection(Vector3 localDirection, Vector3 targetDirection)
     {
@@ -150,9 +161,9 @@ public class Frag : MonoBehaviour
         dart.damageTypes = damageTypes;
         dart.damageBuffs = damageBuffs;
         dart.pierce = pierce;
-        dart.lifeSpan = lifeSpan;
+        dart.lifeSpan = range/velocity;
         dart.direction = dir.normalized;
-        dart.dartSpeed = dartVelocity;
+        dart.dartSpeed = velocity;
     }
 }
 

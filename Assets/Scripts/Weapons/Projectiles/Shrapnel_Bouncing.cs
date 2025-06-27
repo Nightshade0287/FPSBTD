@@ -8,12 +8,21 @@ public class Shrapnel_Bouncing : DartBehavior
     [Header("Bounce and Shrapnel Variables")]
     public GameObject fragPrefab;
     public Shrapnel shrapnel;
-    public int bounceRange = 40;
+    public float bounceRange;
     public int bounceAmount;
     public Transform targetBloon;
+
+    public override void InitializeDart(BaseTower twr, Vector3 dir)
+    {
+        base.InitializeDart(twr, dir);
+        SniperMonkey sniperMonkey = twr.GetComponent<SniperMonkey>();
+        shrapnel = sniperMonkey.shrapnel;
+        bounceRange = sniperMonkey.bounceRange;
+        bounceAmount = sniperMonkey.bounceAmount;
+    }
     public override void BloonHitAction(GameObject bloon, List<GameObject> bloonOrder)
     {
-        if(bloon.GetInstanceID() == bloonOrder[0].GetInstanceID())
+        if (bloon.GetInstanceID() == bloonOrder[0].GetInstanceID())
         {
             Health bloonHealth = bloon.GetComponent<Health>();
             GetClosestBloon(bloon);
@@ -22,8 +31,8 @@ public class Shrapnel_Bouncing : DartBehavior
             bloonHitList.Add(bloon.GetInstanceID());
             bloonsHit += 1;
             Shrapnel(bloon.transform);
-            if(bloonsHit >= pierce) Destroy(gameObject);
-            if(targetBloon != null && bloonsHit >= bounceAmount) BounceBullet(bloon.transform);
+            if (bloonsHit >= pierce) Destroy(gameObject);
+            if (targetBloon != null && bloonsHit >= bounceAmount) BounceBullet(bloon.transform);
             targetBloon = null;
         }
     }
@@ -81,8 +90,7 @@ public class Shrapnel_Bouncing : DartBehavior
     {
         GameObject frag = Instantiate(fragPrefab, bloon.position, Quaternion.identity);
         Frag fragScript = frag.GetComponent<Frag>();
-        fragScript.Initialize(shrapnel.count, shrapnel.damage, damageTypes, damageBuffs, shrapnel.pierce,
-        shrapnel.range, shrapnel.velocity, shrapnel.spreadAngle, shrapnel.sphereRadius, direction, shrapnel.prefab);
+        fragScript.Initialize(shrapnel, direction);
         fragScript.parentDart = gameObject;
     }
 }
