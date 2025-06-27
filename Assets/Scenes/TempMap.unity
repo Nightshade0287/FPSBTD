@@ -15756,9 +15756,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd0b0ac45551c34b9bd9bfbc7f4b75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cash: 1000
+  cash: 100
   health: 100
-  infinteCash: 1
+  infinteCash: 0
   infinteHealth: 0
   playerUI: {fileID: 0}
 --- !u!1 &2129185673
