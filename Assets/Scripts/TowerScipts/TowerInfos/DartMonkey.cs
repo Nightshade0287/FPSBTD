@@ -22,7 +22,7 @@ public class DartMonkey : TowerInfo
             twr.pierce = 18;
             twr.damage = 2;
             twr.dartVelocity = 15;
-            twr.range = 8;
+            twr.range = 6;
             twr.lifeSpan = 1;
             twr.shootDelay = 1.15f;
             twr.damageTypes.Add(DamageTypes.Shatter);
@@ -96,7 +96,7 @@ public class DartMonkey : TowerInfo
             twr.lifeSpanMultiplier = 1;
             twr.damage = 3;
             twr.pierce += 1;
-            twr.range = 12;
+            twr.range = 10;
             twr.dartVelocity = 54;
             twr.lifeSpan = 0.316f;
         });
